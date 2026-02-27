@@ -1,0 +1,667 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brushes - Karachi Paints</title>
+    <meta name="description" content="Brushes - Browse our premium of premium decorative, industrial, and marine paints.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+		        <style> 
+        :root {
+            --primary-color: #2b4ca2;
+            --secondary-color: #ff6b35;
+            --dark-color: #212121;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            max-height: 130px;
+            transition: transform 0.3s;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .page-content {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            height: 100%;
+            border: 1px solid #e9ecef;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+
+        .category-card img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .category-card h5 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cart-wishlist-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .cart-wishlist-icons a {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .cart-wishlist-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .badge-custom {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+                    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="bi bi-telephone-fill"></i> CONTACT US: 
+                    <a href="tel:+923353236767">+92 335 323 6767</a>
+				</div>
+                <div class="col-md-6 text-end">
+                    <a href="../../my-account/index.html" class="me-3"><i class="bi bi-person"></i> My Account</a>
+                    <a href="../../blog/index.html" class="me-3">Blog</a>
+                    <a href="../../cart/index.html"><i class="bi bi-cart"></i> Cart</a>
+			</div>
+						</div>
+				</div>
+			</div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+<div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/web-logo-new.png" alt="Karachi Paints">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../about-us/index.html">About Us</a>
+</li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../../shop/index.html">Shop</a>
+</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../contact-us/index.html">Contact Us</a>
+</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../terms-conditions/index.html">Terms & Conditions</a>
+</li>
+                    <li class="nav-item cart-wishlist-icons ms-3">
+                        <a href="../../wishlist/index.html" class="position-relative">
+                            <i class="bi bi-heart"></i>
+                            <span class="badge-custom">0</span>
+                        </a>
+                        <a href="../../cart/index.html" class="position-relative">
+                            <i class="bi bi-cart3"></i>
+                            <span class="badge-custom">0</span>
+                        </a>
+</li>
+</ul>
+</div>
+</div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-content">
+<div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Brushes</li>
+                </ol>
+            </nav>
+            
+            <div class="section-title">
+                <h2>Brushes</h2>
+                <p class="text-muted">Browse our premium Brushes products</p>
+</div>
+
+                                    <!-- Filters -->
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <input type="text" id="product-search" class="form-control" placeholder="Search products...">
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <select id="sort-products" class="form-select">
+                        <option value="name-asc">Sort by Name (A-Z)</option>
+                        <option value="name-desc">Sort by Name (Z-A)</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-outline-secondary w-100" id="clear-filters">
+                        <i class="bi bi-x-circle me-2"></i>Clear Filters
+                    </button>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5" id="products-container">                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/413-plastic-emulsion/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/18095743_119013915324223_1461485780651212800_n.jpg?fit=480%2C480&amp;ssl=1" class="card-img-top" alt="413 Plastic Emulsion" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/413-plastic-emulsion/index.html" class="text-decoration-none text-dark">413 Plastic Emulsion</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/413-plastic-emulsion/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="413-plastic-emulsion" data-product-link="../../product/413-plastic-emulsion/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/a-99-roller-9/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/A-99-Roller-9-1.jpg?fit=1000%2C1000&amp;ssl=1" class="card-img-top" alt="A-99 Roller 9&#8243;" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/a-99-roller-9/index.html" class="text-decoration-none text-dark">A-99 Roller 9&#8243;</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/a-99-roller-9/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="a-99-roller-9" data-product-link="../../product/a-99-roller-9/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/accon-textured-roller/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Accon-Textured-Roller-1.jpg?fit=1000%2C1000&amp;ssl=1" class="card-img-top" alt="Accon Textured Roller" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/accon-textured-roller/index.html" class="text-decoration-none text-dark">Accon Textured Roller</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/accon-textured-roller/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="accon-textured-roller" data-product-link="../../product/accon-textured-roller/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/acorn-roller-9/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Acorn-Roller-9-1.jpg?fit=1000%2C1000&amp;ssl=1" class="card-img-top" alt="Acorn Roller 9&#8243;" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/acorn-roller-9/index.html" class="text-decoration-none text-dark">Acorn Roller 9&#8243;</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/acorn-roller-9/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="acorn-roller-9" data-product-link="../../product/acorn-roller-9/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/aerosil-200/index.html" class="text-decoration-none">
+                            <img src="https://via.placeholder.com/300x300?text=Product" class="card-img-top" alt="AEROSIL-200" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/aerosil-200/index.html" class="text-decoration-none text-dark">AEROSIL-200</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/aerosil-200/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="aerosil-200" data-product-link="../../product/aerosil-200/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/all-rounder-matt-enamel/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/allrounder-matt.jpg?fit=300%2C321&amp;ssl=1" class="card-img-top" alt="All Rounder Matt Enamel" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/all-rounder-matt-enamel/index.html" class="text-decoration-none text-dark">All Rounder Matt Enamel</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/all-rounder-matt-enamel/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="all-rounder-matt-enamel" data-product-link="../../product/all-rounder-matt-enamel/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/aqueous-matt-finish/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Aq-matt.png?fit=612%2C705&amp;ssl=1" class="card-img-top" alt="Aqueous  Matt Finish" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/aqueous-matt-finish/index.html" class="text-decoration-none text-dark">Aqueous  Matt Finish</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/aqueous-matt-finish/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="aqueous-matt-finish" data-product-link="../../product/aqueous-matt-finish/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/ats-geo-membrane-0-25mm-per-sq-ft/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/15-1.jpg?fit=1231%2C1480&amp;ssl=1" class="card-img-top" alt="ATS Geo Membrane 0.25mm (per sq.ft)" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/ats-geo-membrane-0-25mm-per-sq-ft/index.html" class="text-decoration-none text-dark">ATS Geo Membrane 0.25mm (per sq.ft)</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/ats-geo-membrane-0-25mm-per-sq-ft/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="ats-geo-membrane-0-25mm-per-sq-ft" data-product-link="../../product/ats-geo-membrane-0-25mm-per-sq-ft/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/ats-geo-membrane-2-00mm-per-sq-ft/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/20-1.jpg?fit=1231%2C1500&amp;ssl=1" class="card-img-top" alt="ATS Geo Membrane 2.00mm per sq. ft)" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/ats-geo-membrane-2-00mm-per-sq-ft/index.html" class="text-decoration-none text-dark">ATS Geo Membrane 2.00mm per sq. ft)</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/ats-geo-membrane-2-00mm-per-sq-ft/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="ats-geo-membrane-2-00mm-per-sq-ft" data-product-link="../../product/ats-geo-membrane-2-00mm-per-sq-ft/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/berger/index.html" class="text-decoration-none">
+                            <img src="https://via.placeholder.com/300x300?text=Product" class="card-img-top" alt="Berger" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/berger/index.html" class="text-decoration-none text-dark">Berger</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/berger/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="berger" data-product-link="../../product/berger/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/cold-galvanizing-paint-silver/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Cold-Galvanizing-Paint-Silver-1.jpg?fit=1000%2C1000&amp;ssl=1" class="card-img-top" alt="Cold Galvanizing Paint Silver" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/cold-galvanizing-paint-silver/index.html" class="text-decoration-none text-dark">Cold Galvanizing Paint Silver</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/cold-galvanizing-paint-silver/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="cold-galvanizing-paint-silver" data-product-link="../../product/cold-galvanizing-paint-silver/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="../../product/dulux-prime-on/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Untitled-4-1.jpg?fit=500%2C500&amp;ssl=1" class="card-img-top" alt="Dulux Prime-On" style="height: 250px; object-fit: contain; padding: 20px; background: #f8f9fa;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="../../product/dulux-prime-on/index.html" class="text-decoration-none text-dark">Dulux Prime-On</a>
+                            </h5>
+                            <p class="card-text text-primary fw-bold mb-3">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="../../product/dulux-prime-on/index.html" class="btn btn-primary w-100 mb-2">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary w-100 add-to-cart-btn" data-product="dulux-prime-on" data-product-link="../../product/dulux-prime-on/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>            </div>
+</div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+				<div class="container">
+			<div class="row">
+                <div class="col-md-6">
+                    <h5>Karachi Paints</h5>
+                    <p>Your trusted source for premium paint solutions</p>
+			</div>
+                <div class="col-md-6 text-end">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../about-us/index.html">About Us</a></li>
+                        <li><a href="../../contact-us/index.html">Contact Us</a></li>
+                        <li><a href="../../terms-conditions/index.html">Terms & Conditions</a></li>
+													</ul>
+					</div>
+	</div>
+            <div class="footer-bottom">
+                <p class="mb-0">Copyrights Reserved by Karachi Paints 2020 | Powered by P2P Track</p>
+			</div>
+			</div>
+	</footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery (if needed for existing functionality) -->
+    <script src="../../assets/js/jquery.minf43b.js"></script>
+    <!-- Cart Utils -->
+    <script src="../../assets/js/cart-utils.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+		
+        // Store original products
+        const productsContainer = document.getElementById('products-container');
+        if (productsContainer) {
+            let originalProducts = Array.from(productsContainer.querySelectorAll('.col-lg-3, .col-md-4, .col-sm-6'));
+            
+            // Filter and search functionality
+            function filterProducts() {
+                const searchInput = document.getElementById('product-search');
+                const sortSelect = document.getElementById('sort-products');
+                if (!searchInput || !sortSelect) return;
+                
+                const searchTerm = searchInput.value.toLowerCase();
+                const sortValue = sortSelect.value;
+                
+                let filtered = originalProducts.filter(item => {
+                    const productName = item.querySelector('.card-title a')?.textContent?.toLowerCase() || '';
+                    return productName.includes(searchTerm);
+                });
+                
+                // Sort products
+                if (sortValue === 'name-asc') {
+                    filtered.sort((a, b) => {
+                        const nameA = a.querySelector('.card-title a')?.textContent || '';
+                        const nameB = b.querySelector('.card-title a')?.textContent || '';
+                        return nameA.localeCompare(nameB);
+                    });
+                } else if (sortValue === 'name-desc') {
+                    filtered.sort((a, b) => {
+                        const nameA = a.querySelector('.card-title a')?.textContent || '';
+                        const nameB = b.querySelector('.card-title a')?.textContent || '';
+                        return nameB.localeCompare(nameA);
+                    });
+                }
+                
+                // Clear container
+                productsContainer.innerHTML = '';
+                
+                // Add filtered products
+                if (filtered.length === 0) {
+                    productsContainer.innerHTML = 
+                        <div class="col-12 text-center py-5">
+                            <i class="bi bi-search" style="font-size: 48px; color: #ccc;"></i>
+                            <p class="text-muted mt-3">No products found matching your search.</p>
+                        </div>
+                    ;
+                } else {
+                    filtered.forEach(item => {
+                        productsContainer.appendChild(item);
+                    });
+                }
+            }
+            
+            // Event listeners
+            const searchInput = document.getElementById('product-search');
+            const sortSelect = document.getElementById('sort-products');
+            const clearBtn = document.getElementById('clear-filters');
+            
+            if (searchInput) searchInput.addEventListener('input', filterProducts);
+            if (sortSelect) sortSelect.addEventListener('change', filterProducts);
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function() {
+                    if (searchInput) searchInput.value = '';
+                    if (sortSelect) sortSelect.value = 'name-asc';
+                    filterProducts();
+                });
+            }
+        }
+        
+        // Update cart count badges
+        document.querySelectorAll('.badge-custom').forEach(badge => {
+            const link = badge.closest('a');
+            if (link && link.href.includes('cart')) {
+                badge.id = 'cart-count';
+            } else if (link && link.href.includes('wishlist')) {
+                badge.id = 'wishlist-count';
+            }
+        });
+				</script>
+</body>
+</html>

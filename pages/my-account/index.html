@@ -1,0 +1,561 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Karachi Paints</title>
+    <meta name="description" content="My Account - Login or register to access your account at Karachi Paints.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2b4ca2;
+            --secondary-color: #ff6b35;
+            --dark-color: #212121;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .top-bar {
+            background: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: var(--secondary-color);
+        }
+
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            max-height: 130px;
+            transition: transform 0.3s;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .page-content {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .cart-wishlist-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .cart-wishlist-icons a {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .cart-wishlist-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .badge-custom {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .account-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+            margin-bottom: 30px;
+        }
+
+        .account-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-bg);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 12px 15px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(43, 76, 162, 0.25);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #1e3a7a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(43, 76, 162, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+            position: relative;
+            color: #666;
+        }
+
+        .account-tabs {
+            border-bottom: 2px solid var(--light-bg);
+            margin-bottom: 30px;
+        }
+
+        .account-tabs .nav-link {
+            color: var(--text-dark);
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 15px 25px;
+            transition: all 0.3s;
+        }
+
+        .account-tabs .nav-link:hover {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .account-tabs .nav-link.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: transparent;
+        }
+
+        .account-info {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .account-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .account-info p {
+            margin-bottom: 10px;
+        }
+
+        .account-info i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="bi bi-telephone-fill"></i> CONTACT US: 
+                    <a href="tel:+923353236767">+92 335 323 6767</a>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="index.html" class="me-3"><i class="bi bi-person"></i> My Account</a>
+                    <a href="../blog/index.html" class="me-3">Blog</a>
+                    <a href="../cart/index.html"><i class="bi bi-cart"></i> Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/images/web-logo-new.png" alt="Karachi Paints">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about-us/index.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../shop/index.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact-us/index.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../terms-conditions/index.html">Terms & Conditions</a>
+                    </li>
+                    <li class="nav-item cart-wishlist-icons ms-3">
+                        <a href="../wishlist/index.html" class="position-relative">
+                            <i class="bi bi-heart"></i>
+                            <span class="badge-custom" id="wishlist-count">0</span>
+                        </a>
+                        <a href="../cart/index.html" class="position-relative">
+                            <i class="bi bi-cart3"></i>
+                            <span class="badge-custom" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                </ol>
+            </nav>
+            
+            <div class="section-title">
+                <h2>My Account</h2>
+                <p class="text-muted">Login or register to access your account</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="account-card">
+                        <h3><i class="bi bi-box-arrow-in-right me-2"></i>Login</h3>
+                        <form id="login-form">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username or Email <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember-me" name="rememberme">
+                                <label class="form-check-label" for="remember-me">
+                                    Remember me
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mb-3">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Log In
+                            </button>
+                            <div class="text-center">
+                                <a href="lost-password/index.html" class="text-decoration-none">Lost your password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="account-card">
+                        <h3><i class="bi bi-person-plus me-2"></i>Register</h3>
+                        <form id="register-form">
+                            <div class="mb-3">
+                                <label for="reg_email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="reg_email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <p class="text-muted small">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    A password will be sent to your email address.
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacy-policy" required>
+                                    <label class="form-check-label" for="privacy-policy">
+                                        I agree to the <a href="../terms-conditions/index.html" target="_blank">privacy policy</a> <span class="text-danger">*</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-person-plus me-2"></i>Register
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="account-info">
+                <h4><i class="bi bi-info-circle me-2"></i>Account Benefits</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><i class="bi bi-check-circle"></i> Access your order history</p>
+                        <p><i class="bi bi-check-circle"></i> Track your orders</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><i class="bi bi-check-circle"></i> Save your shipping addresses</p>
+                        <p><i class="bi bi-check-circle"></i> Faster checkout process</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><i class="bi bi-check-circle"></i> View order details</p>
+                        <p><i class="bi bi-check-circle"></i> Manage your account settings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Karachi Paints</h5>
+                    <p>Your trusted source for premium paint solutions</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../about-us/index.html">About Us</a></li>
+                        <li><a href="../contact-us/index.html">Contact Us</a></li>
+                        <li><a href="../terms-conditions/index.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">Copyrights Reserved by Karachi Paints 2020 | Powered by P2P Track</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../assets/js/jquery.minf43b.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Update cart and wishlist counts
+        function updateCounts() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const cartTotal = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartTotal;
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+        }
+        
+        updateCounts();
+        
+        // Login form handler
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('remember-me').checked;
+            
+            // Simple validation
+            if (!username || !password) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // In a real application, this would send data to a server
+            // For now, we'll just show a message
+            alert('Login functionality will be implemented. For now, please contact us at +92 335 323 6767 for account access.');
+            
+            // Store login state (for demo purposes)
+            if (rememberMe) {
+                localStorage.setItem('userLoggedIn', 'true');
+                localStorage.setItem('username', username);
+            }
+        });
+        
+        // Register form handler
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('reg_email').value;
+            const privacyPolicy = document.getElementById('privacy-policy').checked;
+            
+            // Simple validation
+            if (!email) {
+                alert('Please enter your email address.');
+                return;
+            }
+            
+            if (!privacyPolicy) {
+                alert('Please agree to the privacy policy.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // In a real application, this would send data to a server
+            // For now, we'll just show a message
+            alert('Registration functionality will be implemented. For now, please contact us at +92 335 323 6767 to create an account.');
+        });
+        
+        // Check if user is already logged in
+        if (localStorage.getItem('userLoggedIn') === 'true') {
+            const username = localStorage.getItem('username');
+            if (username) {
+                // Show logged in state (optional)
+                console.log('User logged in:', username);
+            }
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

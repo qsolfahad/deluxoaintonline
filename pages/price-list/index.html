@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price List - Karachi Paints</title>
+    <meta name="description" content="Complete price list for all Karachi Paints products">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2b4ca2;
+            --secondary-color: #ff6b35;
+            --dark-color: #212121;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .top-bar {
+            background: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: var(--secondary-color);
+        }
+
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            max-height: 130px;
+            transition: transform 0.3s;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .page-content {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+
+        .price-list-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #4a6cd2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .price-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .price-table table {
+            margin: 0;
+        }
+
+        .price-table thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .price-table thead th {
+            padding: 15px;
+            font-weight: 600;
+            border: none;
+        }
+
+        .price-table tbody tr {
+            transition: background 0.3s;
+        }
+
+        .price-table tbody tr:hover {
+            background: var(--light-bg);
+        }
+
+        .price-table tbody td {
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+        .product-category {
+            background: var(--dark-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .price-value {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .unit-badge {
+            background: var(--light-bg);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-left: 5px;
+        }
+
+        .search-filter {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .badge-custom {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .cart-wishlist-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .cart-wishlist-icons a {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .cart-wishlist-icons a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="bi bi-telephone-fill"></i> CONTACT US: 
+                    <a href="tel:+923353236767">+92 335 323 6767</a>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="../my-account/index.html" class="me-3"><i class="bi bi-person"></i> My Account</a>
+                    <a href="../blog/index.html" class="me-3">Blog</a>
+                    <a href="../cart/index.html"><i class="bi bi-cart"></i> Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <img src="../../assets/images/web-logo-new.png" alt="Karachi Paints">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about-us/index.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../shop/index.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Price List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact-us/index.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../terms-conditions/index.html">Terms & Conditions</a>
+                    </li>
+                    <li class="nav-item cart-wishlist-icons ms-3">
+                        <a href="../wishlist/index.html" class="position-relative">
+                            <i class="bi bi-heart"></i>
+                            <span class="badge-custom" id="wishlist-count">0</span>
+                        </a>
+                        <a href="../cart/index.html" class="position-relative">
+                            <i class="bi bi-cart3"></i>
+                            <span class="badge-custom" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Price List Header -->
+    <div class="price-list-header">
+        <div class="container">
+            <h1 class="mb-3">Price List</h1>
+            <p class="lead mb-0">Effective from 1st December 2025</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Price List</li>
+                </ol>
+            </nav>
+
+            <!-- Search and Filter -->
+            <div class="search-filter">
+                <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <input type="text" id="search-products" class="form-control" placeholder="Search products...">
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <select id="filter-category" class="form-select">
+                            <option value="">All Categories</option>
+                            <option value="emulsion">Emulsion</option>
+                            <option value="enamel">Enamel</option>
+                            <option value="primer">Primer</option>
+                            <option value="putty">Putty</option>
+                            <option value="weather">Weather Shield</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-secondary w-100" id="clear-filters">
+                            <i class="bi bi-x-circle me-2"></i>Clear Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price List Table -->
+            <div class="price-table">
+                <table class="table table-hover mb-0" id="price-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Drum</th>
+                            <th>Gallon</th>
+                            <th>Quarter</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="price-table-body">
+                        <!-- Price list will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="alert alert-warning mt-4">
+                <h5 class="alert-heading"><i class="bi bi-info-circle me-2"></i>Important Notes:</h5>
+                <ul class="mb-0">
+                    <li>PKR 200 per Drum will be extra charge if white packing required.</li>
+                    <li>White, Off White, Ash White & Filling Putty rates will be revised due to costing.</li>
+                    <li>Special Shade: Shade #.9009 to 9011 Gallons will be Special Shade.</li>
+                    <li>Weather Shield and Water Based Matt Finish: As per order required.</li>
+                    <li><strong>Cash on Delivery Only</strong></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Karachi Paints</h5>
+                    <p>Your trusted source for premium paint solutions</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../about-us/index.html">About Us</a></li>
+                        <li><a href="../contact-us/index.html">Contact Us</a></li>
+                        <li><a href="../terms-conditions/index.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">Copyrights Reserved by Karachi Paints 2020 | Powered by P2P Track</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../../assets/js/jquery.minf43b.js"></script>
+    <!-- Pricing Data -->
+    <script src="../../assets/js/pricing-data.js"></script>
+    <!-- Cart Utils -->
+    <script src="../../assets/js/cart-utils.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Generate price list table
+        function generatePriceList() {
+            const tbody = document.getElementById('price-table-body');
+            tbody.innerHTML = '';
+            
+            const pricing = window.ProductPricing.pricing;
+            const categories = {
+                'Emulsion': ['emulsion', 'plastic-emulsion', 'silk-emulsion', 'super-emulsion', 'nu-emulsion', 'perfect-emulsion', 'semi-plastic-emulsion', 'spd-smooth-emulsion', 'overall-super-semi-plastic-emulsion', 'royal-matt-emulsion', 'silk-sheen-emulsion', 'soft-sheen-emulsion', 'luxury-silk-sheen-emulsion'],
+                'Enamel': ['synthetic-enamel', 'matt-enamel', 'gloss-enamel', 'special-matt-enamel', 'premium-matt-enamel', 'premium-synthetic-enamel-plus', 'super-gloss-enamel', 'nu-enamel', 'q-lac-enamel', 'satin-glo-matt-enamel', 'brilliance-matt-enamel', 'subrang-matt-enamel', 'subrang-synthetic-enamel', 'platone-high-gloss', 'all-rounder-matt-enamel', 'industrial-synthetic-enamel'],
+                'Primer': ['waterbase-primer', 'oil-primer', 'red-oxide-primer', 'undercoat', 'dulux-aqua-primer', 'dulux-prime-on'],
+                'Putty': ['acrylic-putty', 'dulux-wall-smoothening-putty-20-kg', 'dulux-weathershield-wall-putty-20-kg', 'paintex-putty'],
+                'Matt Finish': ['water-based-matt-finish', 'hydrous-matt-finish', 'aqueous-matt-finish', 'stain-guard-water-based-matt-emulsion', 'stainless-water-based-matt', 'subrang-aqueous-matt'],
+                'Weather Shield': ['weather-shield', 'weather-defender', 'weather-hardshield', 'weather-proof', 'weather-protector', 'weather-resistant', 'weather-sheath', 'weather-shield-powerflex', 'weatherbond', 'wheather-safe', 'crystal-weather-sheat', 'buxly-weather-fighter', 'all-weather-shelter', 'master-thermoshield'],
+                'Other': ['413-plastic-emulsion', 'berger', 'cold-galvanizing-paint-silver', 'plastic-bound-distemper', 'special-shade']
+            };
+            
+            let rowCount = 0;
+            
+            for (const [category, products] of Object.entries(categories)) {
+                // Category header row
+                tbody.innerHTML += `<tr class="product-category"><td colspan="5"><strong>${category}</strong></td></tr>`;
+                
+                products.forEach(productKey => {
+                    const product = pricing[productKey];
+                    if (product) {
+                        const productName = productKey.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                        const drum = product.drum ? `PKR ${product.drum.toLocaleString()}` : '-';
+                        const gallon = product.gallon ? `PKR ${product.gallon.toLocaleString()}` : '-';
+                        const quarter = product.quarter ? `PKR ${product.quarter.toLocaleString()}` : '-';
+                        
+                        tbody.innerHTML += `
+                            <tr data-product="${productKey}" data-category="${category.toLowerCase()}">
+                                <td><strong>${productName}</strong></td>
+                                <td class="price-value">${drum}</td>
+                                <td class="price-value">${gallon}</td>
+                                <td class="price-value">${quarter}</td>
+                                <td>
+                                    <a href="../../product/${productKey}/index.html" class="btn btn-sm btn-primary">
+                                        <i class="bi bi-eye me-1"></i>View
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                        rowCount++;
+                    }
+                });
+            }
+        }
+        
+        // Filter functionality
+        document.getElementById('search-products')?.addEventListener('input', filterTable);
+        document.getElementById('filter-category')?.addEventListener('change', filterTable);
+        document.getElementById('clear-filters')?.addEventListener('click', function() {
+            document.getElementById('search-products').value = '';
+            document.getElementById('filter-category').value = '';
+            filterTable();
+        });
+        
+        function filterTable() {
+            const searchTerm = document.getElementById('search-products').value.toLowerCase();
+            const categoryFilter = document.getElementById('filter-category').value.toLowerCase();
+            const rows = document.querySelectorAll('#price-table-body tr');
+            
+            rows.forEach(row => {
+                if (row.classList.contains('product-category')) {
+                    // Show/hide category headers based on visibility of their products
+                    let hasVisibleProducts = false;
+                    let nextRow = row.nextElementSibling;
+                    while (nextRow && !nextRow.classList.contains('product-category')) {
+                        if (nextRow.style.display !== 'none') {
+                            hasVisibleProducts = true;
+                            break;
+                        }
+                        nextRow = nextRow.nextElementSibling;
+                    }
+                    row.style.display = hasVisibleProducts ? '' : 'none';
+                } else {
+                    const productName = row.querySelector('td')?.textContent.toLowerCase() || '';
+                    const productKey = row.getAttribute('data-product') || '';
+                    const category = row.getAttribute('data-category') || '';
+                    
+                    const matchesSearch = !searchTerm || productName.includes(searchTerm) || productKey.includes(searchTerm);
+                    const matchesCategory = !categoryFilter || category.includes(categoryFilter);
+                    
+                    row.style.display = (matchesSearch && matchesCategory) ? '' : 'none';
+                }
+            });
+        }
+        
+        // Initialize
+        generatePriceList();
+    </script>
+</body>
+</html>

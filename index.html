@@ -1,0 +1,1155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karachi Paints - Premium Paint Solutions</title>
+    <meta name="description" content="Karachi Paints - Your trusted source for premium decorative, industrial, and marine paints. Best brands at competitive prices.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2b4ca2;
+            --secondary-color: #ff6b35;
+            --dark-color: #212121;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            max-height: 110px;
+            transition: transform 0.3s;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-nav .nav-link.active::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #4a6cd2 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-hero {
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+        }
+
+        .btn-hero:hover {
+            background: #ff5722;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,53,0.4);
+            color: white;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #ff8c5a 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .promo-banner h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .promo-banner p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        /* Brand Cards */
+        .brand-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #e9ecef;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+
+        .brand-card img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .brand-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .about-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Payment Methods */
+        .payment-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .payment-method img {
+            max-width: 120px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Utility Classes */
+        .text-primary-custom {
+            color: var(--primary-color) !important;
+        }
+
+        .bg-primary-custom {
+            background-color: var(--primary-color) !important;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #1e3a7a;
+            border-color: #1e3a7a;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .brand-card {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Cart & Wishlist Icons */
+        .cart-wishlist-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .cart-wishlist-icons a {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .cart-wishlist-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .badge-custom {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        /* Paint Calculator */
+        .calculator-section {
+            background: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .calculator-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .calculator-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px 15px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(43, 76, 162, 0.25);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #4a6cd2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .result-box h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        /* Product Grid */
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid #e9ecef;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .product-card .card-body {
+            padding: 20px;
+        }
+
+        .product-card .card-title {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            min-height: 50px;
+        }
+
+        .product-card .card-title a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .product-card .card-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .product-price {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-product {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="bi bi-telephone-fill"></i> CONTACT US: 
+                    <a href="tel:+923353236767">+92 335 323 6767</a>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="pages/my-account/index.html" class="me-3"><i class="bi bi-person"></i> My Account</a>
+                    <a href="pages/blog/index.html" class="me-3">Blog</a>
+                    <a href="pages/cart/index.html"><i class="bi bi-cart"></i> Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/web-logo-new.png" alt="Karachi Paints">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/about-us/index.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/shop/index.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/contact-us/index.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/terms-conditions/index.html">Terms & Conditions</a>
+                    </li>
+                    <li class="nav-item cart-wishlist-icons ms-3">
+                        <a href="pages/wishlist/index.html" class="position-relative">
+                            <i class="bi bi-heart"></i>
+                            <span class="badge-custom" id="wishlist-count">0</span>
+                        </a>
+                        <a href="pages/cart/index.html" class="position-relative">
+                            <i class="bi bi-cart3"></i>
+                            <span class="badge-custom" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1>Premium Paint Solutions</h1>
+                    <p>Your trusted source for decorative, industrial, and marine paints. Quality brands at competitive prices.</p>
+                    <a href="pages/shop/index.html" class="btn btn-hero">Shop Now</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-content">
+                        <i class="bi bi-palette-fill" style="font-size: 200px; opacity: 0.3;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <h3>🎉 UP TO 20% OFF THE ENTIRE STORE!</h3>
+            <p>Shop now with Karachi Paints and get the best deals on premium paint brands</p>
+        </div>
+    </section>
+
+    <!-- Paint Estimation Calculator -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Paint Estimation Calculator</h2>
+                <p>Calculate how much paint you need for your project</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="calculator-card">
+                        <h3><i class="bi bi-calculator me-2"></i>Estimate Your Paint Needs</h3>
+                        <form id="paint-calculator">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="length">Length (ft)</label>
+                                        <input type="number" class="form-control" id="length" placeholder="Enter length" min="0" step="0.1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="width">Width (ft)</label>
+                                        <input type="number" class="form-control" id="width" placeholder="Enter width" min="0" step="0.1" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="height">Height (ft)</label>
+                                        <input type="number" class="form-control" id="height" placeholder="Enter height" min="0" step="0.1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="coats">Number of Coats</label>
+                                        <select class="form-control" id="coats" required>
+                                            <option value="1">1 Coat</option>
+                                            <option value="2" selected>2 Coats (Recommended)</option>
+                                            <option value="3">3 Coats</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="paint-type">Paint Type</label>
+                                <select class="form-control" id="paint-type" required>
+                                    <option value="emulsion">Emulsion (Coverage: ~120 sq ft/liter)</option>
+                                    <option value="enamel">Enamel (Coverage: ~100 sq ft/liter)</option>
+                                    <option value="primer">Primer (Coverage: ~110 sq ft/liter)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-lg">
+                                <i class="bi bi-calculator me-2"></i>Calculate
+                            </button>
+                        </form>
+                        <div class="result-box" id="result-box">
+                            <h4><i class="bi bi-check-circle me-2"></i>Estimated Paint Required</h4>
+                            <div class="result-value" id="result-value">0</div>
+                            <p id="result-details"></p>
+                            <a href="pages/shop/index.html" class="btn btn-light mt-3">
+                                <i class="bi bi-cart me-2"></i>Shop Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Touch Products Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <p class="text-uppercase text-muted mb-2">PREMIUM QUALITY</p>
+                <h2>Final Touch Products</h2>
+                <p>Explore our premium Final Touch paint collection</p>
+            </div>
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/18095743_119013915324223_1461485780651212800_n.jpg?fit=480%2C480&ssl=1" class="card-img-top" alt="413 Plastic Emulsion">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/413-plastic-emulsion/index.html" class="text-decoration-none">413 Plastic Emulsion</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/413-plastic-emulsion/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="413-plastic-emulsion" data-product-link="product/413-plastic-emulsion/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Aq-matt.png?fit=612%2C705&ssl=1" class="card-img-top" alt="Aqueous Matt Finish">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/aqueous-matt-finish/index.html" class="text-decoration-none">Aqueous Matt Finish</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/aqueous-matt-finish/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="aqueous-matt-finish" data-product-link="product/aqueous-matt-finish/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/allrounder-matt.jpg?fit=300%2C321&ssl=1" class="card-img-top" alt="All Rounder Matt Enamel">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/all-rounder-matt-enamel/index.html" class="text-decoration-none">All Rounder Matt Enamel</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/all-rounder-matt-enamel/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="all-rounder-matt-enamel" data-product-link="product/all-rounder-matt-enamel/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Untitled-4-1.jpg?fit=500%2C500&ssl=1" class="card-img-top" alt="Dulux Prime-On">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/dulux-prime-on/index.html" class="text-decoration-none">Dulux Prime-On</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/dulux-prime-on/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="dulux-prime-on" data-product-link="product/dulux-prime-on/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 5 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Cold-Galvanizing-Paint-Silver-1.jpg?fit=1000%2C1000&ssl=1" class="card-img-top" alt="Cold Galvanizing Paint Silver">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/cold-galvanizing-paint-silver/index.html" class="text-decoration-none">Cold Galvanizing Paint Silver</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/cold-galvanizing-paint-silver/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="cold-galvanizing-paint-silver" data-product-link="product/cold-galvanizing-paint-silver/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 6 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://via.placeholder.com/300x300?text=Product" class="card-img-top" alt="Berger">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/berger/index.html" class="text-decoration-none">Berger</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/berger/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="berger" data-product-link="product/berger/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 7 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/A-99-Roller-9-1.jpg?fit=1000%2C1000&ssl=1" class="card-img-top" alt="A-99 Roller 9">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/a-99-roller-9/index.html" class="text-decoration-none">A-99 Roller 9"</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/a-99-roller-9/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="a-99-roller-9" data-product-link="product/a-99-roller-9/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 8 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card card h-100 shadow-sm">
+                        <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="text-decoration-none">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Accon-Textured-Roller-1.jpg?fit=1000%2C1000&ssl=1" class="card-img-top" alt="Accon Textured Roller">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="product/accon-textured-roller/index.html" class="text-decoration-none">Accon Textured Roller</a>
+                            </h5>
+                            <p class="product-price">Contact for Price</p>
+                            <div class="mt-auto">
+                                <a href="product/accon-textured-roller/index.html" class="btn btn-primary btn-product">
+                                    <i class="bi bi-eye me-2"></i>View Details
+                                </a>
+                                <button class="btn btn-outline-primary btn-product add-to-cart-btn" data-product="accon-textured-roller" data-product-link="product/accon-textured-roller/index.html">
+                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="pages/product-category/paints/decorative-paints/final-touch/index.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-arrow-right me-2"></i>View All Final Touch Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Brands Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <p class="text-uppercase text-muted mb-2">BEST BRAND FOR YOU</p>
+                <h2>Featured Brands</h2>
+                <p>Discover our premium collection of trusted paint brands</p>
+            </div>
+            <div class="row g-4">
+                <!-- Brand 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/decorative-paints/berger-paints/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/berger-paints.jpg?w=500&ssl=1" alt="Berger Paints" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 2 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/decorative-paints/gobis-paints/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/logo-300x138-1.jpg?w=500&ssl=1" alt="Gobis Paints" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/decorative-paints/kansai-paint/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/1200px-Kansai_Paint_Co._Ltd._Logo.svg.jpg?w=500&ssl=1" alt="Kansai Paint" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/dulux-paints/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Dulux-Logo.jpg?w=500&ssl=1" alt="Dulux Paints" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 5 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/union-paints/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/13516424_1249384418413912_6780504342446029023_n.jpg?w=500&ssl=1" alt="Union Paints" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 6 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/nippon-paint/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Nippon-Paint.jpg?w=500&ssl=1" alt="Nippon Paint" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 7 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/nelson/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/274694868_5562469380433248_420032120793720685_n.jpg?w=500&ssl=1" alt="Nelson" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 8 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/saasi-paints/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/SAASI-PAINTS-LOGO-300x300-1.jpg?w=500&ssl=1" alt="Saasi Paints" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 9 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/diamond-paints/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/128304992_3501116416643457_7180598722254270681_n.jpg?w=500&ssl=1" alt="Diamond Paints" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 10 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/master/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/Master-Logo.jpg?w=500&ssl=1" alt="Master" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 11 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/reliance-paints/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/34df26583f68a38d83f6bd7f253df085_400x400.jpg?w=500&ssl=1" alt="Reliance Paints" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+                <!-- Brand 12 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="pages/product-category/paints/super-kote/index.html" class="text-decoration-none">
+                        <div class="brand-card">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/1511251324-74-super-kote-paint.jpg?w=500&ssl=1" alt="Super Kote" class="img-fluid">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-icon">
+                    <i class="bi bi-house-door"></i>
+                </div>
+                <h3 class="text-primary-custom">About Us</h3>
+                <p>
+                    <strong>KARACHI PAINTS</strong> – Karachi Paints is a sister concern of the well known <strong>Karachi Paint House</strong> group of companies. Our decorative, industrial, marine paints & paint raw materials range won the admiration, applause and confidence of the professionals and prestigious consultants. We, at Karachi Paints serve the purpose of being complete paint suppliers, manufacturer representatives & distributors. We boast having all varieties of all well-known brands of paints as well as construction chemicals.
+                </p>
+                <a href="pages/shop/index.html" class="btn btn-primary-custom btn-lg mt-4">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <h2 class="text-primary-custom mb-0" style="border-right: 2px solid #E4E4E4; padding-right: 30px;">PAYMENT METHODS</h2>
+                </div>
+                <div class="col-md-8">
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/2feee5f1-c1e1-47b6-aea6-12d6d573fcdd.png?w=282&ssl=1" alt="Payment Method">
+                        </div>
+                        <div class="payment-method">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/jazz-cash.png?w=512&ssl=1" alt="Jazz Cash">
+                        </div>
+                        <div class="payment-method">
+                            <img src="https://i0.wp.com/karachipaints.pk/wp-content/uploads/2022/03/icon-256x256-1.png?w=256&ssl=1" alt="Payment Method">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Karachi Paints</h5>
+                    <p>Your trusted source for premium paint solutions</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/about-us/index.html">About Us</a></li>
+                        <li><a href="pages/contact-us/index.html">Contact Us</a></li>
+                        <li><a href="pages/terms-conditions/index.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">Copyrights Reserved by Karachi Paints 2020 | Powered by P2P Track</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery (if needed for existing functionality) -->
+    <script src="assets/js/jquery.minf43b.js"></script>
+    <!-- Pricing Data -->
+    <script src="assets/js/pricing-data.js"></script>
+    <!-- Cart Utils -->
+    <script src="assets/js/cart-utils.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Paint Calculator
+        document.getElementById('paint-calculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const length = parseFloat(document.getElementById('length').value);
+            const width = parseFloat(document.getElementById('width').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const coats = parseInt(document.getElementById('coats').value);
+            const paintType = document.getElementById('paint-type').value;
+            
+            // Calculate wall area (excluding floor and ceiling for interior)
+            // For 4 walls: 2 * (length * height) + 2 * (width * height)
+            const wallArea = 2 * (length * height) + 2 * (width * height);
+            
+            // Coverage per liter based on paint type
+            const coverage = {
+                'emulsion': 120,
+                'enamel': 100,
+                'primer': 110
+            };
+            
+            const coveragePerLiter = coverage[paintType];
+            
+            // Calculate total paint needed
+            const totalArea = wallArea * coats;
+            const paintNeeded = totalArea / coveragePerLiter;
+            
+            // Round up to nearest 0.5 liter
+            const paintNeededRounded = Math.ceil(paintNeeded * 2) / 2;
+            
+            // Display result
+            document.getElementById('result-value').textContent = paintNeededRounded.toFixed(1) + ' Liters';
+            document.getElementById('result-details').innerHTML = `
+                <p class="mb-2">Wall Area: ${wallArea.toFixed(2)} sq ft</p>
+                <p class="mb-2">Total Area (${coats} coats): ${totalArea.toFixed(2)} sq ft</p>
+                <p class="mb-0">Coverage: ${coveragePerLiter} sq ft per liter</p>
+            `;
+            document.getElementById('result-box').classList.add('show');
+            
+            // Scroll to result
+            document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        // Cart functionality is handled by cart-utils.js
+        // Listen for cart updates
+        window.addEventListener('cartUpdated', function(e) {
+            const cartCountEl = document.getElementById('cart-count');
+            if (cartCountEl) {
+                cartCountEl.textContent = e.detail.count;
+            }
+        });
+    </script>
+</body>
+</html>
