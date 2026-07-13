@@ -1,299 +1,32 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account - Karachi Paints</title>
-    <meta name="description" content="My Account - Login or register to access your account at Karachi Paints.">
-    
+    <title>My Account - Delux Paint Online</title>
+    <meta name="description" content="My Account - Manage your orders and profile at Delux Paint Online.">
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Custom CSS -->
-    <style>
-        :root {
-            --primary-color: #2b4ca2;
-            --secondary-color: #ff6b35;
-            --dark-color: #212121;
-            --light-bg: #f8f9fa;
-            --text-dark: #333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-
-        .top-bar {
-            background: var(--dark-color);
-            color: white;
-            padding: 10px 0;
-            font-size: 14px;
-        }
-
-        .top-bar a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .top-bar a:hover {
-            color: var(--secondary-color);
-        }
-
-        .navbar {
-            background: white !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 15px 0;
-        }
-
-        .navbar-brand img {
-            max-height: 130px;
-            transition: transform 0.3s;
-        }
-
-        .navbar-brand:hover img {
-            transform: scale(1.05);
-        }
-
-        .navbar-nav .nav-link {
-            color: var(--text-dark) !important;
-            font-weight: 500;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-
-        .navbar-nav .nav-link.active {
-            color: var(--primary-color) !important;
-        }
-
-        .footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 40px 0 20px;
-        }
-
-        .footer a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer a:hover {
-            color: var(--secondary-color);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .page-content {
-            padding: 60px 0;
-            min-height: 60vh;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .cart-wishlist-icons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .cart-wishlist-icons a {
-            color: var(--text-dark);
-            font-size: 1.2rem;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        .cart-wishlist-icons a:hover {
-            color: var(--primary-color);
-        }
-
-        .badge-custom {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        .breadcrumb {
-            background: transparent;
-            padding: 0;
-            margin-bottom: 20px;
-        }
-
-        .breadcrumb a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .account-card {
-            background: white;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border: 1px solid #e9ecef;
-            margin-bottom: 30px;
-        }
-
-        .account-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-bg);
-        }
-
-        .form-label {
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .form-control {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 12px 15px;
-            transition: all 0.3s;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(43, 76, 162, 0.25);
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: #1e3a7a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(43, 76, 162, 0.3);
-        }
-
-        .divider {
-            text-align: center;
-            margin: 30px 0;
-            position: relative;
-        }
-
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: #ddd;
-        }
-
-        .divider span {
-            background: white;
-            padding: 0 20px;
-            position: relative;
-            color: #666;
-        }
-
-        .account-tabs {
-            border-bottom: 2px solid var(--light-bg);
-            margin-bottom: 30px;
-        }
-
-        .account-tabs .nav-link {
-            color: var(--text-dark);
-            border: none;
-            border-bottom: 3px solid transparent;
-            padding: 15px 25px;
-            transition: all 0.3s;
-        }
-
-        .account-tabs .nav-link:hover {
-            border-bottom-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .account-tabs .nav-link.active {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-            background: transparent;
-        }
-
-        .account-info {
-            background: var(--light-bg);
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        .account-info h4 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .account-info p {
-            margin-bottom: 10px;
-        }
-
-        .account-info i {
-            color: var(--primary-color);
-            margin-right: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/custom-theme.css">
 </head>
+
 <body>
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <i class="bi bi-telephone-fill"></i> CONTACT US: 
+                    <i class="bi bi-telephone-fill"></i> CONTACT US:
                     <a href="tel:+923353236767">+92 335 323 6767</a>
                 </div>
                 <div class="col-md-6 text-end">
@@ -309,7 +42,7 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="../index.html">
-                <img src="../assets/images/web-logo-new.png" alt="Karachi Paints">
+                <img src="../assets/images/web-logo-new.png" alt="Delux Paint Online">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -349,91 +82,496 @@
     <!-- Main Content -->
     <main class="page-content">
         <div class="container">
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb" class="no-print">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">My Account</li>
                 </ol>
             </nav>
-            
-            <div class="section-title">
-                <h2>My Account</h2>
-                <p class="text-muted">Login or register to access your account</p>
+
+            <!-- Auth Form Container (Logged out view) -->
+            <div id="auth-container" class="no-print">
+                <div class="section-title">
+                    <h2>My Account</h2>
+                    <p class="text-muted">Login or register to access your dashboard</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-8 mb-4">
+                        <div class="account-card">
+                            <h3><i class="bi bi-box-arrow-in-right me-2"></i>Login</h3>
+                            <form id="login-form">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username or Email *</label>
+                                    <input type="text" class="form-control" id="username" name="username" required
+                                        placeholder="Use 'admin' for Admin Panel">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <input type="password" class="form-control" id="password" name="password" required
+                                        placeholder="Use 'admin123' for Admin Panel">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="remember-me">
+                                    <label class="form-check-label" for="remember-me">Remember me</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 mb-3">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>Log In
+                                </button>
+                                <div class="text-center">
+                                    <a href="lost-password/index.html" class="text-decoration-none">Lost your
+                                        password?</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-md-8">
+                        <div class="account-card">
+                            <h3><i class="bi bi-person-plus me-2"></i>Register</h3>
+                            <form id="register-form">
+                                <div class="mb-3">
+                                    <label for="reg_email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="reg_email" name="email" required
+                                        placeholder="yourname@domain.com">
+                                </div>
+                                <div class="mb-3">
+                                    <p class="text-muted small">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Your registration details will be saved locally.
+                                    </p>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="privacy-policy" required>
+                                        <label class="form-check-label" for="privacy-policy">
+                                            I agree to the <a href="../terms-conditions/index.html"
+                                                target="_blank">privacy policy</a> *
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="bi bi-person-plus me-2"></i>Register
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="account-card">
-                        <h3><i class="bi bi-box-arrow-in-right me-2"></i>Login</h3>
-                        <form id="login-form">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username or Email <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember-me" name="rememberme">
-                                <label class="form-check-label" for="remember-me">
-                                    Remember me
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 mb-3">
-                                <i class="bi bi-box-arrow-in-right me-2"></i>Log In
-                            </button>
-                            <div class="text-center">
-                                <a href="lost-password/index.html" class="text-decoration-none">Lost your password?</a>
-                            </div>
-                        </form>
+            <!-- Dashboard Container (Logged in view) -->
+            <div id="dashboard-container" style="display: none;">
+                <div class="row align-items-center mb-4 no-print">
+                    <div class="col-md-8">
+                        <h2>Welcome, <span id="user-display-name" class="text-primary-custom">User</span>!</h2>
+                        <p class="text-muted mb-0">Role: <span id="user-role-badge"
+                                class="badge bg-secondary">Customer</span></p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <button id="logout-btn" class="btn btn-outline-danger">
+                            <i class="bi bi-box-arrow-left me-2"></i>Log Out
+                        </button>
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="account-card">
-                        <h3><i class="bi bi-person-plus me-2"></i>Register</h3>
-                        <form id="register-form">
-                            <div class="mb-3">
-                                <label for="reg_email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="reg_email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-muted small">
-                                    <i class="bi bi-info-circle me-1"></i>
-                                    A password will be sent to your email address.
-                                </p>
-                            </div>
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="privacy-policy" required>
-                                    <label class="form-check-label" for="privacy-policy">
-                                        I agree to the <a href="../terms-conditions/index.html" target="_blank">privacy policy</a> <span class="text-danger">*</span>
-                                    </label>
+                <!-- Tabs Navigation -->
+                <div class="account-tabs no-print" id="dashboard-tabs">
+                    <button class="nav-link active" data-tab="dash-overview"><i
+                            class="bi bi-speedometer2 me-2"></i>Overview</button>
+                    <button class="nav-link" id="tab-orders-btn" data-tab="dash-orders"><i class="bi bi-bag me-2"></i>My
+                        Orders</button>
+                    <button class="nav-link" id="tab-admin-btn" data-tab="dash-admin" style="display: none;"><i
+                            class="bi bi-shield-lock me-2"></i>Admin Dashboard</button>
+                    <button class="nav-link" data-tab="dash-addresses"><i
+                            class="bi bi-geo-alt me-2"></i>Addresses</button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="tab-content-area no-print">
+                    <!-- Overview Tab -->
+                    <div class="tab-pane-custom fade-in" id="dash-overview">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card p-4 border shadow-sm mb-4">
+                                    <h4>Dashboard Overview</h4>
+                                    <p class="mt-3">From your account dashboard you can view your <a href="#"
+                                            onclick="switchTab('dash-orders'); return false;">recent orders</a>, manage
+                                        your shipping addresses, and edit your password and account details.</p>
+
+                                    <div class="alert alert-info mt-2">
+                                        <i class="bi bi-info-circle-fill me-2"></i>
+                                        <span>Need help with a purchase? Feel free to contact our support hotline at
+                                            <strong>+92 335 323 6767</strong>.</span>
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">
-                                <i class="bi bi-person-plus me-2"></i>Register
-                            </button>
-                        </form>
+                            <div class="col-md-4">
+                                <div class="card p-4 border shadow-sm h-100">
+                                    <h5>Profile Info</h5>
+                                    <hr>
+                                    <p class="mb-2"><strong>Account Email:</strong> <span id="profile-email">N/A</span>
+                                    </p>
+                                    <p class="mb-2"><strong>Role:</strong> <span id="profile-role">Customer</span></p>
+                                    <p class="mb-0"><strong>Last Login:</strong> <span id="profile-last-login">Just
+                                            now</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- My Orders Tab -->
+                    <div class="tab-pane-custom fade-in" id="dash-orders" style="display: none;">
+                        <div class="card p-4 border shadow-sm">
+                            <h4 class="mb-4"><i class="bi bi-cart3 me-2 text-primary-custom"></i>My Placed Orders</h4>
+                            <div id="customer-orders-placeholder">
+                                <p class="text-muted text-center py-4">You have not placed any orders yet.</p>
+                            </div>
+                            <div class="table-responsive" id="customer-orders-table-wrapper" style="display: none;">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Date</th>
+                                            <th>Payment Method</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="customer-orders-list">
+                                        <!-- Populated via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Addresses Tab -->
+                    <div class="tab-pane-custom fade-in" id="dash-addresses" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-4 border shadow-sm h-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="mb-0"><i class="bi bi-truck me-2 text-primary-custom"></i>Shipping
+                                            Address</h5>
+                                    </div>
+                                    <address class="mb-0" id="shipping-address-display">
+                                        No shipping address configured yet. You will enter this details during checkout.
+                                    </address>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-4 border shadow-sm h-100">
+                                    <h5 class="mb-3"><i
+                                            class="bi bi-telephone-fill me-2 text-primary-custom"></i>Customer Support
+                                    </h5>
+                                    <p class="mb-2"><strong>Delux Paint Online Support:</strong></p>
+                                    <p class="mb-2"><i class="bi bi-telephone"></i> +92 335 323 6767</p>
+                                    <p class="mb-2"><i class="bi bi-envelope"></i> support@karachipaints.pk</p>
+                                    <p class="mb-0"><i class="bi bi-geo-alt"></i> Karachi, Pakistan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Dashboard Tab -->
+                    <div class="tab-pane-custom fade-in" id="dash-admin" style="display: none;">
+                        <!-- Analytics Row -->
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-3">
+                                <div class="stat-card">
+                                    <div class="stat-icon"><i class="bi bi-currency-dollar"></i></div>
+                                    <h6>Total Revenue</h6>
+                                    <div class="stat-value" id="stat-revenue">PKR 0</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="stat-card stat-success">
+                                    <div class="stat-icon"><i class="bi bi-bag-check"></i></div>
+                                    <h6>Total Orders</h6>
+                                    <div class="stat-value" id="stat-orders">0</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="stat-card stat-warning">
+                                    <div class="stat-icon"><i class="bi bi-clock-history"></i></div>
+                                    <h6>Pending Orders</h6>
+                                    <div class="stat-value" id="stat-pending">0</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="stat-card stat-purple">
+                                    <div class="stat-icon"><i class="bi bi-truck"></i></div>
+                                    <h6>Shipped/Delivered</h6>
+                                    <div class="stat-value" id="stat-completed">0</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Controls Card -->
+                        <div class="card p-4 border shadow-sm">
+                            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                                <h4 class="mb-0"><i class="bi bi-kanban me-2 text-primary-custom"></i>Order Management
+                                    Panel</h4>
+                                <button class="btn btn-primary" onclick="showManualOrderForm()">
+                                    <i class="bi bi-plus-circle me-2"></i>Create Manual Order
+                                </button>
+                            </div>
+
+                            <!-- Filter & Search Bar -->
+                            <div class="filter-bar">
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-sm btn-outline-primary active filter-status-btn"
+                                        onclick="filterOrders('all')">All</button>
+                                    <button class="btn btn-sm btn-outline-warning filter-status-btn"
+                                        onclick="filterOrders('pending')">Pending</button>
+                                    <button class="btn btn-sm btn-outline-primary filter-status-btn"
+                                        onclick="filterOrders('confirmed')">Confirmed</button>
+                                    <button class="btn btn-sm btn-outline-secondary filter-status-btn"
+                                        style="border-color: var(--color-purple); color: var(--color-purple);"
+                                        onclick="filterOrders('shipped')">Shipped</button>
+                                    <button class="btn btn-sm btn-outline-success filter-status-btn"
+                                        onclick="filterOrders('delivered')">Delivered</button>
+                                    <button class="btn btn-sm btn-outline-danger filter-status-btn"
+                                        onclick="filterOrders('cancelled')">Cancelled</button>
+                                </div>
+                                <div class="search-box">
+                                    <i class="bi bi-search"></i>
+                                    <input type="text" id="admin-search-input" class="form-control form-control-sm"
+                                        placeholder="Search Order ID / Customer..." onkeyup="searchOrders()">
+                                </div>
+                            </div>
+
+                            <!-- Manual Order Entry Panel (hidden by default) -->
+                            <div id="manual-order-form-panel" class="border rounded p-4 mb-4 bg-light shadow-sm"
+                                style="display: none;">
+                                <h5 class="text-primary-custom mb-3"><i class="bi bi-pencil-square me-2"></i>Create
+                                    Manual Paint Order</h5>
+                                <form id="manual-order-form">
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Customer First Name *</label>
+                                            <input type="text" id="m-firstName" class="form-control form-control-sm"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Customer Last Name *</label>
+                                            <input type="text" id="m-lastName" class="form-control form-control-sm"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email Address *</label>
+                                            <input type="email" id="m-email" class="form-control form-control-sm"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Phone Number *</label>
+                                            <input type="tel" id="m-phone" class="form-control form-control-sm"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Street Address *</label>
+                                            <input type="text" id="m-address" class="form-control form-control-sm"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">City *</label>
+                                            <input type="text" id="m-city" class="form-control form-control-sm" required
+                                                value="Karachi">
+                                        </div>
+                                    </div>
+
+                                    <h6 class="border-bottom pb-2 mt-4 text-primary-custom">Order Items</h6>
+                                    <div class="row g-3 align-items-end mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Select Paint Product *</label>
+                                            <select id="m-product-select" class="form-select form-select-sm">
+                                                <!-- Populated by JS -->
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Unit Size *</label>
+                                            <select id="m-unit-select" class="form-select form-select-sm">
+                                                <option value="gallon">Gallon</option>
+                                                <option value="drum">Drum</option>
+                                                <option value="quarter">Quarter</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Quantity *</label>
+                                            <input type="number" id="m-qty" class="form-control form-control-sm" min="1"
+                                                value="1">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button type="button" class="btn btn-outline-primary btn-sm w-100"
+                                                onclick="addManualItem()">Add</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Added Items List -->
+                                    <div class="table-responsive mb-3">
+                                        <table class="table table-bordered table-sm">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Product Name</th>
+                                                    <th>Unit</th>
+                                                    <th>Price</th>
+                                                    <th>Qty</th>
+                                                    <th>Total</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="manual-items-list">
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-muted">No items added yet.
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Payment Method *</label>
+                                            <select id="m-payment" class="form-select form-select-sm">
+                                                <option value="cash-on-delivery">Cash on Delivery (COD)</option>
+                                                <option value="bank-transfer">Bank Transfer</option>
+                                                <option value="jazzz-cash">JazzCash</option>
+                                                <option value="easypaisa">Easypaisa</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Initial Order Status *</label>
+                                            <select id="m-status" class="form-select form-select-sm">
+                                                <option value="pending">Pending</option>
+                                                <option value="confirmed">Confirmed</option>
+                                                <option value="shipped">Shipped</option>
+                                                <option value="delivered">Delivered</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2 justify-content-end mt-4">
+                                        <button type="submit" class="btn btn-success btn-sm">Save Order</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                                            onclick="hideManualOrderForm()">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Admin Orders Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer</th>
+                                            <th>Date</th>
+                                            <th>Payment Method</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-orders-list">
+                                        <!-- Populated via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="account-info">
-                <h4><i class="bi bi-info-circle me-2"></i>Account Benefits</h4>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p><i class="bi bi-check-circle"></i> Access your order history</p>
-                        <p><i class="bi bi-check-circle"></i> Track your orders</p>
+                <!-- Invoice Area (visible on click, printable) -->
+                <div id="invoice-print-area" class="card border p-5 shadow-lg mt-4" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-start border-bottom pb-4 mb-4">
+                        <div>
+                            <h2 class="text-primary-custom mb-1">Delux Paint Online</h2>
+                            <p class="text-muted mb-0">Premium Paint Solutions & Accessories</p>
+                            <p class="text-muted mb-0">Hotline: +92 335 323 6767 | orders@karachipaints.pk</p>
+                        </div>
+                        <div class="text-end">
+                            <h3 class="mb-1 text-uppercase text-secondary-custom">INVOICE</h3>
+                            <p class="mb-0"><strong>Invoice #:</strong> <span id="inv-id">ORD-XXXXXXXX</span></p>
+                            <p class="mb-0"><strong>Date Placed:</strong> <span id="inv-date">YYYY-MM-DD</span></p>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p><i class="bi bi-check-circle"></i> Save your shipping addresses</p>
-                        <p><i class="bi bi-check-circle"></i> Faster checkout process</p>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <h6 class="text-uppercase text-muted border-bottom pb-2">Billed To:</h6>
+                            <h5 class="mb-1" id="inv-cust-name">Customer Name</h5>
+                            <p class="mb-1"><strong>Phone:</strong> <span id="inv-cust-phone">0300-0000000</span></p>
+                            <p class="mb-0"><strong>Email:</strong> <span id="inv-cust-email">customer@email.com</span>
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="text-uppercase text-muted border-bottom pb-2">Shipping Details:</h6>
+                            <address id="inv-shipping-address" class="mb-0">
+                                Street Address, City, Pakistan
+                            </address>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p><i class="bi bi-check-circle"></i> View order details</p>
-                        <p><i class="bi bi-check-circle"></i> Manage your account settings</p>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th class="text-center">Unit</th>
+                                    <th class="text-end">Unit Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-end">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inv-items">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row justify-content-end">
+                        <div class="col-md-5">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Subtotal:</strong></td>
+                                    <td class="text-end" id="inv-subtotal">PKR 0.00</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tax (17% GST):</strong></td>
+                                    <td class="text-end" id="inv-tax">PKR 0.00</td>
+                                </tr>
+                                <tr class="border-top border-2">
+                                    <td>
+                                        <h4>Total:</h4>
+                                    </td>
+                                    <td class="text-end text-primary-custom">
+                                        <h4 id="inv-total">PKR 0.00</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="border-top pt-4 mt-5 text-center text-muted small">
+                        <p class="mb-1"><strong>Payment Status:</strong> <span id="inv-payment-status"
+                                class="text-uppercase font-weight-bold">PENDING VERIFICATION</span> (<span
+                                id="inv-payment-method">COD</span>)</p>
+                        <p class="mb-0">Thank you for business with Delux Paint Online. This is a computer-generated
+                            invoice.</p>
+                    </div>
+
+                    <div class="mt-4 text-end d-flex gap-2 justify-content-end no-print">
+                        <button class="btn btn-primary" onclick="window.print()">
+                            <i class="bi bi-printer me-2"></i>Print Invoice
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="hideInvoice()">
+                            <i class="bi bi-x-circle me-2"></i>Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -441,11 +579,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer no-print">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Karachi Paints</h5>
+                    <h5>Delux Paint Online</h5>
                     <p>Your trusted source for premium paint solutions</p>
                 </div>
                 <div class="col-md-6 text-end">
@@ -458,7 +596,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="mb-0">Copyrights Reserved by Karachi Paints 2020 | Powered by P2P Track</p>
+                <p class="mb-0">Copyrights Reserved by Delux Paint Online 2020 | Powered by P2P Track</p>
             </div>
         </div>
     </footer>
@@ -467,95 +605,549 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery -->
     <script src="../assets/js/jquery.minf43b.js"></script>
-    
+    <!-- Pricing Data -->
+    <script src="../../assets/js/pricing-data.js"></script>
+    <!-- Cart Utils -->
+    <script src="../../assets/js/cart-utils.js"></script>
+
     <!-- Custom JS -->
     <script>
-        // Update cart and wishlist counts
+        // Tab switching logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-pane-custom').forEach(pane => {
+                pane.style.display = 'none';
+            });
+            const activePane = document.getElementById(tabId);
+            if (activePane) {
+                activePane.style.display = 'block';
+            }
+
+            document.querySelectorAll('#dashboard-tabs .nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-tab') === tabId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to tab area
+            document.getElementById('dashboard-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize tabs listener
+        document.querySelectorAll('#dashboard-tabs .nav-link').forEach(button => {
+            button.addEventListener('click', function () {
+                const target = this.getAttribute('data-tab');
+                switchTab(target);
+            });
+        });
+
+        // Update wishlist and cart counts
         function updateCounts() {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
             const cartTotal = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cart-count').textContent = cartTotal;
-            document.getElementById('wishlist-count').textContent = wishlist.length;
+
+            const cartCountEl = document.getElementById('cart-count');
+            if (cartCountEl) cartCountEl.textContent = cartTotal;
+
+            const wishlistCountEl = document.getElementById('wishlist-count');
+            if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
         }
-        
+
         updateCounts();
-        
-        // Login form handler
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('remember-me').checked;
-            
-            // Simple validation
-            if (!username || !password) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // In a real application, this would send data to a server
-            // For now, we'll just show a message
-            alert('Login functionality will be implemented. For now, please contact us at +92 335 323 6767 for account access.');
-            
-            // Store login state (for demo purposes)
-            if (rememberMe) {
-                localStorage.setItem('userLoggedIn', 'true');
-                localStorage.setItem('username', username);
-            }
-        });
-        
-        // Register form handler
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('reg_email').value;
-            const privacyPolicy = document.getElementById('privacy-policy').checked;
-            
-            // Simple validation
-            if (!email) {
-                alert('Please enter your email address.');
-                return;
-            }
-            
-            if (!privacyPolicy) {
-                alert('Please agree to the privacy policy.');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            // In a real application, this would send data to a server
-            // For now, we'll just show a message
-            alert('Registration functionality will be implemented. For now, please contact us at +92 335 323 6767 to create an account.');
-        });
-        
-        // Check if user is already logged in
-        if (localStorage.getItem('userLoggedIn') === 'true') {
-            const username = localStorage.getItem('username');
-            if (username) {
-                // Show logged in state (optional)
-                console.log('User logged in:', username);
+
+        // Check login state
+        function checkLoginState() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            if (currentUser) {
+                document.getElementById('auth-container').style.display = 'none';
+                document.getElementById('dashboard-container').style.display = 'block';
+                document.getElementById('user-display-name').textContent = currentUser.username;
+                document.getElementById('profile-email').textContent = currentUser.email;
+                document.getElementById('profile-role').textContent = currentUser.role === 'admin' ? 'Administrator' : 'Customer';
+                document.getElementById('profile-last-login').textContent = currentUser.lastLogin || new Date().toLocaleString();
+
+                const roleBadge = document.getElementById('user-role-badge');
+                if (currentUser.role === 'admin') {
+                    roleBadge.textContent = 'Administrator';
+                    roleBadge.className = 'badge bg-danger';
+                    document.getElementById('tab-admin-btn').style.display = 'inline-block';
+                    loadAdminDashboard();
+                } else {
+                    roleBadge.textContent = 'Customer';
+                    roleBadge.className = 'badge bg-primary';
+                    document.getElementById('tab-admin-btn').style.display = 'none';
+                    loadCustomerDashboard(currentUser.email);
+                }
+            } else {
+                document.getElementById('auth-container').style.display = 'block';
+                document.getElementById('dashboard-container').style.display = 'none';
             }
         }
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+
+        // Login Handler
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value.trim();
+
+            if (usernameInput === 'admin' && passwordInput === 'admin123') {
+                const adminUser = {
+                    username: 'Admin Shop Owner',
+                    email: 'admin@karachipaints.pk',
+                    role: 'admin',
+                    lastLogin: new Date().toLocaleString()
+                };
+                localStorage.setItem('currentUser', JSON.stringify(adminUser));
+                checkLoginState();
+                switchTab('dash-admin');
+            } else {
+                // Customer Login (accepts any email/username and logs them in)
+                const isEmail = usernameInput.includes('@');
+                const customerUser = {
+                    username: usernameInput.split('@')[0],
+                    email: isEmail ? usernameInput : (usernameInput + '@customer.com'),
+                    role: 'customer',
+                    lastLogin: new Date().toLocaleString()
+                };
+                localStorage.setItem('currentUser', JSON.stringify(customerUser));
+                checkLoginState();
+                switchTab('dash-overview');
+            }
+        });
+
+        // Register Handler
+        document.getElementById('register-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('reg_email').value.trim();
+
+            const customerUser = {
+                username: emailInput.split('@')[0],
+                email: emailInput,
+                role: 'customer',
+                lastLogin: new Date().toLocaleString()
+            };
+            localStorage.setItem('currentUser', JSON.stringify(customerUser));
+            checkLoginState();
+            switchTab('dash-overview');
+        });
+
+        // Logout Handler
+        document.getElementById('logout-btn').addEventListener('click', function () {
+            localStorage.removeItem('currentUser');
+            checkLoginState();
+        });
+
+        // Load Customer Orders
+        function loadCustomerDashboard(email) {
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const customerOrders = orders.filter(o => o.customer.email.toLowerCase() === email.toLowerCase());
+
+            const tableWrapper = document.getElementById('customer-orders-table-wrapper');
+            const placeholder = document.getElementById('customer-orders-placeholder');
+            const listContainer = document.getElementById('customer-orders-list');
+
+            if (customerOrders.length > 0) {
+                placeholder.style.display = 'none';
+                tableWrapper.style.display = 'block';
+
+                // Show billing details in Addresses tab
+                const latestOrder = customerOrders[0];
+                document.getElementById('shipping-address-display').innerHTML = `
+                    <strong>${latestOrder.customer.firstName} ${latestOrder.customer.lastName}</strong><br>
+                    ${latestOrder.address.street}<br>
+                    ${latestOrder.address.apartment ? latestOrder.address.apartment + '<br>' : ''}
+                    ${latestOrder.address.city}, ${latestOrder.address.province} ${latestOrder.address.postalCode}<br>
+                    ${latestOrder.address.country}<br>
+                    <i class="bi bi-phone"></i> ${latestOrder.customer.phone}
+                `;
+
+                listContainer.innerHTML = customerOrders.map(order => `
+                    <tr>
+                        <td><strong>${order.id}</strong></td>
+                        <td>${new Date(order.timestamp).toLocaleDateString()}</td>
+                        <td><span class="text-uppercase">${order.paymentMethod.replace('-', ' ')}</span></td>
+                        <td>PKR ${order.total.toLocaleString()}</td>
+                        <td><span class="status-badge status-${order.status || 'pending'}">${order.status || 'pending'}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary px-3 py-1" onclick="viewInvoice('${order.id}')">
+                                <i class="bi bi-file-text"></i> Invoice
+                            </button>
+                            ${order.status === 'pending' || !order.status ? `
+                                <button class="btn btn-sm btn-outline-danger px-3 py-1" onclick="cancelOrder('${order.id}')">
+                                    Cancel
+                                </button>
+                            ` : ''}
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                placeholder.style.display = 'block';
+                tableWrapper.style.display = 'none';
+                document.getElementById('shipping-address-display').textContent = 'No shipping address configured yet. You will enter these details during checkout.';
+            }
+        }
+
+        // Cancel order (Customer action)
+        window.cancelOrder = function (orderId) {
+            if (confirm('Are you sure you want to cancel order ' + orderId + '?')) {
+                const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+                const idx = orders.findIndex(o => o.id === orderId);
+                if (idx !== -1) {
+                    orders[idx].status = 'cancelled';
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    checkLoginState(); // reload dashboard
+                }
+            }
+        };
+
+        // ADMIN FUNCTIONS
+        let currentFilterStatus = 'all';
+
+        function loadAdminDashboard() {
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+
+            // Calculate Analytics Stats
+            let totalRevenue = 0;
+            let pendingCount = 0;
+            let completedCount = 0; // shipped or delivered
+
+            orders.forEach(order => {
+                if (order.status !== 'cancelled') {
+                    totalRevenue += order.total;
+                }
+                if (order.status === 'pending' || !order.status) {
+                    pendingCount++;
+                }
+                if (order.status === 'shipped' || order.status === 'delivered') {
+                    completedCount++;
                 }
             });
+
+            document.getElementById('stat-revenue').textContent = 'PKR ' + totalRevenue.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            document.getElementById('stat-orders').textContent = orders.length;
+            document.getElementById('stat-pending').textContent = pendingCount;
+            document.getElementById('stat-completed').textContent = completedCount;
+
+            renderAdminOrdersTable(orders);
+        }
+
+        function renderAdminOrdersTable(orders) {
+            const listContainer = document.getElementById('admin-orders-list');
+            if (orders.length === 0) {
+                listContainer.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-4">No orders placed on this store yet.</td></tr>';
+                return;
+            }
+
+            listContainer.innerHTML = orders.map(order => `
+                <tr class="admin-order-row" data-id="${order.id}" data-customer="${order.customer.firstName} ${order.customer.lastName}" data-status="${order.status || 'pending'}">
+                    <td><strong>${order.id}</strong></td>
+                    <td>
+                        <div><strong>${order.customer.firstName} ${order.customer.lastName}</strong></div>
+                        <div class="small text-muted">${order.customer.phone} | ${order.customer.email}</div>
+                    </td>
+                    <td>${new Date(order.timestamp).toLocaleDateString()}</td>
+                    <td><span class="text-uppercase">${order.paymentMethod.replace('-', ' ')}</span></td>
+                    <td>PKR ${order.total.toLocaleString()}</td>
+                    <td>
+                        <select class="form-select form-select-sm status-select py-1 px-2 border" style="width: 140px; display:inline-block;" onchange="updateOrderStatus('${order.id}', this.value)">
+                            <option value="pending" ${order.status === 'pending' || !order.status ? 'selected' : ''}>Pending</option>
+                            <option value="confirmed" ${order.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+                            <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>Shipped</option>
+                            <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                            <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-sm btn-primary px-3 py-1" onclick="viewInvoice('${order.id}')">
+                                <i class="bi bi-file-text"></i> Invoice
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger px-2 py-1" onclick="deleteOrder('${order.id}')">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            applyAdminFilters();
+        }
+
+        // Update Order Status (Admin action)
+        window.updateOrderStatus = function (orderId, newStatus) {
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const idx = orders.findIndex(o => o.id === orderId);
+            if (idx !== -1) {
+                orders[idx].status = newStatus;
+                localStorage.setItem('orders', JSON.stringify(orders));
+                loadAdminDashboard(); // Reload statistics
+            }
+        };
+
+        // Delete Order (Admin action)
+        window.deleteOrder = function (orderId) {
+            if (confirm('Are you sure you want to permanently delete order ' + orderId + '?')) {
+                let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+                orders = orders.filter(o => o.id !== orderId);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                loadAdminDashboard();
+            }
+        };
+
+        // Filters Admin table
+        window.filterOrders = function (status) {
+            currentFilterStatus = status;
+
+            // Highlight active button
+            document.querySelectorAll('.filter-status-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            applyAdminFilters();
+        };
+
+        // Apply filters & search together
+        function applyAdminFilters() {
+            const searchQuery = document.getElementById('admin-search-input').value.toLowerCase();
+
+            document.querySelectorAll('.admin-order-row').forEach(row => {
+                const id = row.getAttribute('data-id').toLowerCase();
+                const customer = row.getAttribute('data-customer').toLowerCase();
+                const status = row.getAttribute('data-status').toLowerCase();
+
+                const matchesSearch = id.includes(searchQuery) || customer.includes(searchQuery);
+                const matchesStatus = currentFilterStatus === 'all' || status === currentFilterStatus;
+
+                if (matchesSearch && matchesStatus) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        window.searchOrders = function () {
+            applyAdminFilters();
+        };
+
+        // INVOICE RENDERING
+        window.viewInvoice = function (orderId) {
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const order = orders.find(o => o.id === orderId);
+            if (!order) return;
+
+            document.getElementById('inv-id').textContent = order.id;
+            document.getElementById('inv-date').textContent = new Date(order.timestamp).toLocaleString();
+            document.getElementById('inv-cust-name').textContent = order.customer.firstName + ' ' + order.customer.lastName;
+            document.getElementById('inv-cust-phone').textContent = order.customer.phone;
+            document.getElementById('inv-cust-email').textContent = order.customer.email;
+
+            document.getElementById('inv-shipping-address').innerHTML = `
+                ${order.address.street}<br>
+                ${order.address.apartment ? order.address.apartment + '<br>' : ''}
+                ${order.address.city}, ${order.address.province} ${order.address.postalCode}<br>
+                ${order.address.country}
+            `;
+
+            const tbody = document.getElementById('inv-items');
+            tbody.innerHTML = order.items.map(item => {
+                const unitPrice = window.ProductPricing ? window.ProductPricing.getProductPrice(item.slug || item.id, 'gallon') : 0;
+                const totalItemPrice = unitPrice * item.quantity;
+                return `
+                    <tr>
+                        <td><strong>${item.name}</strong></td>
+                        <td class="text-center">Gallon</td>
+                        <td class="text-end">PKR ${unitPrice.toLocaleString()}</td>
+                        <td class="text-center">${item.quantity}</td>
+                        <td class="text-end">PKR ${totalItemPrice.toLocaleString()}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Tax and Total calculations
+            const subtotal = order.subtotal || order.items.reduce((sum, item) => sum + (window.ProductPricing.getProductPrice(item.slug || item.id) * item.quantity), 0);
+            const tax = order.tax || (subtotal * 0.17);
+            const total = order.total || (subtotal + tax);
+
+            document.getElementById('inv-subtotal').textContent = 'PKR ' + subtotal.toLocaleString();
+            document.getElementById('inv-tax').textContent = 'PKR ' + tax.toLocaleString();
+            document.getElementById('inv-total').textContent = 'PKR ' + total.toLocaleString();
+
+            document.getElementById('inv-payment-method').textContent = order.paymentMethod.replace('-', ' ').toUpperCase();
+
+            const statusMap = {
+                'pending': 'PENDING VERIFICATION',
+                'confirmed': 'CONFIRMED & PREPARING',
+                'shipped': 'DISPATCHED/IN TRANSIT',
+                'delivered': 'DELIVERED & PAID',
+                'cancelled': 'ORDER CANCELLED'
+            };
+            document.getElementById('inv-payment-status').textContent = statusMap[order.status || 'pending'];
+
+            // Show Invoice print view, hide other tabs
+            document.querySelectorAll('.tab-pane-custom').forEach(pane => pane.style.display = 'none');
+            document.getElementById('invoice-print-area').style.display = 'block';
+
+            // Scroll to Invoice
+            document.getElementById('invoice-print-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        window.hideInvoice = function () {
+            document.getElementById('invoice-print-area').style.display = 'none';
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.role === 'admin') {
+                switchTab('dash-admin');
+            } else {
+                switchTab('dash-orders');
+            }
+        };
+
+        // MANUAL ORDER CREATION FORM
+        let manualOrderItems = [];
+
+        window.showManualOrderForm = function () {
+            document.getElementById('manual-order-form-panel').style.display = 'block';
+
+            // Populate product select list
+            const select = document.getElementById('m-product-select');
+            if (window.ProductPricing) {
+                const pricing = window.ProductPricing.pricing;
+                let options = '';
+                for (const slug in pricing) {
+                    // Get a friendly title
+                    const title = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                    options += `<option value="${slug}">${title} (PKR ${pricing[slug].gallon || pricing[slug].basePrice})</option>`;
+                }
+                select.innerHTML = options;
+            }
+
+            // Clear items
+            manualOrderItems = [];
+            renderManualItemsTable();
+        };
+
+        window.hideManualOrderForm = function () {
+            document.getElementById('manual-order-form-panel').style.display = 'none';
+        };
+
+        window.addManualItem = function () {
+            const select = document.getElementById('m-product-select');
+            const unitSelect = document.getElementById('m-unit-select');
+            const qtyInput = document.getElementById('m-qty');
+
+            const slug = select.value;
+            const unit = unitSelect.value;
+            const quantity = parseInt(qtyInput.value) || 1;
+
+            const productName = select.options[select.selectedIndex].text.split(' (PKR')[0];
+            const price = window.ProductPricing ? window.ProductPricing.getProductPrice(slug, unit) : 0;
+
+            const existingIdx = manualOrderItems.findIndex(i => i.slug === slug && i.unit === unit);
+            if (existingIdx !== -1) {
+                manualOrderItems[existingIdx].quantity += quantity;
+            } else {
+                manualOrderItems.push({
+                    slug: slug,
+                    name: productName,
+                    unit: unit,
+                    price: price,
+                    quantity: quantity
+                });
+            }
+
+            renderManualItemsTable();
+            qtyInput.value = 1;
+        };
+
+        function renderManualItemsTable() {
+            const container = document.getElementById('manual-items-list');
+            if (manualOrderItems.length === 0) {
+                container.innerHTML = '<tr><td colspan="6" class="text-center text-muted">No items added yet.</td></tr>';
+                return;
+            }
+
+            container.innerHTML = manualOrderItems.map((item, idx) => `
+                <tr>
+                    <td><strong>${item.name}</strong></td>
+                    <td><span class="text-uppercase">${item.unit}</span></td>
+                    <td>PKR ${item.price.toLocaleString()}</td>
+                    <td>${item.quantity}</td>
+                    <td>PKR ${(item.price * item.quantity).toLocaleString()}</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="removeManualItem(${idx})">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.removeManualItem = function (idx) {
+            manualOrderItems.splice(idx, 1);
+            renderManualItemsTable();
+        };
+
+        // Form Submit for Manual Order
+        document.getElementById('manual-order-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (manualOrderItems.length === 0) {
+                alert('Please add at least one product item to the order.');
+                return;
+            }
+
+            // Calculate prices
+            let subtotal = 0;
+            manualOrderItems.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+            const tax = subtotal * 0.17;
+            const total = subtotal + tax;
+
+            // Create order
+            const order = {
+                id: 'ORD-' + Date.now(),
+                timestamp: new Date().toISOString(),
+                customer: {
+                    firstName: document.getElementById('m-firstName').value.trim(),
+                    lastName: document.getElementById('m-lastName').value.trim(),
+                    email: document.getElementById('m-email').value.trim(),
+                    phone: document.getElementById('m-phone').value.trim()
+                },
+                address: {
+                    street: document.getElementById('m-address').value.trim(),
+                    apartment: '',
+                    city: document.getElementById('m-city').value.trim(),
+                    province: 'Sindh',
+                    postalCode: '74200',
+                    country: 'Pakistan'
+                },
+                items: manualOrderItems,
+                paymentMethod: document.getElementById('m-payment').value,
+                notes: 'Manual Order Created by Shop Admin',
+                subtotal: subtotal,
+                tax: tax,
+                total: total,
+                status: document.getElementById('m-status').value
+            };
+
+            // Save to localStorage
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Reset form and hide
+            document.getElementById('manual-order-form').reset();
+            hideManualOrderForm();
+
+            // Reload stats and table
+            loadAdminDashboard();
+            alert('Manual order successfully created! Order ID: ' + order.id);
         });
+
+        // Initialize state
+        checkLoginState();
     </script>
 </body>
+
 </html>

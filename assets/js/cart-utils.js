@@ -1,4 +1,7 @@
-// Global Cart Utility Functions
+// ============================================
+// Global Cart Utility Functions — Enhanced
+// Toast notifications + new product link format
+// ============================================
 (function() {
     'use strict';
     
@@ -40,10 +43,15 @@
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
+            // Ensure link uses new product.html format
+            if (productLink && !productLink.includes('product.html?slug=')) {
+                productLink = 'product.html?slug=' + productSlug;
+            }
+            
             cart.push({
                 slug: productSlug,
                 name: productName,
-                link: productLink,
+                link: productLink || 'product.html?slug=' + productSlug,
                 image: productImage,
                 quantity: 1
             });
@@ -55,22 +63,47 @@
         return true;
     }
     
-    // Initialize cart count on page load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', updateCartCount);
-    } else {
+    // Update all listing prices on the page dynamically
+    function updateListingPrices() {
+        if (!window.ProductPricing) return;
+        
+        document.querySelectorAll('.product-card, .card').forEach(card => {
+            const btn = card.querySelector('[data-product]');
+            if (!btn) return;
+            
+            const productSlug = btn.getAttribute('data-product') || btn.getAttribute('data-product-slug');
+            if (!productSlug) return;
+            
+            const priceEl = card.querySelector('.product-price');
+            if (priceEl) {
+                const price = window.ProductPricing.getProductPrice(productSlug, 'gallon');
+                if (price > 0) {
+                    priceEl.innerHTML = `PKR ${price.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+                } else {
+                    priceEl.innerHTML = '<span style="color: var(--primary-light);">Contact for Price</span>';
+                }
+            }
+        });
+    }
+
+    // Initialize cart and prices on page load
+    function init() {
         updateCartCount();
+        updateListingPrices();
     }
     
-    // Listen for cart updates
-    window.addEventListener('cartUpdated', function() {
-        updateCartCount();
-    });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
     
+
     // Expose functions globally
     window.CartUtils = {
         updateCartCount: updateCartCount,
-        addToCart: addToCart
+        addToCart: addToCart,
+        updateListingPrices: updateListingPrices
     };
     
     // Auto-initialize add to cart buttons
@@ -78,7 +111,7 @@
         if (e.target.closest('.add-to-cart-btn')) {
             const btn = e.target.closest('.add-to-cart-btn');
             const productSlug = btn.getAttribute('data-product') || btn.getAttribute('data-product-slug');
-            const productLink = btn.getAttribute('data-product-link');
+            const productLink = btn.getAttribute('data-product-link') || 'product.html?slug=' + productSlug;
             
             if (!productSlug) return;
             
@@ -87,14 +120,18 @@
             const productName = card?.querySelector('.card-title a')?.textContent?.trim() || 
                               card?.querySelector('.card-title')?.textContent?.trim() || 
                               'Product';
-            const productImage = card?.querySelector('img')?.src || 
-                               'https://via.placeholder.com/300x300?text=Product';
+            const productImage = card?.querySelector('img')?.src || '';
             
             // Add to cart
             const added = addToCart(productSlug, productName, productLink, productImage);
             
             if (added) {
-                // Visual feedback
+                // Show toast notification
+                if (window.KPAnimations) {
+                    window.KPAnimations.showToast(productName + ' added to cart!', 'bi-cart-check');
+                }
+
+                // Visual feedback on button
                 const originalHTML = btn.innerHTML;
                 btn.innerHTML = '<i class="bi bi-check me-2"></i>Added!';
                 btn.classList.remove('btn-outline-primary');

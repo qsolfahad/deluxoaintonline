@@ -1,6 +1,6 @@
-# Karachi Paints - Project Structure
+# Delux Paint Online - Project Structure
 
-This document explains the organized directory structure of the Karachi Paints website.
+This document explains the organized directory structure of the Delux Paint Online website.
 
 ## 📁 Directory Structure
 

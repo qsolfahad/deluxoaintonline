@@ -2,7 +2,7 @@
 
 ## 🎨 Modern Theme Enhancements
 
-This document outlines all the visual and functional improvements made to the Karachi Paints website.
+This document outlines all the visual and functional improvements made to the Delux Paint Online website.
 
 ## ✨ Key Improvements
 

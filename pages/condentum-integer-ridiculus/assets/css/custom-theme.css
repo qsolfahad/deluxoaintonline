@@ -1,5 +1,5 @@
 /* ============================================
-   Karachi Paints - Modern Custom Theme
+   Delux Paint Online - Modern Custom Theme
    Enhanced Design & Styling
    ============================================ */
 
@@ -10,7 +10,7 @@
     --primary-light: #3d6bd4;
     --accent-color: #ff6b35;
     --accent-hover: #ff8c5a;
-    
+
     /* Neutral Colors */
     --bg-dark: #1a1a1a;
     --bg-light: #f8f9fa;
@@ -18,25 +18,25 @@
     --text-light: #757575;
     --white: #ffffff;
     --border-color: #e0e0e0;
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
-    
+
     /* Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
-    
+
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
-    
+
     /* Border Radius */
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -445,41 +445,42 @@ select:focus {
     .wrapp-header {
         flex-wrap: wrap;
     }
-    
+
     .main-nav {
         order: 3;
         width: 100%;
         margin-top: 1rem;
     }
-    
+
     .main-nav .menu {
         flex-direction: column;
         gap: 0.25rem;
     }
-    
+
     .products,
     .woocommerce ul.products {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1.5rem;
     }
-    
+
     .topbar-content {
         flex-direction: column;
         gap: 0.5rem;
         text-align: center;
     }
-    
+
     .container {
         padding: 0 1rem;
     }
 }
 
 @media (max-width: 480px) {
+
     .products,
     .woocommerce ul.products {
         grid-template-columns: 1fr;
     }
-    
+
     .site-logo img {
         max-height: 50px;
     }
@@ -494,6 +495,7 @@ select:focus {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -517,19 +519,49 @@ html {
     text-align: center;
 }
 
-.mt-1 { margin-top: var(--spacing-sm); }
-.mt-2 { margin-top: var(--spacing-md); }
-.mt-3 { margin-top: var(--spacing-lg); }
-.mb-1 { margin-bottom: var(--spacing-sm); }
-.mb-2 { margin-bottom: var(--spacing-md); }
-.mb-3 { margin-bottom: var(--spacing-lg); }
+.mt-1 {
+    margin-top: var(--spacing-sm);
+}
 
-.shadow-sm { box-shadow: var(--shadow-sm); }
-.shadow-md { box-shadow: var(--shadow-md); }
-.shadow-lg { box-shadow: var(--shadow-lg); }
+.mt-2 {
+    margin-top: var(--spacing-md);
+}
 
-.rounded { border-radius: var(--radius-md); }
-.rounded-lg { border-radius: var(--radius-lg); }
+.mt-3 {
+    margin-top: var(--spacing-lg);
+}
+
+.mb-1 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.mb-2 {
+    margin-bottom: var(--spacing-md);
+}
+
+.mb-3 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.shadow-sm {
+    box-shadow: var(--shadow-sm);
+}
+
+.shadow-md {
+    box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+    box-shadow: var(--shadow-lg);
+}
+
+.rounded {
+    border-radius: var(--radius-md);
+}
+
+.rounded-lg {
+    border-radius: var(--radius-lg);
+}
 
 /* ============================================
    Category Menu Enhancement
@@ -542,14 +574,14 @@ html {
     margin-top: 0.5rem;
 }
 
-.mega-navigation .menu > li > a {
+.mega-navigation .menu>li>a {
     padding: 1rem 1.5rem;
     font-weight: 600;
     color: var(--text-dark);
     transition: var(--transition-fast);
 }
 
-.mega-navigation .menu > li > a:hover {
+.mega-navigation .menu>li>a:hover {
     background-color: var(--bg-light);
     color: var(--primary-color);
 }
@@ -642,19 +674,41 @@ html {
    Typography Enhancements
    ============================================ */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--text-dark);
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 1rem;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
 
 p {
     margin-bottom: 1rem;
@@ -681,10 +735,21 @@ p {
 }
 
 @media (min-width: 768px) {
-    .col-sm-3 { width: 25%; }
-    .col-sm-4 { width: 33.333%; }
-    .col-sm-6 { width: 50%; }
-    .col-sm-12 { width: 100%; }
+    .col-sm-3 {
+        width: 25%;
+    }
+
+    .col-sm-4 {
+        width: 33.333%;
+    }
+
+    .col-sm-6 {
+        width: 50%;
+    }
+
+    .col-sm-12 {
+        width: 100%;
+    }
 }
 
 /* ============================================

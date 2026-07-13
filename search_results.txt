@@ -1,0 +1,7 @@
+Found in: d:\develop\deluxoaintonline\index.html
+  Line 501: window.addEventListener('cartUpdated', function(e) {
+Found in: d:\develop\deluxoaintonline\assets\js\cart-utils.js
+  Line 28: window.dispatchEvent(new CustomEvent('cartUpdated', {
+Found in: d:\develop\deluxoaintonline\pages\cart\index.html
+  Line 304: window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { count: count } }));
+  Line 325: window.addEventListener('cartUpdated', function(e) {

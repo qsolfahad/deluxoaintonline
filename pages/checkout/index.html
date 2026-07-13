@@ -1,298 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Karachi Paints</title>
-    <meta name="description" content="Secure checkout - Complete your order at Karachi Paints.">
-    
+    <title>Checkout - Delux Paint Online</title>
+    <meta name="description" content="Secure checkout - Complete your order at Delux Paint Online.">
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Custom CSS -->
-	<style> 
-        :root {
-            --primary-color: #2b4ca2;
-            --secondary-color: #ff6b35;
-            --dark-color: #212121;
-            --light-bg: #f8f9fa;
-            --text-dark: #333;
-        }
+    <link rel="stylesheet" href="../../assets/css/custom-theme.css">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-
-        .top-bar {
-            background: var(--dark-color);
-            color: white;
-            padding: 10px 0;
-            font-size: 14px;
-        }
-
-        .top-bar a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .top-bar a:hover {
-            color: var(--secondary-color);
-        }
-
-        .navbar {
-            background: white !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 15px 0;
-        }
-
-        .navbar-brand img {
-            max-height: 70px;
-            transition: transform 0.3s;
-        }
-
-        .navbar-brand:hover img {
-            transform: scale(1.05);
-        }
-
-        .navbar-nav .nav-link {
-            color: var(--text-dark) !important;
-            font-weight: 500;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-
-        .navbar-nav .nav-link.active {
-            color: var(--primary-color) !important;
-        }
-
-        .page-title {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 40px 0;
-            margin-bottom: 40px;
-        }
-
-        .checkout-container {
-            padding: 40px 0;
-            min-height: 60vh;
-        }
-
-        .form-section {
-            background: var(--light-bg);
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .form-section h4 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control, .form-select {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 12px;
-            transition: all 0.3s;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(43, 76, 162, 0.25);
-        }
-
-        .order-summary {
-            background: white;
-            border: 2px solid var(--primary-color);
-            border-radius: 10px;
-            padding: 30px;
-            position: sticky;
-            top: 20px;
-        }
-
-        .order-summary h4 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .order-item:last-child {
-            border-bottom: none;
-        }
-
-        .order-total {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 0;
-            border-top: 2px solid var(--primary-color);
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: #1e3a7a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(43, 76, 162, 0.3);
-        }
-
-        .btn-outline-secondary {
-            color: var(--text-dark);
-            border-color: #ddd;
-        }
-
-        .btn-outline-secondary:hover {
-            background: var(--light-bg);
-            border-color: var(--text-dark);
-        }
-
-        .footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 60px;
-        }
-
-        .footer a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer a:hover {
-            color: var(--secondary-color);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .badge-custom {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        .alert-info {
-            background: #e7f3ff;
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .payment-method {
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .payment-method:hover {
-            border-color: var(--primary-color);
-            background: var(--light-bg);
-        }
-
-        .payment-method.active {
-            border-color: var(--primary-color);
-            background: var(--light-bg);
-            font-weight: 600;
-        }
-
-        .order-success {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .order-success.show {
-            display: block;
-        }
-
-        .icon-large {
-            font-size: 4rem;
-            color: #28a745;
-            margin-bottom: 20px;
-        }
-    </style>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
+
 <body>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Particles -->
+    <canvas id="particles-canvas"></canvas>
+
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <i class="bi bi-telephone-fill"></i> CONTACT US: 
+                    <i class="bi bi-telephone-fill"></i> CONTACT US:
                     <a href="tel:+923353236767">+92 335 323 6767</a>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="../my-account/index.html" class="me-3"><i class="bi bi-person"></i> My Account</a>
-                    <a href="../blog/index.html" class="me-3">Blog</a>
                     <a href="../cart/index.html"><i class="bi bi-cart"></i> Cart</a>
                 </div>
             </div>
@@ -300,31 +49,20 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">
-                <img src="../../assets/images/web-logo-new.png" alt="Karachi Paints">
+                <img src="../../assets/images/web-logo-new.png" alt="Delux Paint Online">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../about-us/index.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../shop/index.html">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../contact-us/index.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../terms-conditions/index.html">Terms & Conditions</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../about-us/index.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../shop/index.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../contact-us/index.html">Contact Us</a></li>
                     <li class="nav-item cart-wishlist-icons ms-3">
                         <a href="../wishlist/index.html" class="position-relative">
                             <i class="bi bi-heart"></i>
@@ -348,13 +86,31 @@
         </div>
     </div>
 
+    <!-- Checkout Progress -->
+    <div class="container" style="position:relative; z-index:1;">
+        <div class="checkout-progress reveal" style="margin-top:30px;">
+            <div class="checkout-step active" id="step-info">
+                <span class="step-number">1</span>
+                <span>Information</span>
+            </div>
+            <div class="checkout-step" id="step-payment">
+                <span class="step-number">2</span>
+                <span>Payment</span>
+            </div>
+            <div class="checkout-step" id="step-confirm">
+                <span class="step-number">3</span>
+                <span>Confirmation</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="checkout-container">
         <div class="container">
             <div id="checkout-form-container">
                 <div class="row">
                     <!-- Checkout Form -->
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 reveal-left">
                         <!-- Customer Information -->
                         <div class="form-section">
                             <h4><i class="bi bi-person me-2"></i>Customer Information</h4>
@@ -362,53 +118,58 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="firstName" class="form-label">First Name *</label>
-                                            <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                            <label for="firstName">First Name *</label>
+                                            <input type="text" class="form-control" id="firstName" name="firstName"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="lastName" class="form-label">Last Name *</label>
-                                            <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                            <label for="lastName">Last Name *</label>
+                                            <input type="text" class="form-control" id="lastName" name="lastName"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email" class="form-label">Email Address *</label>
+                                    <label for="email">Email Address *</label>
                                     <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="phone" class="form-label">Phone Number *</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+92 300 0000000" required>
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                        placeholder="+92 300 0000000" required>
                                 </div>
 
                                 <!-- Shipping Address -->
-                                <div class="form-section" style="background: white; border: 1px solid #ddd;">
+                                <div class="form-section"
+                                    style="background: var(--bg-glass); border-color: var(--border-default);">
                                     <h4><i class="bi bi-geo-alt me-2"></i>Shipping Address</h4>
-                                    
+
                                     <div class="form-group">
-                                        <label for="address" class="form-label">Street Address *</label>
+                                        <label for="address">Street Address *</label>
                                         <input type="text" class="form-control" id="address" name="address" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="apartment" class="form-label">Apartment, Suite, etc. (Optional)</label>
+                                        <label for="apartment">Apartment, Suite, etc. (Optional)</label>
                                         <input type="text" class="form-control" id="apartment" name="apartment">
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="city" class="form-label">City *</label>
+                                                <label for="city">City *</label>
                                                 <input type="text" class="form-control" id="city" name="city" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="province" class="form-label">Province/State *</label>
-                                                <input type="text" class="form-control" id="province" name="province" required>
+                                                <label for="province">Province/State *</label>
+                                                <input type="text" class="form-control" id="province" name="province"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -416,23 +177,26 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="postalCode" class="form-label">Postal Code *</label>
-                                                <input type="text" class="form-control" id="postalCode" name="postalCode" required>
+                                                <label for="postalCode">Postal Code *</label>
+                                                <input type="text" class="form-control" id="postalCode"
+                                                    name="postalCode" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="country" class="form-label">Country *</label>
-                                                <input type="text" class="form-control" id="country" name="country" value="Pakistan" required>
+                                                <label for="country">Country *</label>
+                                                <input type="text" class="form-control" id="country" name="country"
+                                                    value="Pakistan" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Payment Method -->
-                                <div class="form-section" style="background: white; border: 1px solid #ddd;">
+                                <div class="form-section"
+                                    style="background: var(--bg-glass); border-color: var(--border-default);">
                                     <h4><i class="bi bi-credit-card me-2"></i>Payment Method</h4>
-                                    
+
                                     <div class="payment-methods" id="paymentMethods">
                                         <div class="payment-method active" data-method="bank-transfer">
                                             <i class="bi bi-bank"></i>
@@ -448,33 +212,36 @@
                                         </div>
                                         <div class="payment-method" data-method="cash-on-delivery">
                                             <i class="bi bi-cash"></i>
-                                            <div>Cash on Delivery</div>
+                                            <div>COD</div>
                                         </div>
                                     </div>
                                     <input type="hidden" id="paymentMethod" name="paymentMethod" value="bank-transfer">
 
                                     <div class="alert alert-info mt-3">
                                         <i class="bi bi-info-circle me-2"></i>
-                                        <span id="paymentInfo">Bank account details will be provided in your order confirmation email.</span>
+                                        <span id="paymentInfo">Bank account details will be provided in your order
+                                            confirmation email.</span>
                                     </div>
                                 </div>
 
                                 <!-- Additional Notes -->
                                 <div class="form-group">
-                                    <label for="notes" class="form-label">Order Notes (Optional)</label>
-                                    <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Any special requests or notes for your order..."></textarea>
+                                    <label for="notes">Order Notes (Optional)</label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="3"
+                                        placeholder="Any special requests or notes for your order..."></textarea>
                                 </div>
 
                                 <!-- Terms & Conditions -->
                                 <div class="form-check mb-4">
                                     <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
                                     <label class="form-check-label" for="terms">
-                                        I agree to the <a href="../terms-conditions/index.html" target="_blank">Terms & Conditions</a> and <a href="../contact-us/index.html" target="_blank">Privacy Policy</a> *
+                                        I agree to the <a href="../terms-conditions/index.html" target="_blank">Terms &
+                                            Conditions</a> *
                                     </label>
                                 </div>
 
-                                <div class="d-flex gap-3">
-                                    <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
+                                <div class="d-flex gap-3 flex-wrap">
+                                    <button type="submit" class="btn btn-primary btn-lg flex-grow-1" id="submit-btn">
                                         <i class="bi bi-check-circle me-2"></i>Complete Order
                                     </button>
                                     <a href="../cart/index.html" class="btn btn-outline-secondary btn-lg">
@@ -486,11 +253,11 @@
                     </div>
 
                     <!-- Order Summary -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 reveal-right">
                         <div class="order-summary">
                             <h4><i class="bi bi-receipt me-2"></i>Order Summary</h4>
                             <div id="summary-items" style="max-height: 400px; overflow-y: auto;">
-                                <p class="text-muted text-center">Loading order items...</p>
+                                <p style="color: var(--text-muted); text-align:center;">Loading order items...</p>
                             </div>
 
                             <div class="order-item">
@@ -510,9 +277,9 @@
                                 <strong id="total">PKR 0</strong>
                             </div>
 
-                            <div class="alert alert-info small mt-3">
+                            <div class="alert alert-info small mt-3" style="font-size:12px;">
                                 <i class="bi bi-shield-check me-2"></i>
-                                <span>Your order is secure and encrypted. We process all payments safely.</span>
+                                Your order is secure. We process all payments safely.
                             </div>
                         </div>
                     </div>
@@ -522,22 +289,26 @@
             <!-- Order Success Message -->
             <div id="success-container" class="order-success">
                 <div class="icon-large">
-                    <i class="bi bi-check-circle"></i>
+                    <i class="bi bi-check-circle" style="color: var(--neon-green);"></i>
                 </div>
-                <h2 class="text-success mb-3">Order Placed Successfully!</h2>
-                <p class="lead mb-4">Thank you for your order. We'll send you a confirmation email shortly with payment instructions.</p>
-                
+                <h2 style="color: var(--neon-green) !important;">Order Placed Successfully!</h2>
+                <p class="lead mb-4" style="color: var(--text-muted);">Thank you for your order. We'll send you a
+                    confirmation email shortly with payment instructions.</p>
+
                 <div class="alert alert-info mb-4">
-                    <h5 class="text-primary">Order Reference: <strong id="orderRef"></strong></h5>
-                    <p class="mb-0">Please keep this reference number for your records.</p>
+                    <h5 style="color: var(--primary-light); font-family: 'Inter', sans-serif;">Order Reference: <strong
+                            id="orderRef"></strong></h5>
+                    <p class="mb-0" style="color: var(--text-secondary);">Please keep this reference number for your
+                        records.</p>
                 </div>
 
                 <div class="alert alert-warning">
-                    <h5>Next Steps:</h5>
-                    <ol class="text-start" style="max-width: 500px; margin: 15px auto 0;">
+                    <h5 style="font-family: 'Inter', sans-serif;">Next Steps:</h5>
+                    <ol class="text-start" style="max-width: 500px; margin: 15px auto 0; color: var(--text-secondary);">
                         <li>Check your email for order confirmation and payment details</li>
                         <li>Complete the payment using the provided account details</li>
-                        <li>Send us payment proof at <strong>orders@karachipaints.pk</strong></li>
+                        <li>Send us payment proof at <strong
+                                style="color: var(--text-primary);">orders@karachipaints.pk</strong></li>
                         <li>Our team will confirm and arrange shipment</li>
                     </ol>
                 </div>
@@ -558,11 +329,16 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <h5>Karachi Paints</h5>
-                    <p>Your trusted source for premium paint solutions</p>
+                <div class="col-md-4 mb-4">
+                    <h5>Delux Paint Online</h5>
+                    <p>Your trusted source for premium paint solutions since 2020.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-6 text-end">
+                <div class="col-md-4 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="../about-us/index.html">About Us</a></li>
@@ -570,77 +346,109 @@
                         <li><a href="../terms-conditions/index.html">Terms & Conditions</a></li>
                     </ul>
                 </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled" style="font-size: 14px;">
+                        <li class="mb-2"><i class="bi bi-telephone me-2" style="color:var(--primary-light)"></i> +92 335
+                            323 6767</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--primary-light)"></i>
+                            orders@karachipaints.pk</li>
+                        <li><i class="bi bi-geo-alt me-2" style="color:var(--primary-light)"></i> Karachi, Pakistan</li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
-                <p class="mb-0">Copyrights Reserved by Karachi Paints 2020 | Powered by P2P Track</p>
+                <p class="mb-0">© 2024 Delux Paint Online. All rights reserved. | Powered by P2P Track</p>
             </div>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="../assets/js/jquery.minf43b.js"></script>
     <!-- Pricing Data -->
     <script src="../../assets/js/pricing-data.js"></script>
+    <!-- Products Data -->
+    <script src="../../assets/js/products-data.js"></script>
     <!-- Cart Utils -->
     <script src="../../assets/js/cart-utils.js"></script>
-    
-    <!-- Custom JS -->
+    <!-- Animations -->
+    <script src="../../assets/js/animations.js"></script>
+
+    <!-- Checkout JS with EmailJS -->
     <script>
-        // Load cart and display summary
+        // ============================================
+        // EmailJS Configuration
+        // ============================================
+        // IMPORTANT: Replace these with your actual EmailJS credentials
+        // 1. Sign up at https://www.emailjs.com/
+        // 2. Create an email service (e.g., Gmail, Outlook)
+        // 3. Create an email template
+        // 4. Replace the values below
+        const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';      // Replace with your EmailJS public key
+        const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';      // Replace with your EmailJS service ID
+        const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';    // Replace with your EmailJS template ID
+
+        // Initialize EmailJS
+        if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+        }
+
+        // ============================================
+        // Load Order Summary
+        // ============================================
         function loadOrderSummary() {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const summaryContainer = document.getElementById('summary-items');
-            
+
             if (cart.length === 0) {
-                summaryContainer.innerHTML = '<p class="text-muted text-center">Your cart is empty</p>';
+                summaryContainer.innerHTML = '<p style="color: var(--text-muted); text-align:center;">Your cart is empty</p>';
                 document.getElementById('checkout-form-container').style.display = 'none';
                 return;
             }
-            
+
             let subtotal = 0;
             let itemsHTML = '';
-            
+
             cart.forEach(item => {
-                const productPrice = window.ProductPricing ? 
+                const productPrice = window.ProductPricing ?
                     window.ProductPricing.getProductPrice(item.slug || item.id, 'gallon') : 0;
                 const itemTotal = productPrice * item.quantity;
                 subtotal += itemTotal;
-                
+
                 itemsHTML += `
                     <div class="order-item">
                         <div>
-                            <div><strong>${item.name || 'Product'}</strong></div>
-                            <div class="small text-muted">Qty: ${item.quantity}</div>
+                            <div><strong style="color: var(--text-primary);">${item.name || 'Product'}</strong></div>
+                            <div class="small" style="color: var(--text-muted);">Qty: ${item.quantity}</div>
                         </div>
                         <div class="text-end">
-                            <div><strong>PKR ${itemTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></div>
+                            <div><strong style="color: var(--text-primary);">PKR ${itemTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
                         </div>
                     </div>
                 `;
             });
-            
-            summaryContainer.innerHTML = itemsHTML || '<p class="text-muted">No items</p>';
-            
+
+            summaryContainer.innerHTML = itemsHTML || '<p style="color: var(--text-muted);">No items</p>';
+
             // Calculate tax (17% GST for Pakistan)
             const tax = subtotal * 0.17;
             const total = subtotal + tax;
-            
+
             // Update summary
-            document.getElementById('subtotal').textContent = 'PKR ' + subtotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('tax').textContent = 'PKR ' + tax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('total').textContent = 'PKR ' + total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('subtotal').textContent = 'PKR ' + subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('tax').textContent = 'PKR ' + tax.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('total').textContent = 'PKR ' + total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
-        
-        // Handle payment method selection
+
+        // ============================================
+        // Payment Method Selection
+        // ============================================
         document.querySelectorAll('.payment-method').forEach(method => {
-            method.addEventListener('click', function() {
+            method.addEventListener('click', function () {
                 document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
                 this.classList.add('active');
                 document.getElementById('paymentMethod').value = this.getAttribute('data-method');
-                
-                // Update payment info
+
                 const infoMap = {
                     'bank-transfer': 'Bank account details will be provided in your order confirmation email.',
                     'jazzz-cash': 'JazzCash payment details will be sent via SMS to your registered phone number.',
@@ -648,25 +456,99 @@
                     'cash-on-delivery': 'You can pay when the order is delivered to your location.'
                 };
                 document.getElementById('paymentInfo').textContent = infoMap[this.getAttribute('data-method')] || '';
+
+                // Update progress
+                document.getElementById('step-payment').classList.add('active');
             });
         });
-        
-        // Handle form submission
-        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+
+        // ============================================
+        // Send Order Email via EmailJS
+        // ============================================
+        function sendOrderEmail(order) {
+            // Build items list for email
+            const itemsList = order.items.map(item => {
+                const price = window.ProductPricing ?
+                    window.ProductPricing.getProductPrice(item.slug || item.id, 'gallon') : 0;
+                return `${item.name} x${item.quantity} — PKR ${(price * item.quantity).toLocaleString()}`;
+            }).join('\n');
+
+            const templateParams = {
+                order_id: order.id,
+                customer_name: order.customer.firstName + ' ' + order.customer.lastName,
+                customer_email: order.customer.email,
+                customer_phone: order.customer.phone,
+                shipping_address: `${order.address.street}, ${order.address.apartment || ''}, ${order.address.city}, ${order.address.province} ${order.address.postalCode}, ${order.address.country}`,
+                payment_method: order.paymentMethod.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                order_items: itemsList,
+                subtotal: 'PKR ' + order.subtotal.toLocaleString(),
+                tax: 'PKR ' + order.tax.toLocaleString(),
+                total: 'PKR ' + order.total.toLocaleString(),
+                order_notes: order.notes || 'None',
+                to_email: order.customer.email
+            };
+
+            // Only send if EmailJS is configured
+            if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+                // Send to store owner
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                    .then(function (response) {
+                        console.log('Order email sent successfully!', response);
+                        if (window.KPAnimations) {
+                            window.KPAnimations.showToast('Confirmation email sent!', 'bi-envelope-check');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error('Email sending failed:', error);
+                        // Still show success — order is saved locally
+                        if (window.KPAnimations) {
+                            window.KPAnimations.showToast('Order saved! Email will be sent shortly.', 'bi-info-circle');
+                        }
+                    });
+            } else {
+                // EmailJS not configured — log and show message
+                console.log('=== ORDER CONFIRMATION ===');
+                console.log('Order ID:', order.id);
+                console.log('Customer:', templateParams.customer_name);
+                console.log('Email:', templateParams.customer_email);
+                console.log('Phone:', templateParams.customer_phone);
+                console.log('Address:', templateParams.shipping_address);
+                console.log('Payment:', templateParams.payment_method);
+                console.log('Items:', templateParams.order_items);
+                console.log('Total:', templateParams.total);
+                console.log('==========================');
+                console.log('⚠️ EmailJS not configured. Replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, and YOUR_TEMPLATE_ID in checkout page.');
+
+                if (window.KPAnimations) {
+                    window.KPAnimations.showToast('Order placed! Configure EmailJS for email notifications.', 'bi-info-circle');
+                }
+            }
+        }
+
+        // ============================================
+        // Form Submission
+        // ============================================
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            // Collect form data
+
             const formData = new FormData(this);
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            
+
             if (cart.length === 0) {
-                alert('Your cart is empty!');
+                if (window.KPAnimations) {
+                    window.KPAnimations.showToast('Your cart is empty!', 'bi-exclamation-circle');
+                }
                 return;
             }
-            
+
+            // Disable submit button
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loader-spinner" style="width:20px;height:20px;border-width:2px;margin-right:8px;"></span>Processing...';
+
             // Create order object
             const order = {
-                id: 'ORD-' + Date.now(),
+                id: 'KP-' + Date.now(),
                 timestamp: new Date().toISOString(),
                 customer: {
                     firstName: formData.get('firstName'),
@@ -689,64 +571,57 @@
                 tax: parseFloat(document.getElementById('tax').textContent.replace(/[^0-9.-]+/g, '')),
                 total: parseFloat(document.getElementById('total').textContent.replace(/[^0-9.-]+/g, ''))
             };
-            
-            // Save order
+
+            // Save order to localStorage
             let orders = JSON.parse(localStorage.getItem('orders') || '[]');
             orders.push(order);
             localStorage.setItem('orders', JSON.stringify(orders));
-            
+
             // Clear cart
             localStorage.setItem('cart', '[]');
-            
-            // Send order email (in production, this would be to your server)
+
+            // Send order email
             sendOrderEmail(order);
-            
-            // Show success message
+
+            // Show success with delay for effect
             setTimeout(() => {
                 document.getElementById('checkout-form-container').style.display = 'none';
                 document.getElementById('success-container').classList.add('show');
                 document.getElementById('orderRef').textContent = order.id;
-                
+
+                // Update progress steps
+                document.getElementById('step-info').classList.add('completed');
+                document.getElementById('step-payment').classList.add('completed');
+                document.getElementById('step-confirm').classList.add('active');
+
                 // Update cart count
-                updateCartCountGlobal(0);
-                
-                // Log success for debugging
+                if (window.CartUtils) {
+                    window.CartUtils.updateCartCount();
+                }
+
+                // Launch confetti!
+                if (window.KPAnimations) {
+                    window.KPAnimations.launchConfetti();
+                }
+
                 console.log('Order placed:', order);
-            }, 500);
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1200);
         });
-        
-        // Function to handle order email (placeholder)
-        function sendOrderEmail(order) {
-            console.log('Sending order confirmation email to:', order.customer.email);
-            // In production, you would send this to your server/email service
-            // For now, we're just logging it
-        }
-        
-        // Load order summary on page load
-        document.addEventListener('DOMContentLoaded', function() {
+
+        // ============================================
+        // Initialize
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function () {
             loadOrderSummary();
-            
-            // Update wishlist count
+
             const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
             const wishlistCountEl = document.getElementById('wishlist-count');
-            if (wishlistCountEl) {
-                wishlistCountEl.textContent = wishlist.length;
-            }
-        });
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+            if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
         });
     </script>
 </body>
+
 </html>

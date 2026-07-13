@@ -1,9 +1,9 @@
 /**
- * Karachi Paints - Theme Enhancements
+ * Delux Paint Online - Theme Enhancements
  * Modern UI improvements and interactions
  */
 
-(function() {
+(function () {
     'use strict';
 
     // Wait for DOM to be ready
@@ -16,16 +16,16 @@
     function init() {
         // Add fade-in animation to content
         addFadeInAnimation();
-        
+
         // Enhance product cards
         enhanceProductCards();
-        
+
         // Smooth scroll for anchor links
         smoothScroll();
-        
+
         // Add loading states
         addLoadingStates();
-        
+
         // Enhance mobile menu
         enhanceMobileMenu();
     }
@@ -56,10 +56,10 @@
      */
     function enhanceProductCards() {
         const productCards = document.querySelectorAll('.woocommerce ul.products li.product');
-        
+
         productCards.forEach(card => {
             // Add hover effect
-            card.addEventListener('mouseenter', function() {
+            card.addEventListener('mouseenter', function () {
                 this.style.transition = 'all 0.3s ease';
             });
         });
@@ -70,7 +70,7 @@
      */
     function smoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href !== '#' && href.length > 1) {
                     const target = document.querySelector(href);
@@ -91,7 +91,7 @@
      */
     function addLoadingStates() {
         document.querySelectorAll('button, .button, a.button').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 if (!this.classList.contains('no-loading')) {
                     this.classList.add('loading');
                     setTimeout(() => {
@@ -108,9 +108,9 @@
     function enhanceMobileMenu() {
         const mobileNavIcon = document.querySelector('.mobile-nav-icon');
         const mainNav = document.querySelector('.main-nav');
-        
+
         if (mobileNavIcon && mainNav) {
-            mobileNavIcon.addEventListener('click', function() {
+            mobileNavIcon.addEventListener('click', function () {
                 mainNav.classList.toggle('mobile-menu-open');
                 this.classList.toggle('active');
             });
@@ -122,17 +122,17 @@
      */
     let lastScroll = 0;
     const header = document.querySelector('.main-header');
-    
+
     if (header) {
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const currentScroll = window.pageYOffset;
-            
+
             if (currentScroll > 100) {
                 header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
             } else {
                 header.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
             }
-            
+
             lastScroll = currentScroll;
         });
     }
