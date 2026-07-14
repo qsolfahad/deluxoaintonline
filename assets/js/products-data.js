@@ -936,6 +936,23 @@
         return [...new Set(products.map(p => p.brand))];
     }
 
+    // Load custom products from localStorage
+    try {
+        const customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+        if (Array.isArray(customProducts)) {
+            customProducts.forEach(customProd => {
+                const idx = products.findIndex(p => p.slug === customProd.slug);
+                if (idx !== -1) {
+                    products[idx] = customProd;
+                } else {
+                    products.push(customProd);
+                }
+            });
+        }
+    } catch (e) {
+        console.error('Error loading custom products:', e);
+    }
+
     // Expose globally
     window.ProductCatalog = {
         getProductBySlug: getProductBySlug,

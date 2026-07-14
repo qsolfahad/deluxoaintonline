@@ -470,10 +470,29 @@
                     const product = window.ProductCatalog.getProductBySlug(slug);
                     if (!product) return '';
 
-                    const price = window.ProductPricing.getProductPrice(slug, 'gallon');
-                    const priceDisplay = price > 0
-                        ? `PKR ${price.toLocaleString()}`
-                        : '<span style="color: var(--primary-light);">Contact for Price</span>';
+                    const priceGallon = window.ProductPricing.getProductPrice(slug, 'gallon');
+                    const priceQuarter = window.ProductPricing.getProductPrice(slug, 'quarter');
+
+                    let priceDisplay = '';
+                    if (priceGallon > 0 && priceQuarter > 0) {
+                        priceDisplay = `
+                            <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px;">
+                                <div>Gallon: <strong style="color: var(--accent);">PKR ${priceGallon.toLocaleString()}</strong></div>
+                                <div>Quarter: <strong style="color: var(--accent);">PKR ${priceQuarter.toLocaleString()}</strong></div>
+                            </div>`;
+                    } else if (priceGallon > 0) {
+                        priceDisplay = `
+                            <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px;">
+                                <div>Gallon: <strong style="color: var(--accent);">PKR ${priceGallon.toLocaleString()}</strong></div>
+                            </div>`;
+                    } else if (priceQuarter > 0) {
+                        priceDisplay = `
+                            <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px;">
+                                <div>Quarter: <strong style="color: var(--accent);">PKR ${priceQuarter.toLocaleString()}</strong></div>
+                            </div>`;
+                    } else {
+                        priceDisplay = '<span style="color: var(--primary-light); font-size: 13px; display: block; margin-bottom: 8px;">Contact for Price</span>';
+                    }
 
                     return `
                         <div class="col-lg-3 col-md-4 col-sm-6 reveal stagger-${(i % 8) + 1}">

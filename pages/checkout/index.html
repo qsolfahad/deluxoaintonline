@@ -410,8 +410,9 @@
             let itemsHTML = '';
 
             cart.forEach(item => {
+                const productUnit = item.unit || 'gallon';
                 const productPrice = window.ProductPricing ?
-                    window.ProductPricing.getProductPrice(item.slug || item.id, 'gallon') : 0;
+                    window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
                 const itemTotal = productPrice * item.quantity;
                 subtotal += itemTotal;
 
@@ -419,7 +420,7 @@
                     <div class="order-item">
                         <div>
                             <div><strong style="color: var(--text-primary);">${item.name || 'Product'}</strong></div>
-                            <div class="small" style="color: var(--text-muted);">Qty: ${item.quantity}</div>
+                            <div class="small" style="color: var(--text-muted);">Unit: <span class="text-uppercase">${productUnit}</span> | Qty: ${item.quantity}</div>
                         </div>
                         <div class="text-end">
                             <div><strong style="color: var(--text-primary);">PKR ${itemTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
@@ -468,9 +469,10 @@
         function sendOrderEmail(order) {
             // Build items list for email
             const itemsList = order.items.map(item => {
+                const productUnit = item.unit || 'gallon';
                 const price = window.ProductPricing ?
-                    window.ProductPricing.getProductPrice(item.slug || item.id, 'gallon') : 0;
-                return `${item.name} x${item.quantity} — PKR ${(price * item.quantity).toLocaleString()}`;
+                    window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
+                return `${item.name} (${productUnit.toUpperCase()}) x${item.quantity} — PKR ${(price * item.quantity).toLocaleString()}`;
             }).join('\n');
 
             const templateParams = {

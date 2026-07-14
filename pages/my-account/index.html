@@ -483,6 +483,98 @@
                                 </table>
                             </div>
                         </div>
+
+                        <!-- Product Catalog Management Card -->
+                        <div class="card p-4 border shadow-sm mt-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                                <h4 class="mb-0"><i class="bi bi-box-seam me-2 text-primary-custom"></i>Product Catalog Management</h4>
+                                <button class="btn btn-primary btn-sm" onclick="showProductForm()">
+                                    <i class="bi bi-plus-circle me-2"></i>Add New Product
+                                </button>
+                            </div>
+
+                            <!-- Product Entry Panel (hidden by default) -->
+                            <div id="product-form-panel" class="border rounded p-4 mb-4 bg-light shadow-sm text-dark" style="display: none; border-color: var(--border-default) !important;">
+                                <h5 class="text-primary-custom mb-3" id="product-form-title"><i class="bi bi-pencil-square me-2"></i>Add Premium Product</h5>
+                                <form id="admin-product-form">
+                                    <input type="hidden" id="p-edit-slug">
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label" style="font-weight: 500;">Product Name *</label>
+                                            <input type="text" id="p-name" class="form-control form-control-sm border" required placeholder="e.g. Synthetic Premium Enamel" style="background:#fff; color:#000;">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" style="font-weight: 500;">Quantity / Stock *</label>
+                                            <input type="number" id="p-form-qty" class="form-control form-control-sm border" required min="0" value="100" style="background:#fff; color:#000;">
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label" style="font-weight: 500;">Brand *</label>
+                                            <input type="text" id="p-brand" class="form-control form-control-sm border" required placeholder="e.g. Final Touch" style="background:#fff; color:#000;">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" style="font-weight: 500;">Category *</label>
+                                            <select id="p-category" class="form-select form-select-sm border" required style="background:#fff; color:#000;">
+                                                <option value="Decorative Paints">Decorative Paints</option>
+                                                <option value="Exterior Paints">Exterior Paints</option>
+                                                <option value="Brushes">Brushes</option>
+                                                <option value="Rollers & Trays">Rollers & Trays</option>
+                                                <option value="Waterproofing">Waterproofing</option>
+                                                <option value="Accessories">Accessories</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label" style="font-weight: 500;">Price (per Gallon) *</label>
+                                            <input type="number" id="p-price-gallon" class="form-control form-control-sm border" required min="0" placeholder="e.g. 1500" style="background:#fff; color:#000;">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" style="font-weight: 500;">Price (per Quarter) *</label>
+                                            <input type="number" id="p-price-quarter" class="form-control form-control-sm border" required min="0" placeholder="e.g. 450" style="background:#fff; color:#000;">
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-12">
+                                            <label class="form-label" style="font-weight: 500;">Image URL / Path *</label>
+                                            <input type="text" id="p-image" class="form-control form-control-sm border" required placeholder="e.g. https://via.placeholder.com/480" value="https://via.placeholder.com/480x480/111827/6366f1?text=New+Paint" style="background:#fff; color:#000;">
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-12">
+                                            <label class="form-label" style="font-weight: 500;">Description *</label>
+                                            <textarea id="p-description" class="form-control form-control-sm border" rows="3" required placeholder="Write a short description of the product..." style="background:#fff; color:#000;"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2 justify-content-end mt-4">
+                                        <button type="submit" class="btn btn-success btn-sm" id="btn-save-product">Save Product</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="hideProductForm()">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Products Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Brand / Category</th>
+                                            <th>Stock Qty</th>
+                                            <th>Gallon Price</th>
+                                            <th>Quarter Price</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-products-list">
+                                        <!-- Populated via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -605,6 +697,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery -->
     <script src="../assets/js/jquery.minf43b.js"></script>
+    <!-- Products Catalog -->
+    <script src="../../assets/js/products-data.js"></script>
     <!-- Pricing Data -->
     <script src="../../assets/js/pricing-data.js"></script>
     <!-- Cart Utils -->
@@ -830,7 +924,290 @@
             document.getElementById('stat-completed').textContent = completedCount;
 
             renderAdminOrdersTable(orders);
+            loadAdminProductsTable();
         }
+
+        // ADMIN PRODUCT MANAGEMENT FUNCTIONS
+        function loadAdminProductsTable() {
+            const listContainer = document.getElementById('admin-products-list');
+            if (!listContainer) return;
+            if (!window.ProductCatalog || !window.ProductPricing) {
+                setTimeout(loadAdminProductsTable, 100);
+                return;
+            }
+            
+            const allProducts = window.ProductCatalog.products;
+            const pricing = window.ProductPricing.pricing;
+            
+            // Load custom quantities from localStorage
+            let customQuantities = {};
+            try {
+                customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
+            } catch(e) {}
+            
+            listContainer.innerHTML = allProducts.map(product => {
+                const slug = product.slug;
+                const priceInfo = pricing[slug] || {};
+                const gallonPrice = priceInfo.gallon || 0;
+                const quarterPrice = priceInfo.quarter || 0;
+                
+                // Determine stock quantity
+                let qty = product.quantity !== undefined ? product.quantity : (customQuantities[slug] !== undefined ? customQuantities[slug] : 150);
+                
+                const imageSrc = product.image || 'https://via.placeholder.com/80x80/111827/6366f1?text=Paint';
+                
+                // Show Gallon price
+                const gallonDisplay = gallonPrice > 0 ? `PKR ${gallonPrice.toLocaleString()}` : '-';
+                
+                // Show Quarter price
+                const quarterDisplay = quarterPrice > 0 ? `PKR ${quarterPrice.toLocaleString()}` : '-';
+                
+                // Check if it is a custom product
+                let customProducts = [];
+                try {
+                    customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+                } catch(e) {}
+                const isCustom = customProducts.some(p => p.slug === slug);
+                
+                return `
+                    <tr>
+                        <td>
+                            <img src="${imageSrc}" alt="${product.name}" class="rounded" style="width: 40px; height: 40px; object-fit: contain; background: var(--bg-glass);">
+                        </td>
+                        <td>
+                            <strong>${product.name}</strong>
+                            <div class="small text-muted">${slug}</div>
+                        </td>
+                        <td>
+                            <div>${product.brand}</div>
+                            <div class="small text-muted">${product.category}</div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="number" class="form-control form-control-sm border text-dark" style="width: 70px; background: #fff;" value="${qty}" onchange="updateProductQuantity('${slug}', this.value)">
+                            </div>
+                        </td>
+                        <td><strong>${gallonDisplay}</strong></td>
+                        <td><strong>${quarterDisplay}</strong></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <button class="btn btn-sm btn-outline-primary py-0 px-2" onclick="editProduct('${slug}')">
+                                    Edit
+                                </button>
+                                ${isCustom ? `
+                                    <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteProduct('${slug}')">
+                                        Delete
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        window.updateProductQuantity = function (slug, newQty) {
+            newQty = parseInt(newQty) || 0;
+            
+            // Check if custom product first
+            let customProducts = [];
+            try {
+                customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+            } catch(e) {}
+            
+            const idx = customProducts.findIndex(p => p.slug === slug);
+            if (idx !== -1) {
+                customProducts[idx].quantity = newQty;
+                localStorage.setItem('customProducts', JSON.stringify(customProducts));
+                // Update in memory Catalog list
+                const catalogProduct = window.ProductCatalog.products.find(p => p.slug === slug);
+                if (catalogProduct) catalogProduct.quantity = newQty;
+            } else {
+                // Save to customQuantities
+                let customQuantities = {};
+                try {
+                    customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
+                } catch(e) {}
+                customQuantities[slug] = newQty;
+                localStorage.setItem('customQuantities', JSON.stringify(customQuantities));
+            }
+            if (window.KPAnimations) {
+                window.KPAnimations.showToast('Product quantity updated!', 'bi-check-circle');
+            }
+        };
+
+        window.showProductForm = function () {
+            document.getElementById('product-form-panel').style.display = 'block';
+            document.getElementById('product-form-title').innerHTML = '<i class="bi bi-plus-circle me-2"></i>Add Premium Product';
+            document.getElementById('p-edit-slug').value = '';
+            document.getElementById('admin-product-form').reset();
+            // scroll to form
+            document.getElementById('product-form-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+        
+        window.hideProductForm = function () {
+            document.getElementById('product-form-panel').style.display = 'none';
+        };
+
+        window.editProduct = function (slug) {
+            // Find the product
+            const product = window.ProductCatalog.getProductBySlug(slug);
+            if (!product) return;
+            
+            const pricing = window.ProductPricing.pricing[slug] || {};
+            
+            document.getElementById('product-form-panel').style.display = 'block';
+            document.getElementById('product-form-title').innerHTML = '<i class="bi bi-pencil-square me-2"></i>Edit Product: ' + product.name;
+            
+            document.getElementById('p-edit-slug').value = slug;
+            document.getElementById('p-name').value = product.name;
+            
+            let customQuantities = {};
+            try {
+                customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
+            } catch(e) {}
+            document.getElementById('p-form-qty').value = product.quantity !== undefined ? product.quantity : (customQuantities[slug] !== undefined ? customQuantities[slug] : 150);
+            
+            document.getElementById('p-brand').value = product.brand;
+            document.getElementById('p-category').value = product.category;
+            document.getElementById('p-price-gallon').value = pricing.gallon || 0;
+            document.getElementById('p-price-quarter').value = pricing.quarter || 0;
+            document.getElementById('p-image').value = product.image || '';
+            document.getElementById('p-description').value = product.description || '';
+            
+            // scroll to form
+            document.getElementById('product-form-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+
+        window.deleteProduct = function (slug) {
+            if (confirm('Are you sure you want to delete this custom product?')) {
+                // Remove from customProducts localStorage
+                let customProducts = [];
+                try {
+                    customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+                } catch(e) {}
+                customProducts = customProducts.filter(p => p.slug !== slug);
+                localStorage.setItem('customProducts', JSON.stringify(customProducts));
+                
+                // Remove from customPricing localStorage
+                let customPricing = {};
+                try {
+                    customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
+                } catch(e) {}
+                delete customPricing[slug];
+                localStorage.setItem('customPricing', JSON.stringify(customPricing));
+                
+                // Remove from active catalog in memory
+                if (window.ProductCatalog) {
+                    window.ProductCatalog.products = window.ProductCatalog.products.filter(p => p.slug !== slug);
+                }
+                
+                loadAdminProductsTable();
+                if (window.KPAnimations) {
+                    window.KPAnimations.showToast('Product deleted!', 'bi-trash');
+                }
+            }
+        };
+
+        // Form Submit for Admin Product Creation/Edit
+        document.addEventListener('DOMContentLoaded', function() {
+            const prodForm = document.getElementById('admin-product-form');
+            if (prodForm) {
+                prodForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    
+                    const editSlug = document.getElementById('p-edit-slug').value;
+                    const name = document.getElementById('p-name').value.trim();
+                    const qty = parseInt(document.getElementById('p-form-qty').value) || 0;
+                    const brand = document.getElementById('p-brand').value.trim();
+                    const category = document.getElementById('p-category').value;
+                    const gallonPrice = parseInt(document.getElementById('p-price-gallon').value) || 0;
+                    const quarterPrice = parseInt(document.getElementById('p-price-quarter').value) || 0;
+                    const image = document.getElementById('p-image').value.trim();
+                    const description = document.getElementById('p-description').value.trim();
+                    
+                    const slug = editSlug ? editSlug : name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    
+                    // Construct product object
+                    const productObj = {
+                        slug: slug,
+                        name: name,
+                        brand: brand,
+                        category: category,
+                        image: image,
+                        description: description,
+                        quantity: qty,
+                        features: ['Premium paint quality', 'Excellent coverage', 'Rich finish'],
+                        specs: { coverage: '120 sq ft/liter', finish: 'Matte', base: 'Acrylic' }
+                    };
+                    
+                    // Construct pricing object
+                    const priceObj = {
+                        drum: 0,
+                        gallon: gallonPrice,
+                        quarter: quarterPrice,
+                        basePrice: gallonPrice || quarterPrice
+                    };
+                    
+                    // Save pricing to localStorage
+                    let customPricing = {};
+                    try {
+                        customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
+                    } catch(e) {}
+                    customPricing[slug] = priceObj;
+                    localStorage.setItem('customPricing', JSON.stringify(customPricing));
+                    
+                    // Merge into active Pricing object
+                    if (window.ProductPricing) {
+                        window.ProductPricing.pricing[slug] = priceObj;
+                    }
+                    
+                    // Save products to localStorage
+                    let customProducts = [];
+                    try {
+                        customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+                    } catch(e) {}
+                    
+                    if (editSlug) {
+                        // Editing existing
+                        const idx = customProducts.findIndex(p => p.slug === editSlug);
+                        if (idx !== -1) {
+                            customProducts[idx] = productObj;
+                        } else {
+                            // If it was a pre-listed product that we edited! We save it to custom products to override it.
+                            customProducts.push(productObj);
+                        }
+                        
+                        // Update in memory catalog
+                        if (window.ProductCatalog && window.ProductCatalog.products) {
+                            const catalogIdx = window.ProductCatalog.products.findIndex(p => p.slug === editSlug);
+                            if (catalogIdx !== -1) {
+                                window.ProductCatalog.products[catalogIdx] = productObj;
+                            }
+                        }
+                    } else {
+                        // Adding new
+                        customProducts.push(productObj);
+                        if (window.ProductCatalog && window.ProductCatalog.products) {
+                            window.ProductCatalog.products.push(productObj);
+                        }
+                    }
+                    
+                    localStorage.setItem('customProducts', JSON.stringify(customProducts));
+                    
+                    // Hide form and reload table
+                    prodForm.reset();
+                    hideProductForm();
+                    loadAdminProductsTable();
+                    
+                    if (window.KPAnimations) {
+                        window.KPAnimations.showToast('Product saved successfully!', 'bi-check-circle-fill');
+                    } else {
+                        alert('Product saved successfully!');
+                    }
+                });
+            }
+        });
 
         function renderAdminOrdersTable(orders) {
             const listContainer = document.getElementById('admin-orders-list');
@@ -951,12 +1328,13 @@
 
             const tbody = document.getElementById('inv-items');
             tbody.innerHTML = order.items.map(item => {
-                const unitPrice = window.ProductPricing ? window.ProductPricing.getProductPrice(item.slug || item.id, 'gallon') : 0;
+                const productUnit = item.unit || 'gallon';
+                const unitPrice = window.ProductPricing ? window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
                 const totalItemPrice = unitPrice * item.quantity;
                 return `
                     <tr>
                         <td><strong>${item.name}</strong></td>
-                        <td class="text-center">Gallon</td>
+                        <td class="text-center text-uppercase">${productUnit}</td>
                         <td class="text-end">PKR ${unitPrice.toLocaleString()}</td>
                         <td class="text-center">${item.quantity}</td>
                         <td class="text-end">PKR ${totalItemPrice.toLocaleString()}</td>
@@ -965,7 +1343,7 @@
             }).join('');
 
             // Tax and Total calculations
-            const subtotal = order.subtotal || order.items.reduce((sum, item) => sum + (window.ProductPricing.getProductPrice(item.slug || item.id) * item.quantity), 0);
+            const subtotal = order.subtotal || order.items.reduce((sum, item) => sum + (window.ProductPricing.getProductPrice(item.slug || item.id, item.unit || 'gallon') * item.quantity), 0);
             const tax = order.tax || (subtotal * 0.17);
             const total = order.total || (subtotal + tax);
 

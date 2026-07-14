@@ -210,51 +210,53 @@
             container.innerHTML = '';
 
             let total = 0;
-
             cart.forEach((item, index) => {
+                const productUnit = item.unit || 'gallon';
                 const productPrice = window.ProductPricing ?
-                    window.ProductPricing.getProductPrice(item.slug || item.id, 'gallon') : 0;
+                    window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
                 const itemTotal = productPrice * item.quantity;
                 total += itemTotal;
 
                 const productId = item.slug || item.id || index;
+                const uniqueKey = productId + '::' + productUnit;
                 const productImage = item.image || 'https://via.placeholder.com/300x300?text=Product';
                 const productName = item.name || 'Product';
                 const productLink = item.link || '#';
 
                 const priceDisplay = productPrice > 0 ?
-                    `<p class="text-muted small mb-0">PKR ${productPrice.toLocaleString()}</p>` :
+                    `<p class="text-muted small mb-0">PKR ${productPrice.toLocaleString()} <span class="text-uppercase text-primary" style="font-size: 0.8em; font-weight:600;">/ ${productUnit}</span></p>` :
                     `<p class="text-muted small mb-0">Contact for Price</p>`;
 
                 const cartItem = `
-                    <div class="cart-table-card mb-3" data-product-slug="${productId}" style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 16px;">
+                    <div class="cart-table-card mb-3" data-unique-key="${uniqueKey}" style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 16px;">
                         <div class="row align-items-center">
                             <div class="col-md-2 col-4">
                                 <a href="${productLink}">
                                     <img src="${productImage}" alt="${productName}" class="img-fluid rounded" style="max-height:80px; object-fit:contain; background: var(--bg-glass);">
                                 </a>
-							</div>
+                            </div>
                             <div class="col-md-4 col-8">
                                 <h6 class="mb-1"><a href="${productLink}" class="text-decoration-none text-light">${productName}</a></h6>
+                                <p class="text-muted small mb-1 text-uppercase">Unit: ${productUnit}</p>
                                 ${priceDisplay}
-							</div>
+                            </div>
                             <div class="col-md-3 col-6 mt-3 mt-md-0">
                                 <div class="cart-qty-control">
-                                    <button class="cart-qty-btn quantity-decrease" type="button" data-product-slug="${productId}">-</button>
-                                    <input type="text" class="cart-qty-val quantity-input text-center" value="${item.quantity}" readonly data-product-slug="${productId}">
-                                    <button class="cart-qty-btn quantity-increase" type="button" data-product-slug="${productId}">+</button>
-								</div>
-							</div>
+                                    <button class="cart-qty-btn quantity-decrease" type="button" data-unique-key="${uniqueKey}">-</button>
+                                    <input type="text" class="cart-qty-val quantity-input text-center" value="${item.quantity}" readonly data-unique-key="${uniqueKey}">
+                                    <button class="cart-qty-btn quantity-increase" type="button" data-unique-key="${uniqueKey}">+</button>
+                                </div>
+                            </div>
                             <div class="col-md-2 col-4 text-center mt-3 mt-md-0">
                                 <strong style="color: var(--accent);">PKR ${itemTotal.toLocaleString()}</strong>
-							</div>
+                            </div>
                             <div class="col-md-1 col-2 text-end mt-3 mt-md-0">
-                                <button class="cart-remove-btn remove-cart-item" data-product-slug="${productId}">
+                                <button class="cart-remove-btn remove-cart-item" data-unique-key="${uniqueKey}">
                                     <i class="bi bi-trash"></i>
                                 </button>
-							</div>
-						</div>
-					</div>
+                            </div>
+                        </div>
+                    </div>
                 `;
                 container.innerHTML += cartItem;
             });
@@ -264,29 +266,33 @@
             // Add event listeners
             document.querySelectorAll('.quantity-decrease').forEach(btn => {
                 btn.addEventListener('click', function () {
-                    const productSlug = this.getAttribute('data-product-slug');
-                    updateQuantity(productSlug, -1);
+                    const uniqueKey = this.getAttribute('data-unique-key');
+                    updateQuantity(uniqueKey, -1);
                 });
             });
 
             document.querySelectorAll('.quantity-increase').forEach(btn => {
                 btn.addEventListener('click', function () {
-                    const productSlug = this.getAttribute('data-product-slug');
-                    updateQuantity(productSlug, 1);
+                    const uniqueKey = this.getAttribute('data-unique-key');
+                    updateQuantity(uniqueKey, 1);
                 });
             });
 
             document.querySelectorAll('.remove-cart-item').forEach(btn => {
                 btn.addEventListener('click', function () {
-                    const productSlug = this.getAttribute('data-product-slug');
-                    removeFromCart(productSlug);
+                    const uniqueKey = this.getAttribute('data-unique-key');
+                    removeFromCart(uniqueKey);
                 });
             });
         }
 
-        function updateQuantity(productSlug, change) {
+        function updateQuantity(uniqueKey, change) {
+            const parts = uniqueKey.split('::');
+            const productSlug = parts[0];
+            const unit = parts[1] || 'gallon';
+
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            const item = cart.find(i => (i.slug || i.id) === productSlug);
+            const item = cart.find(i => (i.slug || i.id) === productSlug && (i.unit || 'gallon') === unit);
             if (item) {
                 item.quantity = Math.max(1, item.quantity + change);
                 localStorage.setItem('cart', JSON.stringify(cart));
@@ -294,9 +300,13 @@
             }
         }
 
-        function removeFromCart(productSlug) {
+        function removeFromCart(uniqueKey) {
+            const parts = uniqueKey.split('::');
+            const productSlug = parts[0];
+            const unit = parts[1] || 'gallon';
+
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            cart = cart.filter(item => (item.slug || item.id) !== productSlug);
+            cart = cart.filter(item => !((item.slug || item.id) === productSlug && (item.unit || 'gallon') === unit));
             localStorage.setItem('cart', JSON.stringify(cart));
             loadCart();
             if (window.KPAnimations) {

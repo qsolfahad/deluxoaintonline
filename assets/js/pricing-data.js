@@ -377,6 +377,14 @@ function getPriceDisplay(productSlug, unit = 'gallon') {
     </div>`;
 }
 
+// Load custom pricing from localStorage
+try {
+    const customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
+    Object.assign(productPricing, customPricing);
+} catch (e) {
+    console.error('Error merging custom pricing:', e);
+}
+
 // Export for use in other scripts
 if (typeof window !== 'undefined') {
     window.ProductPricing = {

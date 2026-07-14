@@ -34,11 +34,11 @@
     }
     
     // Add to cart function
-    function addToCart(productSlug, productName, productLink, productImage) {
+    function addToCart(productSlug, productName, productLink, productImage, unit = 'gallon') {
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
         
-        // Check if product already in cart
-        const existingItem = cart.find(item => (item.slug || item.id) === productSlug);
+        // Check if product already in cart with same unit
+        const existingItem = cart.find(item => (item.slug || item.id) === productSlug && (item.unit || 'gallon') === unit);
         
         if (existingItem) {
             existingItem.quantity += 1;
@@ -53,7 +53,8 @@
                 name: productName,
                 link: productLink || 'product.html?slug=' + productSlug,
                 image: productImage,
-                quantity: 1
+                quantity: 1,
+                unit: unit
             });
         }
         
@@ -76,12 +77,30 @@
             
             const priceEl = card.querySelector('.product-price');
             if (priceEl) {
-                const price = window.ProductPricing.getProductPrice(productSlug, 'gallon');
-                if (price > 0) {
-                    priceEl.innerHTML = `PKR ${price.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+                const priceGallon = window.ProductPricing.getProductPrice(productSlug, 'gallon');
+                const priceQuarter = window.ProductPricing.getProductPrice(productSlug, 'quarter');
+                
+                let priceDisplay = '';
+                if (priceGallon > 0 && priceQuarter > 0) {
+                    priceDisplay = `
+                        <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px;">
+                            <div>Gallon: <strong style="color: var(--accent);">PKR ${priceGallon.toLocaleString()}</strong></div>
+                            <div>Quarter: <strong style="color: var(--accent);">PKR ${priceQuarter.toLocaleString()}</strong></div>
+                        </div>`;
+                } else if (priceGallon > 0) {
+                    priceDisplay = `
+                        <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px;">
+                            <div>Gallon: <strong style="color: var(--accent);">PKR ${priceGallon.toLocaleString()}</strong></div>
+                        </div>`;
+                } else if (priceQuarter > 0) {
+                    priceDisplay = `
+                        <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px;">
+                            <div>Quarter: <strong style="color: var(--accent);">PKR ${priceQuarter.toLocaleString()}</strong></div>
+                        </div>`;
                 } else {
-                    priceEl.innerHTML = '<span style="color: var(--primary-light);">Contact for Price</span>';
+                    priceDisplay = '<span style="color: var(--primary-light); font-size: 13px; display: block; margin-bottom: 8px;">Contact for Price</span>';
                 }
+                priceEl.innerHTML = priceDisplay;
             }
         });
     }
@@ -112,6 +131,7 @@
             const btn = e.target.closest('.add-to-cart-btn');
             const productSlug = btn.getAttribute('data-product') || btn.getAttribute('data-product-slug');
             const productLink = btn.getAttribute('data-product-link') || 'product.html?slug=' + productSlug;
+            const productUnit = btn.getAttribute('data-unit') || 'gallon';
             
             if (!productSlug) return;
             
@@ -123,7 +143,7 @@
             const productImage = card?.querySelector('img')?.src || '';
             
             // Add to cart
-            const added = addToCart(productSlug, productName, productLink, productImage);
+            const added = addToCart(productSlug, productName, productLink, productImage, productUnit);
             
             if (added) {
                 // Show toast notification
