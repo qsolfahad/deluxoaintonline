@@ -239,6 +239,41 @@
         </div>
     </section>
 
+    <!-- Colour Visualizer Section -->
+    <section class="visualizer-section" id="colors">
+        <div class="container">
+            <div class="visualizer-grid align-items-center">
+                <div class="reveal">
+                    <span class="section-label">COLOUR VISUALIZER</span>
+                    <h2>Find Your Perfect Shade</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px;">
+                        Explore our curated premium paint shades and see how they transform your living room instantly. Click a swatch below to preview the color on the wall.
+                    </p>
+                    <div class="color-swatches" id="colorSwatches">
+                        <div class="color-swatch selected" data-color="1a3a5c" style="background:#1a3a5c;" title="Deep Ocean Blue"></div>
+                        <div class="color-swatch" data-color="e8433c" style="background:#e8433c;" title="Classic Red"></div>
+                        <div class="color-swatch" data-color="f5ecd7" style="background:#f5ecd7;" title="Cream"></div>
+                        <div class="color-swatch" data-color="2a7f7f" style="background:#2a7f7f;" title="Teal"></div>
+                        <div class="color-swatch" data-color="b8944c" style="background:#b8944c;" title="Gold"></div>
+                        <div class="color-swatch" data-color="e8836e" style="background:#e8836e;" title="Coral"></div>
+                        <div class="color-swatch" data-color="4a4a4a" style="background:#4a4a4a;" title="Charcoal"></div>
+                        <div class="color-swatch" data-color="f0f4f8" style="background:#f0f4f8; border: 1px solid var(--border-default);" title="Ice White"></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 20px;">
+                        <i class="bi bi-info-circle me-1"></i> Click any color swatch to visually paint the room walls.
+                    </p>
+                </div>
+                <div class="room-preview reveal" id="roomPreview">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=85"
+                    alt="Room visualizer preview"
+                    loading="lazy"
+                    id="roomPreviewImg"
+                    onerror="this.src='https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&q=85'">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Featured Products Section -->
     <section class="py-5" style="position: relative; z-index: 1;">
         <div class="container">
@@ -559,6 +594,63 @@
                 const cartCountEl = document.getElementById('cart-count');
                 if (cartCountEl) cartCountEl.textContent = e.detail.count;
             });
+
+            // ---- Interactive Color Visualizer ----
+            const swatches = document.querySelectorAll('.color-swatch');
+            const roomPreview = document.getElementById('roomPreview');
+            
+            if (roomPreview && swatches.length > 0) {
+                // Set up relative container and overlay
+                roomPreview.style.position = 'relative';
+                const overlay = document.createElement('div');
+                overlay.id = 'colorOverlay';
+                overlay.style.position = 'absolute';
+                overlay.style.inset = '0';
+                overlay.style.pointerEvents = 'none';
+                overlay.style.mixBlendMode = 'multiply';
+                overlay.style.transition = 'background-color 0.5s ease';
+                roomPreview.appendChild(overlay);
+
+                // Hex to RGB parser
+                function hexToRgb(hex) {
+                    hex = hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => r + r + g + g + b + b);
+                    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                    return result ? {
+                        r: parseInt(result[1], 16),
+                        g: parseInt(result[2], 16),
+                        b: parseInt(result[3], 16)
+                    } : null;
+                }
+
+                // Function to paint the room
+                function applyColor(hexColor) {
+                    const rgb = hexToRgb(hexColor);
+                    if (rgb) {
+                        let opacity = 0.45;
+                        if (hexColor === 'f5ecd7') opacity = 0.65;
+                        if (hexColor === 'f0f4f8') opacity = 0.55;
+                        
+                        overlay.style.backgroundColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+                    }
+                }
+
+                // Click listener for swatches
+                swatches.forEach(swatch => {
+                    swatch.addEventListener('click', function () {
+                        swatches.forEach(s => s.classList.remove('selected'));
+                        this.classList.add('selected');
+
+                        const hexColor = this.getAttribute('data-color');
+                        applyColor(hexColor);
+                    });
+                });
+
+                // Initialize color visualizer with default selected color
+                const defaultSwatch = document.querySelector('.color-swatch.selected');
+                if (defaultSwatch) {
+                    applyColor(defaultSwatch.getAttribute('data-color'));
+                }
+            }
         });
     </script>
 </body>
