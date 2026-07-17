@@ -6,6 +6,13 @@
 (function () {
     'use strict';
 
+    // ---- Theme Management (Dark / Light) ----
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    initTheme();
+
     // ---- Scroll Reveal (Intersection Observer) ----
     function initScrollReveal() {
         const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
@@ -280,10 +287,44 @@
                 // Prevent infinite loop if placeholder itself fails
                 if (!e.target.dataset.fallbackTried) {
                     e.target.dataset.fallbackTried = 'true';
-                    e.target.src = 'https://via.placeholder.com/480x480/111827/6366f1?text=Karachi+Paints';
+                    e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQibsRwO1naOYLYziKEVQO5zjCLQ8HCBYerRs6J9cC9we9zRYWOtoReieQ&s=10';
                 }
             }
         }, true); // Use capture phase as error events do not bubble
+    }
+
+    // ---- Theme Toggle (Dark / Light) Button Injection ----
+    function initThemeToggle() {
+        const container = document.querySelector('.cart-wishlist-icons');
+        if (!container) return;
+
+        if (document.getElementById('theme-toggle')) return;
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.id = 'theme-toggle';
+        toggleBtn.className = 'theme-toggle-btn ms-2';
+        toggleBtn.setAttribute('aria-label', 'Toggle Theme');
+
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        toggleBtn.innerHTML = currentTheme === 'light'
+            ? '<i class="bi bi-moon-stars-fill"></i>'
+            : '<i class="bi bi-sun-fill"></i>';
+
+        container.appendChild(toggleBtn);
+
+        toggleBtn.addEventListener('click', function () {
+            const oldTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = oldTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            toggleBtn.innerHTML = newTheme === 'light'
+                ? '<i class="bi bi-moon-stars-fill"></i>'
+                : '<i class="bi bi-sun-fill"></i>';
+
+            showToast(`Switched to ${newTheme} mode!`, newTheme === 'light' ? 'bi-sun-fill' : 'bi-moon-stars-fill');
+        });
     }
 
     // ---- Initialize All ----
@@ -296,6 +337,7 @@
         animateCounters();
         initParticles();
         initParallax();
+        initThemeToggle();
 
         // Delay magnetic for performance
         setTimeout(initMagneticButtons, 1000);

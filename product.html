@@ -50,7 +50,7 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="assets/images/web-logo-new.png" alt="Delux Paint Online">
+                <img src="assets/images/web-logo-new.png?v=3" alt="Delux Paint Online">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -111,8 +111,11 @@
 
                     <!-- Unit Selection -->
                     <div class="mb-3" id="unit-selection-container" style="display:none;">
-                        <label for="product-unit" class="form-label" style="font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Unit Size:</label>
-                        <select class="form-select" id="product-unit" style="max-width: 200px; background-color: var(--bg-glass); color: var(--text-primary); border-color: var(--border-subtle);">
+                        <label for="product-unit" class="form-label"
+                            style="font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Unit
+                            Size:</label>
+                        <select class="form-select" id="product-unit"
+                            style="max-width: 200px; background-color: var(--bg-glass); color: var(--text-primary); border-color: var(--border-subtle);">
                         </select>
                     </div>
 
@@ -295,7 +298,7 @@
                 document.getElementById('breadcrumb-product').textContent = product.name;
 
                 // Main image
-                document.getElementById('main-product-image').src = product.image || 'https://via.placeholder.com/480x480/111827/6366f1?text=Karachi+Paints';
+                document.getElementById('main-product-image').src = product.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQibsRwO1naOYLYziKEVQO5zjCLQ8HCBYerRs6J9cC9we9zRYWOtoReieQ&s=10';
                 document.getElementById('main-product-image').alt = product.name;
 
                 // Category badge
@@ -326,7 +329,7 @@
                 if (window.ProductPricing) {
                     const pricingInfo = window.ProductPricing.pricing[slug] || {};
                     let optionsHTML = '';
-                    
+
                     if (pricingInfo.drum) {
                         optionsHTML += `<option value="drum">Drum (PKR ${pricingInfo.drum.toLocaleString()})</option>`;
                     }
@@ -340,11 +343,11 @@
                     if (optionsHTML) {
                         unitSelect.innerHTML = optionsHTML;
                         unitSelectionContainer.style.display = 'block';
-                        
+
                         // Set initial price to selected unit
                         updatePriceDisplay(unitSelect.value);
-                        
-                        unitSelect.addEventListener('change', function() {
+
+                        unitSelect.addEventListener('change', function () {
                             updatePriceDisplay(this.value);
                         });
                     } else {
@@ -443,7 +446,7 @@
                 relatedContainer.innerHTML = related.map((p, i) => {
                     const priceGallon = window.ProductPricing ? window.ProductPricing.getProductPrice(p.slug, 'gallon') : 0;
                     const priceQuarter = window.ProductPricing ? window.ProductPricing.getProductPrice(p.slug, 'quarter') : 0;
-                    
+
                     let priceDisplay = '';
                     if (priceGallon > 0 && priceQuarter > 0) {
                         priceDisplay = `
@@ -468,7 +471,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 reveal stagger-${i + 1}">
                             <div class="product-card card h-100">
                                 <a href="product.html?slug=${p.slug}">
-                                    <img src="${p.image || 'https://via.placeholder.com/480x480/111827/6366f1?text=Karachi+Paints'}" class="card-img-top" alt="${p.name}">
+                                    <img src="${p.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQibsRwO1naOYLYziKEVQO5zjCLQ8HCBYerRs6J9cC9we9zRYWOtoReieQ&s=10'}" class="card-img-top" alt="${p.name}">
                                 </a>
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">

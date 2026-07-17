@@ -69,6 +69,220 @@
 }
 
 /* ============================================
+   Light Mode Palette (Data-Theme Override)
+   ============================================ */
+:root[data-theme="light"] {
+    /* Light Palette */
+    --bg-body: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-elevated: rgba(241, 245, 249, 0.8);
+    --bg-glass: rgba(0, 0, 0, 0.04);
+    --bg-glass-hover: rgba(0, 0, 0, 0.08);
+    --bg-glass-active: rgba(0, 0, 0, 0.12);
+
+    /* Text */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+
+    /* Borders */
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-default: rgba(0, 0, 0, 0.15);
+    --border-hover: rgba(0, 0, 0, 0.25);
+    --border-glow: rgba(99, 102, 241, 0.25);
+
+    /* Shadows (Softer for light background) */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.08);
+    --shadow-xl: 0 20px 60px rgba(15, 23, 42, 0.1);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+    --shadow-glow-accent: 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+/* ============================================
+   Light Mode Structural & Layout Overrides
+   ============================================ */
+:root[data-theme="light"] body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] body::before {
+    /* Slightly more opaque background radial meshes for light mode visibility */
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(236, 72, 153, 0.09) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 50% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 60%);
+}
+
+:root[data-theme="light"] .top-bar {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .top-bar a {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .top-bar a:hover {
+    color: var(--primary);
+}
+
+:root[data-theme="light"] .navbar {
+    background: rgba(248, 250, 252, 0.85) !important;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+:root[data-theme="light"] .navbar.scrolled {
+    background: rgba(248, 250, 252, 0.96) !important;
+    border-bottom-color: var(--border-glow);
+}
+
+:root[data-theme="light"] .navbar-toggler-icon {
+    filter: none;
+    /* normal dark hamburger menu for light mode */
+}
+
+:root[data-theme="light"] .navbar-nav .nav-link {
+    color: var(--text-secondary) !important;
+}
+
+:root[data-theme="light"] .navbar-nav .nav-link:hover,
+:root[data-theme="light"] .navbar-nav .nav-link.active {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-glass-hover);
+}
+
+:root[data-theme="light"] .hero-section {
+    background: linear-gradient(160deg, #f1f5f9 0%, #e2e8f0 30%, #f8fafc 70%, #f1f5f9 100%);
+}
+
+:root[data-theme="light"] .hero-section h1 {
+    color: var(--text-primary) !important;
+}
+
+:root[data-theme="light"] .hero-section p {
+    color: var(--text-secondary) !important;
+}
+
+:root[data-theme="light"] .hero-section .btn-outline-primary {
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    color: var(--text-secondary) !important;
+}
+
+:root[data-theme="light"] .hero-section .btn-outline-primary:hover {
+    border-color: var(--primary) !important;
+    color: #fff !important;
+    background-color: var(--primary) !important;
+}
+
+:root[data-theme="light"] .product-card,
+:root[data-theme="light"] .calculator-card,
+:root[data-theme="light"] .content-box,
+:root[data-theme="light"] .payment-method,
+:root[data-theme="light"] .order-summary-card,
+:root[data-theme="light"] .checkout-card {
+    background-color: var(--bg-surface) !important;
+    border-color: var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+}
+
+:root[data-theme="light"] .form-control,
+:root[data-theme="light"] .form-select {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-default) !important;
+}
+
+:root[data-theme="light"] .form-control:focus,
+:root[data-theme="light"] .form-select:focus {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.25rem var(--primary-glow) !important;
+}
+
+:root[data-theme="light"] .form-control::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.7;
+}
+
+:root[data-theme="light"] .result-box {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+    border-color: var(--border-default) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+:root[data-theme="light"] .result-box h4 {
+    color: var(--text-primary) !important;
+}
+
+:root[data-theme="light"] .result-details p {
+    color: var(--text-secondary) !important;
+}
+
+:root[data-theme="light"] .footer {
+    background: #0f172a !important;
+    /* Keep footer dark for solid contrast grounding */
+}
+
+:root[data-theme="light"] .checkout-step {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .checkout-step.active {
+    color: var(--primary);
+}
+
+:root[data-theme="light"] .checkout-step .step-number {
+    background: var(--bg-glass);
+    border-color: var(--border-default);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .checkout-step.active .step-number {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+:root[data-theme="light"] .checkout-step.completed .step-number {
+    background: var(--neon-green);
+    border-color: var(--neon-green);
+    color: #fff;
+}
+
+:root[data-theme="light"] .breadcrumb-item a {
+    color: var(--primary);
+}
+
+:root[data-theme="light"] .breadcrumb-item.active {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .product-gallery {
+    background-color: var(--bg-surface);
+    border-color: var(--border-subtle);
+}
+
+:root[data-theme="light"] .product-meta {
+    border-top-color: var(--border-subtle);
+}
+
+:root[data-theme="light"] .table th,
+:root[data-theme="light"] .table td {
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+}
+
+:root[data-theme="light"] .order-item {
+    border-bottom-color: var(--border-subtle);
+}
+
+/* ============================================
    Global Reset & Base Styles
    ============================================ */
 *,
@@ -303,13 +517,49 @@ img {
 }
 
 .navbar-brand img {
-    max-height: 70px !important;
+    height: 95px !important;
+    width: auto !important;
+    max-height: none !important;
     transition: transform var(--t-normal);
     filter: brightness(1.1);
 }
 
+@media (max-width: 991.98px) {
+    .navbar-brand img {
+        height: 70px !important;
+    }
+}
+
 .navbar-brand:hover img {
     transform: scale(1.06);
+}
+
+/* Theme Toggle Button Style */
+.theme-toggle-btn {
+    color: var(--text-secondary);
+    font-size: 18px;
+    position: relative;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--t-fast);
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--primary-light);
+    background: var(--bg-glass-hover);
+    border-color: var(--border-glow);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
 }
 
 .navbar-nav .nav-link {
