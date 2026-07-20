@@ -199,29 +199,16 @@
                                     <h4><i class="bi bi-credit-card me-2"></i>Payment Method</h4>
 
                                     <div class="payment-methods" id="paymentMethods">
-                                        <div class="payment-method active" data-method="bank-transfer">
-                                            <i class="bi bi-bank"></i>
-                                            <div>Bank Transfer</div>
-                                        </div>
-                                        <div class="payment-method" data-method="jazzz-cash">
-                                            <i class="bi bi-phone"></i>
-                                            <div>JazzCash</div>
-                                        </div>
-                                        <div class="payment-method" data-method="easypaisa">
-                                            <i class="bi bi-phone"></i>
-                                            <div>Easypaisa</div>
-                                        </div>
-                                        <div class="payment-method" data-method="cash-on-delivery">
+                                        <div class="payment-method active" data-method="cash-on-delivery" style="cursor: default;">
                                             <i class="bi bi-cash"></i>
-                                            <div>COD</div>
+                                            <div>Cash on Delivery (COD)</div>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="paymentMethod" name="paymentMethod" value="bank-transfer">
+                                    <input type="hidden" id="paymentMethod" name="paymentMethod" value="cash-on-delivery">
 
                                     <div class="alert alert-info mt-3">
                                         <i class="bi bi-info-circle me-2"></i>
-                                        <span id="paymentInfo">Bank account details will be provided in your order
-                                            confirmation email.</span>
+                                        <span id="paymentInfo">You can pay cash when the order is delivered to your location.</span>
                                     </div>
                                 </div>
 
@@ -294,7 +281,7 @@
                 </div>
                 <h2 style="color: var(--neon-green) !important;">Order Placed Successfully!</h2>
                 <p class="lead mb-4" style="color: var(--text-muted);">Thank you for your order. We'll send you a
-                    confirmation email shortly with payment instructions.</p>
+                    confirmation email shortly.</p>
 
                 <div class="alert alert-info mb-4">
                     <h5 style="color: var(--primary-light); font-family: 'Inter', sans-serif;">Order Reference: <strong
@@ -306,11 +293,10 @@
                 <div class="alert alert-warning">
                     <h5 style="font-family: 'Inter', sans-serif;">Next Steps:</h5>
                     <ol class="text-start" style="max-width: 500px; margin: 15px auto 0; color: var(--text-secondary);">
-                        <li>Check your email for order confirmation and payment details</li>
-                        <li>Complete the payment using the provided account details</li>
-                        <li>Send us payment proof at <strong
-                                style="color: var(--text-primary);">orders@karachipaints.pk</strong></li>
-                        <li>Our team will confirm and arrange shipment</li>
+                        <li>Check your email for order confirmation details.</li>
+                        <li>Our customer support team will contact you shortly to verify and confirm your order.</li>
+                        <li>Your package will be prepared and shipped to your address.</li>
+                        <li>Pay cash to the rider at the time of delivery.</li>
                     </ol>
                 </div>
 
@@ -452,10 +438,7 @@
                 document.getElementById('paymentMethod').value = this.getAttribute('data-method');
 
                 const infoMap = {
-                    'bank-transfer': 'Bank account details will be provided in your order confirmation email.',
-                    'jazzz-cash': 'JazzCash payment details will be sent via SMS to your registered phone number.',
-                    'easypaisa': 'Easypaisa payment link will be sent to your email and SMS.',
-                    'cash-on-delivery': 'You can pay when the order is delivered to your location.'
+                    'cash-on-delivery': 'You can pay cash when the order is delivered to your location.'
                 };
                 document.getElementById('paymentInfo').textContent = infoMap[this.getAttribute('data-method')] || '';
 
@@ -619,6 +602,9 @@
         // ============================================
         document.addEventListener('DOMContentLoaded', function () {
             loadOrderSummary();
+
+            const stepPayment = document.getElementById('step-payment');
+            if (stepPayment) stepPayment.classList.add('active');
 
             const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
             const wishlistCountEl = document.getElementById('wishlist-count');
