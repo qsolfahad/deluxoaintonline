@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,8 +41,8 @@
                     <a href="tel:+923353236767">+92 335 323 6767</a>
                 </div>
                 <div class="col-md-6 text-end">
-                    <a href="../../pages/my-account/index.html" class="me-3"><i class="bi bi-person"></i> My Account</a>
-                    <a href="../../pages/admin/index.html" class="me-3"><i class="bi bi-database"></i> Orders</a>
+                    <a href="../../pages/admin/index.html" class="me-3"><i class="bi bi-shield-lock"></i> Admin</a>
+                    
                     <a href="../../pages/cart/index.html"><i class="bi bi-cart"></i> Cart</a>
                 </div>
             </div>
@@ -558,10 +558,27 @@
                 total: parseFloat(document.getElementById('total').textContent.replace(/[^0-9.-]+/g, ''))
             };
 
-            // Save order to localStorage
+            // Save order to localStorage (local backup)
             let orders = JSON.parse(localStorage.getItem('orders') || '[]');
             orders.push(order);
             localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Save order to database server (shared database)
+            const isLocalFile = window.location.protocol === 'file:';
+            const apiHost = isLocalFile ? 'http://localhost:3000' : '';
+            
+            fetch(`${apiHost}/api/orders`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(order)
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('Database write error');
+                console.log('Order successfully synced with shared database server.');
+            })
+            .catch(err => {
+                console.warn('Could not sync order with shared database server:', err.message);
+            });
 
             // Clear cart
             localStorage.setItem('cart', '[]');

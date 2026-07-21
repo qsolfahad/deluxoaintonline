@@ -936,33 +936,73 @@
         return [...new Set(products.map(p => p.brand))];
     }
 
-    // Load custom products from localStorage
-    try {
-        const customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-        if (Array.isArray(customProducts)) {
-            customProducts.forEach(customProd => {
-                const idx = products.findIndex(p => p.slug === customProd.slug);
-                if (idx !== -1) {
-                    products[idx] = customProd;
-                } else {
-                    products.push(customProd);
-                }
-            });
+    // Load custom products from API (with localStorage fallback)
+    function initializeCatalog() {
+        // Expose globally first with static + local cache
+        window.ProductCatalog = {
+            getProductBySlug: getProductBySlug,
+            getAllProducts: getAllProducts,
+            getProductsByCategory: getProductsByCategory,
+            getProductsByBrand: getProductsByBrand,
+            searchProducts: searchProducts,
+            getRelatedProducts: getRelatedProducts,
+            getCategories: getCategories,
+            getBrands: getBrands,
+            products: products
+        };
+
+        // Load from localStorage for initial quick sync (fallback)
+        try {
+            const customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+            if (Array.isArray(customProducts)) {
+                customProducts.forEach(customProd => {
+                    const idx = products.findIndex(p => p.slug === customProd.slug);
+                    if (idx !== -1) {
+                        products[idx] = customProd;
+                    } else {
+                        products.push(customProd);
+                    }
+                });
+            }
+        } catch (e) {
+            console.error('Error loading custom products from localStorage:', e);
         }
-    } catch (e) {
-        console.error('Error loading custom products:', e);
+
+        // Try loading from database API (browser environment only)
+        if (typeof window !== 'undefined' && window.document) {
+            const isLocalFile = window.location.protocol === 'file:';
+            const isDifferentLocalPort = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000';
+            const apiHost = (isLocalFile || isDifferentLocalPort) ? 'http://localhost:3000' : '';
+            
+            fetch(`${apiHost}/api/products`)
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.json();
+                })
+                .then(apiProducts => {
+                    if (Array.isArray(apiProducts) && apiProducts.length > 0) {
+                        apiProducts.forEach(apiProd => {
+                            const idx = products.findIndex(p => p.slug === apiProd.slug);
+                            if (idx !== -1) {
+                                products[idx] = apiProd;
+                            } else {
+                                products.push(apiProd);
+                            }
+                        });
+                        
+                        localStorage.setItem('customProducts', JSON.stringify(products.filter(p => {
+                            return !['413-plastic-emulsion', 'aqueous-matt-finish', 'all-rounder-matt-enamel'].includes(p.slug);
+                        })));
+                    }
+                    
+                    window.dispatchEvent(new CustomEvent('productsLoaded', { detail: products }));
+                })
+                .catch(() => {
+                    // Offline/localStorage mode — catalog already loaded from JS + localStorage
+                    window.dispatchEvent(new CustomEvent('productsLoaded', { detail: products }));
+                });
+        }
     }
 
-    // Expose globally
-    window.ProductCatalog = {
-        getProductBySlug: getProductBySlug,
-        getAllProducts: getAllProducts,
-        getProductsByCategory: getProductsByCategory,
-        getProductsByBrand: getProductsByBrand,
-        searchProducts: searchProducts,
-        getRelatedProducts: getRelatedProducts,
-        getCategories: getCategories,
-        getBrands: getBrands,
-        products: products
-    };
+    initializeCatalog();
 })();

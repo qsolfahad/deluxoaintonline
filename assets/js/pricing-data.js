@@ -377,20 +377,50 @@ function getPriceDisplay(productSlug, unit = 'gallon') {
     </div>`;
 }
 
-// Load custom pricing from localStorage
-try {
-    const customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
-    Object.assign(productPricing, customPricing);
-} catch (e) {
-    console.error('Error merging custom pricing:', e);
+// Load custom pricing from API (with localStorage fallback)
+function initializePricing() {
+    // Export globally first with static + local cache
+    if (typeof window !== 'undefined') {
+        window.ProductPricing = {
+            getProductPrice: getProductPrice,
+            formatPrice: formatPrice,
+            getPriceDisplay: getPriceDisplay,
+            pricing: productPricing
+        };
+    }
+
+    // Load from localStorage for initial quick sync (fallback)
+    try {
+        const customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
+        Object.assign(productPricing, customPricing);
+    } catch (e) {
+        console.error('Error merging custom pricing from localStorage:', e);
+    }
+
+    // Try loading from database API (browser environment only)
+    if (typeof window !== 'undefined' && window.document) {
+        const isLocalFile = window.location.protocol === 'file:';
+        const isDifferentLocalPort = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000';
+        const apiHost = (isLocalFile || isDifferentLocalPort) ? 'http://localhost:3000' : '';
+        
+        fetch(`${apiHost}/api/pricing`)
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return res.json();
+            })
+            .then(apiPricing => {
+                if (apiPricing && typeof apiPricing === 'object') {
+                    Object.assign(productPricing, apiPricing);
+                    localStorage.setItem('customPricing', JSON.stringify(apiPricing));
+                }
+                
+                window.dispatchEvent(new CustomEvent('pricingLoaded', { detail: productPricing }));
+            })
+            .catch(() => {
+                // Offline/localStorage mode — pricing already loaded from JS + localStorage
+                window.dispatchEvent(new CustomEvent('pricingLoaded', { detail: productPricing }));
+            });
+    }
 }
 
-// Export for use in other scripts
-if (typeof window !== 'undefined') {
-    window.ProductPricing = {
-        getProductPrice: getProductPrice,
-        formatPrice: formatPrice,
-        getPriceDisplay: getPriceDisplay,
-        pricing: productPricing
-    };
-}
+initializePricing();
