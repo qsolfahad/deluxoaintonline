@@ -427,7 +427,7 @@
                 document.getElementById('btn-add-wishlist').addEventListener('click', function () {
                     let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
                     if (!wishlist.find(item => (item.slug || item.id) === slug)) {
-                        wishlist.push({ slug: slug, name: product.name, link: 'product.html?slug=' + slug, image: product.image });
+                        wishlist.push({ id: slug, slug: slug, name: product.name, link: 'product.html?slug=' + slug, image: product.image });
                         localStorage.setItem('wishlist', JSON.stringify(wishlist));
                         if (window.CartUtils) window.CartUtils.updateCartCount();
                         if (window.KPAnimations) window.KPAnimations.showToast('Added to wishlist!', 'bi-heart-fill');

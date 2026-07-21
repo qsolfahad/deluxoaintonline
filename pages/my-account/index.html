@@ -18,6 +18,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../../assets/css/custom-theme.css">
+    <!-- SheetJS (xlsx) from CDN -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 </head>
 
 <body>
@@ -485,34 +487,47 @@
                         <div class="card p-4 border shadow-sm mt-4">
                             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
                                 <h4 class="mb-0"><i class="bi bi-box-seam me-2 text-primary-custom"></i>Product Catalog Management</h4>
-                                <button class="btn btn-primary btn-sm" onclick="showProductForm()">
-                                    <i class="bi bi-plus-circle me-2"></i>Add New Product
-                                </button>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-success btn-sm d-flex align-items-center gap-1" onclick="exportProductsToExcel()" title="Export all products to Excel">
+                                        <i class="bi bi-file-earmark-spreadsheet"></i> Export Products
+                                    </button>
+                                    <button class="btn btn-outline-info btn-sm d-flex align-items-center gap-1" onclick="triggerProductImport()" title="Import products from Excel">
+                                        <i class="bi bi-cloud-arrow-up"></i> Import Products
+                                    </button>
+                                    <input type="file" id="product-excel-input" accept=".xlsx,.xls,.csv" style="display: none;" onchange="importProductsFromExcel(this)">
+                                    <button class="btn btn-primary btn-sm d-flex align-items-center gap-1" onclick="showProductForm()">
+                                        <i class="bi bi-plus-circle"></i> Add New Product
+                                    </button>
+                                </div>
                             </div>
 
                             <!-- Product Entry Panel (hidden by default) -->
-                            <div id="product-form-panel" class="border rounded p-4 mb-4 bg-light shadow-sm text-dark" style="display: none; border-color: var(--border-default) !important;">
-                                <h5 class="text-primary-custom mb-3" id="product-form-title"><i class="bi bi-pencil-square me-2"></i>Add Premium Product</h5>
+                            <div id="product-form-panel" class="card border mb-4 p-4 shadow-md text-start" style="display: none; background: var(--bg-card); border-color: var(--border-default) !important; color: var(--text-primary);">
+                                <h5 class="mb-4" id="product-form-title" style="color: var(--primary-light); font-weight: 700; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+                                    <i class="bi bi-pencil-square me-2"></i>Add Premium Product
+                                </h5>
                                 <form id="admin-product-form">
                                     <input type="hidden" id="p-edit-slug">
+                                    
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500;">Product Name *</label>
-                                            <input type="text" id="p-name" class="form-control form-control-sm border" required placeholder="e.g. Synthetic Premium Enamel" style="background:#fff; color:#000;">
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Product Name *</label>
+                                            <input type="text" id="p-name" class="form-control" required placeholder="e.g. Synthetic Premium Enamel" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500;">Quantity / Stock *</label>
-                                            <input type="number" id="p-form-qty" class="form-control form-control-sm border" required min="0" value="100" style="background:#fff; color:#000;">
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Quantity / Stock *</label>
+                                            <input type="number" id="p-form-qty" class="form-control" required min="0" value="100" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                         </div>
                                     </div>
+                                    
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500;">Brand *</label>
-                                            <input type="text" id="p-brand" class="form-control form-control-sm border" required placeholder="e.g. Final Touch" style="background:#fff; color:#000;">
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Brand *</label>
+                                            <input type="text" id="p-brand" class="form-control" required placeholder="e.g. Final Touch" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500;">Category *</label>
-                                            <select id="p-category" class="form-select form-select-sm border" required style="background:#fff; color:#000;">
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Category *</label>
+                                            <select id="p-category" class="form-select" required style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                                 <option value="Decorative Paints">Decorative Paints</option>
                                                 <option value="Exterior Paints">Exterior Paints</option>
                                                 <option value="Brushes">Brushes</option>
@@ -522,32 +537,43 @@
                                             </select>
                                         </div>
                                     </div>
+                                    
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500;">Price (per Gallon) *</label>
-                                            <input type="number" id="p-price-gallon" class="form-control form-control-sm border" required min="0" placeholder="e.g. 1500" style="background:#fff; color:#000;">
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Price (per Gallon) *</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" style="background: var(--bg-glass); border-color: var(--border-default); color: var(--text-secondary);">PKR</span>
+                                                <input type="number" id="p-price-gallon" class="form-control" required min="0" placeholder="e.g. 1500" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500;">Price (per Quarter) *</label>
-                                            <input type="number" id="p-price-quarter" class="form-control form-control-sm border" required min="0" placeholder="e.g. 450" style="background:#fff; color:#000;">
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Price (per Quarter) *</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" style="background: var(--bg-glass); border-color: var(--border-default); color: var(--text-secondary);">PKR</span>
+                                                <input type="number" id="p-price-quarter" class="form-control" required min="0" placeholder="e.g. 450" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                            </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="row g-3 mb-3">
                                         <div class="col-12">
-                                            <label class="form-label" style="font-weight: 500;">Image URL / Path *</label>
-                                            <input type="text" id="p-image" class="form-control form-control-sm border" required placeholder="e.g. https://via.placeholder.com/480" value="https://via.placeholder.com/480x480/111827/6366f1?text=New+Paint" style="background:#fff; color:#000;">
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Image URL / Path *</label>
+                                            <input type="text" id="p-image" class="form-control" required placeholder="e.g. https://via.placeholder.com/480" value="https://via.placeholder.com/480x480/111827/6366f1?text=New+Paint" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                         </div>
                                     </div>
-                                    <div class="row g-3 mb-3">
+                                    
+                                    <div class="row g-3 mb-4">
                                         <div class="col-12">
-                                            <label class="form-label" style="font-weight: 500;">Description *</label>
-                                            <textarea id="p-description" class="form-control form-control-sm border" rows="3" required placeholder="Write a short description of the product..." style="background:#fff; color:#000;"></textarea>
+                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Description *</label>
+                                            <textarea id="p-description" class="form-control" rows="3" required placeholder="Write a short description of the product..." style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);"></textarea>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex gap-2 justify-content-end mt-4">
-                                        <button type="submit" class="btn btn-success btn-sm" id="btn-save-product">Save Product</button>
-                                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="hideProductForm()">Cancel</button>
+                                    <div class="d-flex gap-2 justify-content-end border-top pt-3" style="border-color: var(--border-subtle) !important;">
+                                        <button type="submit" class="btn btn-success px-4 py-2" id="btn-save-product">
+                                            <i class="bi bi-check-circle me-1"></i>Save Product
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary px-4 py-2" onclick="hideProductForm()">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -1520,6 +1546,212 @@
             loadAdminDashboard();
             alert('Manual order successfully created! Order ID: ' + order.id);
         });
+
+        // ============================================================
+        //  Export Products to Excel
+        // ============================================================
+        window.exportProductsToExcel = function () {
+            if (!window.ProductCatalog || !window.ProductPricing) {
+                alert('Product catalog not loaded yet.');
+                return;
+            }
+            
+            const allProducts = window.ProductCatalog.products;
+            const pricing = window.ProductPricing.pricing;
+            
+            // Load custom quantities from localStorage
+            let customQuantities = {};
+            try {
+                customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
+            } catch(e) {}
+
+            // Load custom products from localStorage to identify custom vs standard
+            let customProducts = [];
+            try {
+                customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+            } catch(e) {}
+            const customSlugs = new Set(customProducts.map(p => p.slug));
+
+            const rows = allProducts.map(product => {
+                const slug = product.slug;
+                const priceInfo = pricing[slug] || {};
+                const qty = product.quantity !== undefined ? product.quantity : (customQuantities[slug] !== undefined ? customQuantities[slug] : 150);
+                
+                return {
+                    'Slug': slug,
+                    'Name': product.name || '',
+                    'Brand': product.brand || '',
+                    'Category': product.category || '',
+                    'Stock Qty': qty,
+                    'Price (Gallon)': priceInfo.gallon || 0,
+                    'Price (Quarter)': priceInfo.quarter || 0,
+                    'Image URL': product.image || '',
+                    'Description': product.description || '',
+                    'Is Custom Product': customSlugs.has(slug) ? 'YES' : 'NO'
+                };
+            });
+
+            const ws = XLSX.utils.json_to_sheet(rows);
+
+            // Auto-size columns
+            const colWidths = Object.keys(rows[0]).map(key => {
+                const maxLen = Math.max(key.length, ...rows.map(r => String(r[key] || '').length));
+                return { wch: Math.min(maxLen + 2, 50) };
+            });
+            ws['!cols'] = colWidths;
+
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Products');
+            XLSX.writeFile(wb, `DeluxPaint_Products_${new Date().toISOString().slice(0, 10)}.xlsx`);
+            
+            if (window.KPAnimations && window.KPAnimations.showToast) {
+                window.KPAnimations.showToast(`Exported ${allProducts.length} products to Excel`, 'bi-file-earmark-spreadsheet');
+            } else {
+                alert(`Exported ${allProducts.length} products to Excel`);
+            }
+        };
+
+        // ============================================================
+        //  Import Products from Excel
+        // ============================================================
+        window.triggerProductImport = function () {
+            document.getElementById('product-excel-input').click();
+        };
+
+        window.importProductsFromExcel = function (input) {
+            if (!input.files || !input.files.length) return;
+            const file = input.files[0];
+            
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const wb = XLSX.read(data, { type: 'array' });
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const json = XLSX.utils.sheet_to_json(ws);
+
+                    if (!json.length) {
+                        alert('The Excel file contains no product rows.');
+                        return;
+                    }
+
+                    // Load current custom products & pricing
+                    let customProducts = [];
+                    try {
+                        customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+                    } catch(e) {}
+                    
+                    let customPricing = {};
+                    try {
+                        customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
+                    } catch(e) {}
+                    
+                    let customQuantities = {};
+                    try {
+                        customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
+                    } catch(e) {}
+
+                    let newCount = 0;
+                    let updatedCount = 0;
+
+                    json.forEach(row => {
+                        const name = String(row['Name'] || '').trim();
+                        if (!name) return; // Skip if no name
+                        
+                        const slug = String(row['Slug'] || name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')).trim();
+                        const brand = String(row['Brand'] || 'Final Touch').trim();
+                        const category = String(row['Category'] || 'Decorative Paints').trim();
+                        const stockQty = parseInt(row['Stock Qty']) || 0;
+                        const gallonPrice = parseInt(row['Price (Gallon)']) || 0;
+                        const quarterPrice = parseInt(row['Price (Quarter)']) || 0;
+                        const image = String(row['Image URL'] || '').trim();
+                        const description = String(row['Description'] || '').trim();
+                        const isCustomField = String(row['Is Custom Product'] || '').toUpperCase() === 'YES';
+
+                        // Construct product object
+                        const productObj = {
+                            slug: slug,
+                            name: name,
+                            brand: brand,
+                            category: category,
+                            image: image || 'https://via.placeholder.com/480x480/111827/6366f1?text=' + encodeURIComponent(name),
+                            description: description || 'Premium paint quality from Delux Paint Online.',
+                            quantity: stockQty,
+                            features: ['Premium paint quality', 'Excellent coverage', 'Rich finish'],
+                            specs: { coverage: '120 sq ft/liter', finish: 'Matte', base: 'Acrylic' }
+                        };
+
+                        // Construct pricing object
+                        const priceObj = {
+                            drum: 0,
+                            gallon: gallonPrice,
+                            quarter: quarterPrice,
+                            basePrice: gallonPrice || quarterPrice
+                        };
+
+                        // 1. Merge into window.ProductPricing and localStorage
+                        if (window.ProductPricing) {
+                            window.ProductPricing.pricing[slug] = priceObj;
+                        }
+                        customPricing[slug] = priceObj;
+
+                        // 2. Save stock quantity
+                        customQuantities[slug] = stockQty;
+                        
+                        // 3. Save to customProducts (if it is a custom product, or if we want to override standard catalog dynamically)
+                        const isStandardProductInCatalog = window.ProductCatalog.products.some(p => p.slug === slug && !customProducts.some(cp => cp.slug === slug));
+
+                        // Find index in customProducts
+                        const customIdx = customProducts.findIndex(p => p.slug === slug);
+                        
+                        if (customIdx !== -1) {
+                            customProducts[customIdx] = productObj;
+                            updatedCount++;
+                        } else if (isCustomField || !isStandardProductInCatalog) {
+                            customProducts.push(productObj);
+                            newCount++;
+                        } else {
+                            // Standard product overrides
+                            customProducts.push(productObj);
+                            updatedCount++;
+                        }
+
+                        // Update active in-memory catalog
+                        if (window.ProductCatalog && window.ProductCatalog.products) {
+                            const catalogIdx = window.ProductCatalog.products.findIndex(p => p.slug === slug);
+                            if (catalogIdx !== -1) {
+                                window.ProductCatalog.products[catalogIdx] = productObj;
+                            } else {
+                                window.ProductCatalog.products.push(productObj);
+                            }
+                        }
+                    });
+
+                    // Save all back to localStorage
+                    localStorage.setItem('customProducts', JSON.stringify(customProducts));
+                    localStorage.setItem('customPricing', JSON.stringify(customPricing));
+                    localStorage.setItem('customQuantities', JSON.stringify(customQuantities));
+
+                    // Reload table
+                    loadAdminProductsTable();
+
+                    // Reset file input
+                    input.value = '';
+
+                    const successMsg = `Successfully imported: ${newCount} new product(s), ${updatedCount} standard product overrides updated.`;
+                    if (window.KPAnimations && window.KPAnimations.showToast) {
+                        window.KPAnimations.showToast(successMsg, 'bi-check-circle-fill');
+                    } else {
+                        alert(successMsg);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Error reading Excel file: ' + err.message);
+                    input.value = '';
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        };
 
         // Initialize state
         checkLoginState();

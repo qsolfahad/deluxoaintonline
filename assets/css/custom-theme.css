@@ -1834,6 +1834,37 @@ a.text-dark:hover {
 /* ============================================
    Account / Dashboard
    ============================================ */
+/* Premium Card Theme Overrides */
+.card {
+    background-color: var(--bg-card) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-default) !important;
+    color: var(--text-primary) !important;
+    border-radius: var(--radius-md) !important;
+    transition: transform var(--t-normal), box-shadow var(--t-normal), border-color var(--t-normal) !important;
+}
+
+.card:hover {
+    border-color: var(--border-hover) !important;
+}
+
+.account-card {
+    background: var(--bg-card) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-default) !important;
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--t-normal), box-shadow var(--t-normal), border-color var(--t-normal);
+}
+
+.account-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: var(--border-hover) !important;
+}
+
 .dashboard-container {
     background: var(--bg-card);
     backdrop-filter: blur(12px);
