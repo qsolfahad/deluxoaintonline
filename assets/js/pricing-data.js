@@ -1,426 +1,107 @@
-// Product Pricing Data
-// Prices are in PKR (Pakistani Rupees)
-// Based on ORION PAINTS Price List (w.e.f. 1st December 2025)
+// ============================================================
+//  Delux Paint Online — Pricing Data Stub
+//  Pricing is now loaded exclusively from Firebase Firestore.
+//  This file only exposes the ProductPricing API shell;
+//  firebase-service.js populates it via loadCatalogFromFirebase().
+// ============================================================
 
-const productPricing = {
-    // Emulsion Products
-    'emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'quarter': 325
-    },
-    'special-shade': {
-        'gallon': 1350,
-        'quarter': 400,
-        'note': 'Shade #.9009 to 9011 Gallons will be Special Shade'
-    },
-    'waterbase-primer': {
-        'drum': 3700,
-        'gallon': 950
-    },
-    'acrylic-putty': {
-        'drum': 2500,
-        'gallon': 700,
-        'quarter': 300
-    },
-    'oil-primer': {
-        'drum': 7500,
-        'gallon': 1900
-    },
-    'red-oxide-primer': {
-        'drum': 6000,
-        'gallon': 1563,
-        'quarter': 413
-    },
-    'undercoat': {
-        'gallon': 1563,
-        'quarter': 413
-    },
-    'weather-shield': {
-        'drum': 8500,
-        'note': 'As per order required'
-    },
-    'water-based-matt-finish': {
-        'drum': 8500,
-        'note': 'As per order required'
-    },
-    
-    // Product-specific pricing (by slug)
-    '413-plastic-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'quarter': 325,
-        'basePrice': 775
-    },
-    'aqueous-matt-finish': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'all-rounder-matt-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'dulux-prime-on': {
-        'drum': 3700,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'cold-galvanizing-paint-silver': {
-        'drum': 7500,
-        'gallon': 1900,
-        'basePrice': 1900
-    },
-    'berger': {
-        'drum': 2800,
-        'gallon': 775,
-        'basePrice': 775
-    },
-    'plastic-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'quarter': 325,
-        'basePrice': 775
-    },
-    'synthetic-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'matt-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'gloss-enamel': {
-        'drum': 3500,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'silk-emulsion': {
-        'drum': 3000,
-        'gallon': 825,
-        'basePrice': 825
-    },
-    'super-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'basePrice': 775
-    },
-    'nu-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'basePrice': 775
-    },
-    'perfect-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'basePrice': 775
-    },
-    'semi-plastic-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'basePrice': 775
-    },
-    'water-base-matt-finish': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'hydrous-matt-finish': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'premium-exterior-emulsion': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'premium-matt-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'premium-synthetic-enamel-plus': {
-        'drum': 3500,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'royal-matt-emulsion': {
-        'drum': 3000,
-        'gallon': 825,
-        'basePrice': 825
-    },
-    'silk-sheen-emulsion': {
-        'drum': 3000,
-        'gallon': 825,
-        'basePrice': 825
-    },
-    'soft-sheen-emulsion': {
-        'drum': 3000,
-        'gallon': 825,
-        'basePrice': 825
-    },
-    'spd-smooth-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'basePrice': 775
-    },
-    'special-matt-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'stain-guard-water-based-matt-emulsion': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'stainless-water-based-matt': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'subrang-aqueous-matt': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'subrang-matt-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'subrang-synthetic-enamel': {
-        'drum': 3500,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'super-gloss-enamel': {
-        'drum': 3500,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'nu-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'q-lac-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'satin-glo-matt-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'brilliance-matt-enamel': {
-        'drum': 3200,
-        'gallon': 850,
-        'basePrice': 850
-    },
-    'platone-high-gloss': {
-        'drum': 3500,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'luxury-silk-sheen-emulsion': {
-        'drum': 3000,
-        'gallon': 825,
-        'basePrice': 825
-    },
-    'overall-super-semi-plastic-emulsion': {
-        'drum': 2800,
-        'gallon': 775,
-        'basePrice': 775
-    },
-    'plastic-bound-distemper': {
-        'drum': 2500,
-        'gallon': 700,
-        'basePrice': 700
-    },
-    'dulux-aqua-primer': {
-        'drum': 3700,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'dulux-wall-smoothening-putty-20-kg': {
-        'drum': 2500,
-        'gallon': 700,
-        'basePrice': 700
-    },
-    'dulux-weathershield-wall-putty-20-kg': {
-        'drum': 2500,
-        'gallon': 700,
-        'basePrice': 700
-    },
-    'paintex-putty': {
-        'drum': 2500,
-        'gallon': 700,
-        'basePrice': 700
-    },
-    'industrial-synthetic-enamel': {
-        'drum': 3500,
-        'gallon': 950,
-        'basePrice': 950
-    },
-    'master-thermoshield': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-defender': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-hardshield': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-proof': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-protector': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-resistant': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-sheath': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-shield': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weather-shield-powerflex': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'weatherbond': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'wheather-safe': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'crystal-weather-sheat': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'buxly-weather-fighter': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
-    },
-    'all-weather-shelter': {
-        'drum': 8500,
-        'gallon': 2200,
-        'basePrice': 2200
+// Start empty — Firebase will fill this in
+const productPricing = {};
+
+// ── Helper functions ─────────────────────────────────────────
+
+/**
+ * Get base (undiscounted) price for a product & unit.
+ */
+function getProductBasePrice(slugOrId, unit) {
+    const id = slugOrId;
+    const unitKey = (unit || 'gallon').toLowerCase();
+
+    if (productPricing[id] && productPricing[id][unitKey] !== undefined) {
+        return Number(productPricing[id][unitKey]) || 0;
     }
-};
+    return 0;
+}
 
-// Function to get product price
-function getProductPrice(productSlug, unit = 'gallon') {
-    const product = productPricing[productSlug];
-    if (!product) {
-        // Try to find by partial match
-        for (const key in productPricing) {
-            if (productSlug.includes(key) || key.includes(productSlug)) {
-                const matched = productPricing[key];
-                return matched[unit] || matched.basePrice || matched.gallon || 0;
+/**
+ * Get discount percentage for a product (0 to 100).
+ */
+function getProductDiscountPercent(slugOrId) {
+    // 1. Check ProductCatalog if loaded
+    if (typeof window !== 'undefined' && window.ProductCatalog) {
+        const prod = window.ProductCatalog.getProductBySlug(slugOrId);
+        if (prod && Number(prod.discountPercent) > 0) {
+            return Number(prod.discountPercent);
+        }
+    }
+    // 2. Check pricing object
+    if (productPricing[slugOrId] && Number(productPricing[slugOrId].discountPercent) > 0) {
+        return Number(productPricing[slugOrId].discountPercent);
+    }
+    return 0;
+}
+
+/**
+ * Get final (discounted) price for a product & unit.
+ */
+function getProductPrice(slugOrId, unit) {
+    const basePrice = getProductBasePrice(slugOrId, unit);
+    if (basePrice <= 0) return 0;
+
+    const discountPct = getProductDiscountPercent(slugOrId);
+    if (discountPct > 0) {
+        return Math.round(basePrice * (1 - discountPct / 100));
+    }
+    return basePrice;
+}
+
+function formatPrice(price) {
+    if (!price || price === 0) return 'Contact for Price';
+    return 'PKR ' + Number(price).toLocaleString('en-PK');
+}
+
+/**
+ * Returns formatted HTML price display with original price struck through if discounted.
+ */
+function getPriceDisplay(slug) {
+    const discountPct = getProductDiscountPercent(slug);
+    const units = ['gallon', 'quarter', 'drum'];
+    const parts = [];
+
+    units.forEach(unit => {
+        const base = getProductBasePrice(slug, unit);
+        if (base > 0) {
+            const finalPrice = getProductPrice(slug, unit);
+            const unitLabel = unit.charAt(0).toUpperCase() + unit.slice(1);
+            if (discountPct > 0) {
+                parts.push(`<div>${unitLabel}: <del style="opacity:0.6;font-size:0.85em;margin-right:4px;">PKR ${base.toLocaleString('en-PK')}</del> <strong style="color:var(--accent,#a78bfa);">PKR ${finalPrice.toLocaleString('en-PK')}</strong> <span class="badge bg-danger" style="font-size:0.7em;">-${discountPct}%</span></div>`);
+            } else {
+                parts.push(`<div>${unitLabel}: <strong style="color:var(--accent,#a78bfa);">PKR ${base.toLocaleString('en-PK')}</strong></div>`);
             }
         }
-        return 0; // Return 0 if not found (Contact for Price)
-    }
-    return product[unit] || product.basePrice || product.gallon || 0;
+    });
+
+    if (parts.length === 0) return '<span style="color:var(--text-muted,#94a3b8);font-size:13px;">Contact for Price</span>';
+    return parts.join('');
 }
 
-// Function to format price
-function formatPrice(price) {
-    if (!price || price === 0) {
-        return '<span class="text-primary fw-bold">Contact for Price</span>';
-    }
-    return `<span class="text-primary fw-bold">PKR ${price.toLocaleString()}</span>`;
-}
+// ── Expose API globally ──────────────────────────────────────
+if (typeof window !== 'undefined') {
+    window.ProductPricing = {
+        getProductBasePrice,
+        getProductDiscountPercent,
+        getProductPrice,
+        formatPrice,
+        getPriceDisplay,
+        pricing: productPricing
+    };
 
-// Function to get price display with unit
-function getPriceDisplay(productSlug, unit = 'gallon') {
-    const price = getProductPrice(productSlug, unit);
-    if (price === 0) {
-        return formatPrice(0);
-    }
-    const unitLabel = unit === 'drum' ? 'Drum' : unit === 'gallon' ? 'Gallon' : unit === 'quarter' ? 'Quarter' : '';
-    return `<div class="price-with-unit">
-        <span class="text-primary fw-bold fs-4">PKR ${price.toLocaleString()}</span>
-        <small class="text-muted d-block">per ${unitLabel}</small>
-    </div>`;
-}
-
-// Load custom pricing from API (with localStorage fallback)
-function initializePricing() {
-    // Export globally first with static + local cache
-    if (typeof window !== 'undefined') {
-        window.ProductPricing = {
-            getProductPrice: getProductPrice,
-            formatPrice: formatPrice,
-            getPriceDisplay: getPriceDisplay,
-            pricing: productPricing
-        };
-    }
-
-    // Load from localStorage for initial quick sync (fallback)
-    try {
-        const customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
-        Object.assign(productPricing, customPricing);
-    } catch (e) {
-        console.error('Error merging custom pricing from localStorage:', e);
-    }
-
-    // Try loading from database API (browser environment only)
-    if (typeof window !== 'undefined' && window.document) {
-        const isLocalFile = window.location.protocol === 'file:';
-        const isDifferentLocalPort = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000';
-        const apiHost = (isLocalFile || isDifferentLocalPort) ? 'http://localhost:3000' : '';
-        
-        fetch(`${apiHost}/api/pricing`)
-            .then(res => {
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                return res.json();
-            })
-            .then(apiPricing => {
-                if (apiPricing && typeof apiPricing === 'object') {
-                    Object.assign(productPricing, apiPricing);
-                    localStorage.setItem('customPricing', JSON.stringify(apiPricing));
-                }
-                
-                window.dispatchEvent(new CustomEvent('pricingLoaded', { detail: productPricing }));
-            })
-            .catch(() => {
-                // Offline/localStorage mode — pricing already loaded from JS + localStorage
-                window.dispatchEvent(new CustomEvent('pricingLoaded', { detail: productPricing }));
-            });
+    // Dispatch initial event
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dispatchEvent(new CustomEvent('pricingLoaded', { detail: productPricing }));
+        });
+    } else {
+        window.dispatchEvent(new CustomEvent('pricingLoaded', { detail: productPricing }));
     }
 }
-
-initializePricing();

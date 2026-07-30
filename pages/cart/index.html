@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -35,7 +35,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <i class="bi bi-telephone-fill"></i> CONTACT US:
-                    <a href="tel:+923353236767">+92 335 323 6767</a>
+                    <a href="tel:+923122515982">+92 312 251 5982</a>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="../../pages/admin/index.html" class="me-3"><i class="bi bi-shield-lock"></i> Admin</a>
@@ -59,7 +59,8 @@
                     <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../pages/about-us/index.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../pages/shop/index.html">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../pages/contact-us/index.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../pages/contact-us/index.html">Contact Us</a>
+                    </li>
                     <li class="nav-item cart-wishlist-icons ms-3">
                         <a href="../../pages/wishlist/index.html" class="position-relative">
                             <i class="bi bi-heart"></i>
@@ -183,18 +184,20 @@
     <script src="../../assets/js/cart-utils.js"></script>
     <!-- Animations -->
     <script src="../../assets/js/animations.js"></script>
+    <!-- Firebase Service -->
+    <script src="../../assets/js/firebase-service.js"></script>
 
     <!-- Custom JS -->
     <script>
-        // Load cart from localStorage
         function loadCart() {
-            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const cart = (window.CartUtils && typeof window.CartUtils.getCart === 'function') ?
+                window.CartUtils.getCart() : JSON.parse(localStorage.getItem('cart') || '[]');
             const container = document.getElementById('cart-items-container');
             const emptyDiv = document.getElementById('empty-cart');
             const checkoutBtn = document.getElementById('checkout-btn');
 
             // Update cart count
-            const cartTotal = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartTotal = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
             updateCartCountGlobal(cartTotal);
 
             if (cart.length === 0) {
@@ -212,8 +215,9 @@
             let total = 0;
             cart.forEach((item, index) => {
                 const productUnit = item.unit || 'gallon';
-                const productPrice = window.ProductPricing ?
-                    window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
+                const productPrice = (item.unitPrice && item.unitPrice > 0) ?
+                    item.unitPrice :
+                    (window.ProductPricing ? window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0);
                 const itemTotal = productPrice * item.quantity;
                 total += itemTotal;
 
@@ -265,24 +269,24 @@
 
             // Add event listeners
             document.querySelectorAll('.quantity-decrease').forEach(btn => {
-                btn.addEventListener('click', function () {
+                btn.onclick = function () {
                     const uniqueKey = this.getAttribute('data-unique-key');
                     updateQuantity(uniqueKey, -1);
-                });
+                };
             });
 
             document.querySelectorAll('.quantity-increase').forEach(btn => {
-                btn.addEventListener('click', function () {
+                btn.onclick = function () {
                     const uniqueKey = this.getAttribute('data-unique-key');
                     updateQuantity(uniqueKey, 1);
-                });
+                };
             });
 
             document.querySelectorAll('.remove-cart-item').forEach(btn => {
-                btn.addEventListener('click', function () {
+                btn.onclick = function () {
                     const uniqueKey = this.getAttribute('data-unique-key');
                     removeFromCart(uniqueKey);
-                });
+                };
             });
         }
 
@@ -291,11 +295,17 @@
             const productSlug = parts[0];
             const unit = parts[1] || 'gallon';
 
-            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let cart = (window.CartUtils && typeof window.CartUtils.getCart === 'function') ?
+                window.CartUtils.getCart() : JSON.parse(localStorage.getItem('cart') || '[]');
+
             const item = cart.find(i => (i.slug || i.id) === productSlug && (i.unit || 'gallon') === unit);
             if (item) {
                 item.quantity = Math.max(1, item.quantity + change);
-                localStorage.setItem('cart', JSON.stringify(cart));
+                if (window.CartUtils && typeof window.CartUtils.saveCart === 'function') {
+                    window.CartUtils.saveCart(cart);
+                } else {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
                 loadCart();
             }
         }
@@ -305,9 +315,16 @@
             const productSlug = parts[0];
             const unit = parts[1] || 'gallon';
 
-            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            let cart = (window.CartUtils && typeof window.CartUtils.getCart === 'function') ?
+                window.CartUtils.getCart() : JSON.parse(localStorage.getItem('cart') || '[]');
+
             cart = cart.filter(item => !((item.slug || item.id) === productSlug && (item.unit || 'gallon') === unit));
-            localStorage.setItem('cart', JSON.stringify(cart));
+
+            if (window.CartUtils && typeof window.CartUtils.saveCart === 'function') {
+                window.CartUtils.saveCart(cart);
+            } else {
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
             loadCart();
             if (window.KPAnimations) {
                 window.KPAnimations.showToast('Item removed from cart', 'bi-cart-x');

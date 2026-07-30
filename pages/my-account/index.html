@@ -29,7 +29,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <i class="bi bi-telephone-fill"></i> CONTACT US:
-                    <a href="tel:+923353236767">+92 335 323 6767</a>
+                    <a href="tel:+923122515982">+92 312 251 5982</a>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="index.html" class="me-3"><i class="bi bi-person"></i> My Account</a>
@@ -203,7 +203,7 @@
                                     <div class="alert alert-info mt-2">
                                         <i class="bi bi-info-circle-fill me-2"></i>
                                         <span>Need help with a purchase? Feel free to contact our support hotline at
-                                            <strong>+92 335 323 6767</strong>.</span>
+                                            <strong>+92 312 251 5982</strong>.</span>
                                     </div>
                                 </div>
                             </div>
@@ -268,7 +268,7 @@
                                             class="bi bi-telephone-fill me-2 text-primary-custom"></i>Customer Support
                                     </h5>
                                     <p class="mb-2"><strong>Delux Paint Online Support:</strong></p>
-                                    <p class="mb-2"><i class="bi bi-telephone"></i> +92 335 323 6767</p>
+                                    <p class="mb-2"><i class="bi bi-telephone"></i> +92 312 251 5982</p>
                                     <p class="mb-2"><i class="bi bi-envelope"></i> support@karachipaints.pk</p>
                                     <p class="mb-0"><i class="bi bi-geo-alt"></i> Karachi, Pakistan</p>
                                 </div>
@@ -486,48 +486,69 @@
                         <!-- Product Catalog Management Card -->
                         <div class="card p-4 border shadow-sm mt-4">
                             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-                                <h4 class="mb-0"><i class="bi bi-box-seam me-2 text-primary-custom"></i>Product Catalog Management</h4>
+                                <h4 class="mb-0"><i class="bi bi-box-seam me-2 text-primary-custom"></i>Product Catalog
+                                    Management</h4>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-outline-success btn-sm d-flex align-items-center gap-1" onclick="exportProductsToExcel()" title="Export all products to Excel">
+                                    <button class="btn btn-outline-success btn-sm d-flex align-items-center gap-1"
+                                        onclick="exportProductsToExcel()" title="Export all products to Excel">
                                         <i class="bi bi-file-earmark-spreadsheet"></i> Export Products
                                     </button>
-                                    <button class="btn btn-outline-info btn-sm d-flex align-items-center gap-1" onclick="triggerProductImport()" title="Import products from Excel">
+                                    <button class="btn btn-outline-info btn-sm d-flex align-items-center gap-1"
+                                        onclick="triggerProductImport()" title="Import products from Excel">
                                         <i class="bi bi-cloud-arrow-up"></i> Import Products
                                     </button>
-                                    <input type="file" id="product-excel-input" accept=".xlsx,.xls,.csv" style="display: none;" onchange="importProductsFromExcel(this)">
-                                    <button class="btn btn-primary btn-sm d-flex align-items-center gap-1" onclick="showProductForm()">
+                                    <input type="file" id="product-excel-input" accept=".xlsx,.xls,.csv"
+                                        style="display: none;" onchange="importProductsFromExcel(this)">
+                                    <button class="btn btn-primary btn-sm d-flex align-items-center gap-1"
+                                        onclick="showProductForm()">
                                         <i class="bi bi-plus-circle"></i> Add New Product
                                     </button>
                                 </div>
                             </div>
 
                             <!-- Product Entry Panel (hidden by default) -->
-                            <div id="product-form-panel" class="card border mb-4 p-4 shadow-md text-start" style="display: none; background: var(--bg-card); border-color: var(--border-default) !important; color: var(--text-primary);">
-                                <h5 class="mb-4" id="product-form-title" style="color: var(--primary-light); font-weight: 700; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+                            <div id="product-form-panel" class="card border mb-4 p-4 shadow-md text-start"
+                                style="display: none; background: var(--bg-card); border-color: var(--border-default) !important; color: var(--text-primary);">
+                                <h5 class="mb-4" id="product-form-title"
+                                    style="color: var(--primary-light); font-weight: 700; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
                                     <i class="bi bi-pencil-square me-2"></i>Add Premium Product
                                 </h5>
                                 <form id="admin-product-form">
                                     <input type="hidden" id="p-edit-slug">
-                                    
+
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Product Name *</label>
-                                            <input type="text" id="p-name" class="form-control" required placeholder="e.g. Synthetic Premium Enamel" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Product Name
+                                                *</label>
+                                            <input type="text" id="p-name" class="form-control" required
+                                                placeholder="e.g. Synthetic Premium Enamel"
+                                                style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Quantity / Stock *</label>
-                                            <input type="number" id="p-form-qty" class="form-control" required min="0" value="100" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Quantity / Stock
+                                                *</label>
+                                            <input type="number" id="p-form-qty" class="form-control" required min="0"
+                                                value="100"
+                                                style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Brand *</label>
-                                            <input type="text" id="p-brand" class="form-control" required placeholder="e.g. Final Touch" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Brand *</label>
+                                            <input type="text" id="p-brand" class="form-control" required
+                                                placeholder="e.g. Final Touch"
+                                                style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Category *</label>
-                                            <select id="p-category" class="form-select" required style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Category
+                                                *</label>
+                                            <select id="p-category" class="form-select" required
+                                                style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                                 <option value="Decorative Paints">Decorative Paints</option>
                                                 <option value="Exterior Paints">Exterior Paints</option>
                                                 <option value="Brushes">Brushes</option>
@@ -537,43 +558,64 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row g-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Price (per Gallon) *</label>
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Price (per
+                                                Gallon) *</label>
                                             <div class="input-group">
-                                                <span class="input-group-text" style="background: var(--bg-glass); border-color: var(--border-default); color: var(--text-secondary);">PKR</span>
-                                                <input type="number" id="p-price-gallon" class="form-control" required min="0" placeholder="e.g. 1500" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                                <span class="input-group-text"
+                                                    style="background: var(--bg-glass); border-color: var(--border-default); color: var(--text-secondary);">PKR</span>
+                                                <input type="number" id="p-price-gallon" class="form-control" required
+                                                    min="0" placeholder="e.g. 1500"
+                                                    style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Price (per Quarter) *</label>
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Price (per
+                                                Quarter) *</label>
                                             <div class="input-group">
-                                                <span class="input-group-text" style="background: var(--bg-glass); border-color: var(--border-default); color: var(--text-secondary);">PKR</span>
-                                                <input type="number" id="p-price-quarter" class="form-control" required min="0" placeholder="e.g. 450" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                                <span class="input-group-text"
+                                                    style="background: var(--bg-glass); border-color: var(--border-default); color: var(--text-secondary);">PKR</span>
+                                                <input type="number" id="p-price-quarter" class="form-control" required
+                                                    min="0" placeholder="e.g. 450"
+                                                    style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
                                             </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row g-3 mb-3">
-                                        <div class="col-12">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Image URL / Path *</label>
-                                            <input type="text" id="p-image" class="form-control" required placeholder="e.g. https://via.placeholder.com/480" value="https://via.placeholder.com/480x480/111827/6366f1?text=New+Paint" style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row g-3 mb-4">
-                                        <div class="col-12">
-                                            <label class="form-label" style="font-weight: 500; color: var(--text-secondary);">Description *</label>
-                                            <textarea id="p-description" class="form-control" rows="3" required placeholder="Write a short description of the product..." style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);"></textarea>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex gap-2 justify-content-end border-top pt-3" style="border-color: var(--border-subtle) !important;">
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-12">
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Image URL / Path
+                                                *</label>
+                                            <input type="text" id="p-image" class="form-control" required
+                                                placeholder="e.g. https://via.placeholder.com/480"
+                                                value="https://via.placeholder.com/480x480/111827/6366f1?text=New+Paint"
+                                                style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);">
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-12">
+                                            <label class="form-label"
+                                                style="font-weight: 500; color: var(--text-secondary);">Description
+                                                *</label>
+                                            <textarea id="p-description" class="form-control" rows="3" required
+                                                placeholder="Write a short description of the product..."
+                                                style="background: var(--bg-glass); color: var(--text-primary); border-color: var(--border-default);"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2 justify-content-end border-top pt-3"
+                                        style="border-color: var(--border-subtle) !important;">
                                         <button type="submit" class="btn btn-success px-4 py-2" id="btn-save-product">
                                             <i class="bi bi-check-circle me-1"></i>Save Product
                                         </button>
-                                        <button type="button" class="btn btn-outline-secondary px-4 py-2" onclick="hideProductForm()">Cancel</button>
+                                        <button type="button" class="btn btn-outline-secondary px-4 py-2"
+                                            onclick="hideProductForm()">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -607,7 +649,7 @@
                         <div>
                             <h2 class="text-primary-custom mb-1">Delux Paint Online</h2>
                             <p class="text-muted mb-0">Premium Paint Solutions & Accessories</p>
-                            <p class="text-muted mb-0">Hotline: +92 335 323 6767 | orders@karachipaints.pk</p>
+                            <p class="text-muted mb-0">Hotline: +92 312 251 5982 | orders@karachipaints.pk</p>
                         </div>
                         <div class="text-end">
                             <h3 class="mb-1 text-uppercase text-secondary-custom">INVOICE</h3>
@@ -959,40 +1001,40 @@
                 setTimeout(loadAdminProductsTable, 100);
                 return;
             }
-            
+
             const allProducts = window.ProductCatalog.products;
             const pricing = window.ProductPricing.pricing;
-            
+
             // Load custom quantities from localStorage
             let customQuantities = {};
             try {
                 customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
-            } catch(e) {}
-            
+            } catch (e) { }
+
             listContainer.innerHTML = allProducts.map(product => {
                 const slug = product.slug;
                 const priceInfo = pricing[slug] || {};
                 const gallonPrice = priceInfo.gallon || 0;
                 const quarterPrice = priceInfo.quarter || 0;
-                
+
                 // Determine stock quantity
                 let qty = product.quantity !== undefined ? product.quantity : (customQuantities[slug] !== undefined ? customQuantities[slug] : 150);
-                
+
                 const imageSrc = product.image || 'https://via.placeholder.com/80x80/111827/6366f1?text=Paint';
-                
+
                 // Show Gallon price
                 const gallonDisplay = gallonPrice > 0 ? `PKR ${gallonPrice.toLocaleString()}` : '-';
-                
+
                 // Show Quarter price
                 const quarterDisplay = quarterPrice > 0 ? `PKR ${quarterPrice.toLocaleString()}` : '-';
-                
+
                 // Check if it is a custom product
                 let customProducts = [];
                 try {
                     customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-                } catch(e) {}
+                } catch (e) { }
                 const isCustom = customProducts.some(p => p.slug === slug);
-                
+
                 return `
                     <tr>
                         <td>
@@ -1032,13 +1074,13 @@
 
         window.updateProductQuantity = function (slug, newQty) {
             newQty = parseInt(newQty) || 0;
-            
+
             // Check if custom product first
             let customProducts = [];
             try {
                 customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-            } catch(e) {}
-            
+            } catch (e) { }
+
             const idx = customProducts.findIndex(p => p.slug === slug);
             if (idx !== -1) {
                 customProducts[idx].quantity = newQty;
@@ -1051,7 +1093,7 @@
                 let customQuantities = {};
                 try {
                     customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
-                } catch(e) {}
+                } catch (e) { }
                 customQuantities[slug] = newQty;
                 localStorage.setItem('customQuantities', JSON.stringify(customQuantities));
             }
@@ -1068,7 +1110,7 @@
             // scroll to form
             document.getElementById('product-form-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
-        
+
         window.hideProductForm = function () {
             document.getElementById('product-form-panel').style.display = 'none';
         };
@@ -1077,28 +1119,28 @@
             // Find the product
             const product = window.ProductCatalog.getProductBySlug(slug);
             if (!product) return;
-            
+
             const pricing = window.ProductPricing.pricing[slug] || {};
-            
+
             document.getElementById('product-form-panel').style.display = 'block';
             document.getElementById('product-form-title').innerHTML = '<i class="bi bi-pencil-square me-2"></i>Edit Product: ' + product.name;
-            
+
             document.getElementById('p-edit-slug').value = slug;
             document.getElementById('p-name').value = product.name;
-            
+
             let customQuantities = {};
             try {
                 customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
-            } catch(e) {}
+            } catch (e) { }
             document.getElementById('p-form-qty').value = product.quantity !== undefined ? product.quantity : (customQuantities[slug] !== undefined ? customQuantities[slug] : 150);
-            
+
             document.getElementById('p-brand').value = product.brand;
             document.getElementById('p-category').value = product.category;
             document.getElementById('p-price-gallon').value = pricing.gallon || 0;
             document.getElementById('p-price-quarter').value = pricing.quarter || 0;
             document.getElementById('p-image').value = product.image || '';
             document.getElementById('p-description').value = product.description || '';
-            
+
             // scroll to form
             document.getElementById('product-form-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
@@ -1109,23 +1151,23 @@
                 let customProducts = [];
                 try {
                     customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-                } catch(e) {}
+                } catch (e) { }
                 customProducts = customProducts.filter(p => p.slug !== slug);
                 localStorage.setItem('customProducts', JSON.stringify(customProducts));
-                
+
                 // Remove from customPricing localStorage
                 let customPricing = {};
                 try {
                     customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
-                } catch(e) {}
+                } catch (e) { }
                 delete customPricing[slug];
                 localStorage.setItem('customPricing', JSON.stringify(customPricing));
-                
+
                 // Remove from active catalog in memory
                 if (window.ProductCatalog) {
                     window.ProductCatalog.products = window.ProductCatalog.products.filter(p => p.slug !== slug);
                 }
-                
+
                 loadAdminProductsTable();
                 if (window.KPAnimations) {
                     window.KPAnimations.showToast('Product deleted!', 'bi-trash');
@@ -1134,12 +1176,12 @@
         };
 
         // Form Submit for Admin Product Creation/Edit
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const prodForm = document.getElementById('admin-product-form');
             if (prodForm) {
                 prodForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     const editSlug = document.getElementById('p-edit-slug').value;
                     const name = document.getElementById('p-name').value.trim();
                     const qty = parseInt(document.getElementById('p-form-qty').value) || 0;
@@ -1149,9 +1191,9 @@
                     const quarterPrice = parseInt(document.getElementById('p-price-quarter').value) || 0;
                     const image = document.getElementById('p-image').value.trim();
                     const description = document.getElementById('p-description').value.trim();
-                    
+
                     const slug = editSlug ? editSlug : name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                    
+
                     // Construct product object
                     const productObj = {
                         slug: slug,
@@ -1164,7 +1206,7 @@
                         features: ['Premium paint quality', 'Excellent coverage', 'Rich finish'],
                         specs: { coverage: '120 sq ft/liter', finish: 'Matte', base: 'Acrylic' }
                     };
-                    
+
                     // Construct pricing object
                     const priceObj = {
                         drum: 0,
@@ -1172,26 +1214,26 @@
                         quarter: quarterPrice,
                         basePrice: gallonPrice || quarterPrice
                     };
-                    
+
                     // Save pricing to localStorage
                     let customPricing = {};
                     try {
                         customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
-                    } catch(e) {}
+                    } catch (e) { }
                     customPricing[slug] = priceObj;
                     localStorage.setItem('customPricing', JSON.stringify(customPricing));
-                    
+
                     // Merge into active Pricing object
                     if (window.ProductPricing) {
                         window.ProductPricing.pricing[slug] = priceObj;
                     }
-                    
+
                     // Save products to localStorage
                     let customProducts = [];
                     try {
                         customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-                    } catch(e) {}
-                    
+                    } catch (e) { }
+
                     if (editSlug) {
                         // Editing existing
                         const idx = customProducts.findIndex(p => p.slug === editSlug);
@@ -1201,7 +1243,7 @@
                             // If it was a pre-listed product that we edited! We save it to custom products to override it.
                             customProducts.push(productObj);
                         }
-                        
+
                         // Update in memory catalog
                         if (window.ProductCatalog && window.ProductCatalog.products) {
                             const catalogIdx = window.ProductCatalog.products.findIndex(p => p.slug === editSlug);
@@ -1216,14 +1258,14 @@
                             window.ProductCatalog.products.push(productObj);
                         }
                     }
-                    
+
                     localStorage.setItem('customProducts', JSON.stringify(customProducts));
-                    
+
                     // Hide form and reload table
                     prodForm.reset();
                     hideProductForm();
                     loadAdminProductsTable();
-                    
+
                     if (window.KPAnimations) {
                         window.KPAnimations.showToast('Product saved successfully!', 'bi-check-circle-fill');
                     } else {
@@ -1555,28 +1597,28 @@
                 alert('Product catalog not loaded yet.');
                 return;
             }
-            
+
             const allProducts = window.ProductCatalog.products;
             const pricing = window.ProductPricing.pricing;
-            
+
             // Load custom quantities from localStorage
             let customQuantities = {};
             try {
                 customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
-            } catch(e) {}
+            } catch (e) { }
 
             // Load custom products from localStorage to identify custom vs standard
             let customProducts = [];
             try {
                 customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-            } catch(e) {}
+            } catch (e) { }
             const customSlugs = new Set(customProducts.map(p => p.slug));
 
             const rows = allProducts.map(product => {
                 const slug = product.slug;
                 const priceInfo = pricing[slug] || {};
                 const qty = product.quantity !== undefined ? product.quantity : (customQuantities[slug] !== undefined ? customQuantities[slug] : 150);
-                
+
                 return {
                     'Slug': slug,
                     'Name': product.name || '',
@@ -1603,7 +1645,7 @@
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Products');
             XLSX.writeFile(wb, `DeluxPaint_Products_${new Date().toISOString().slice(0, 10)}.xlsx`);
-            
+
             if (window.KPAnimations && window.KPAnimations.showToast) {
                 window.KPAnimations.showToast(`Exported ${allProducts.length} products to Excel`, 'bi-file-earmark-spreadsheet');
             } else {
@@ -1621,7 +1663,7 @@
         window.importProductsFromExcel = function (input) {
             if (!input.files || !input.files.length) return;
             const file = input.files[0];
-            
+
             const reader = new FileReader();
             reader.onload = function (e) {
                 try {
@@ -1639,17 +1681,17 @@
                     let customProducts = [];
                     try {
                         customProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-                    } catch(e) {}
-                    
+                    } catch (e) { }
+
                     let customPricing = {};
                     try {
                         customPricing = JSON.parse(localStorage.getItem('customPricing') || '{}');
-                    } catch(e) {}
-                    
+                    } catch (e) { }
+
                     let customQuantities = {};
                     try {
                         customQuantities = JSON.parse(localStorage.getItem('customQuantities') || '{}');
-                    } catch(e) {}
+                    } catch (e) { }
 
                     let newCount = 0;
                     let updatedCount = 0;
@@ -1657,7 +1699,7 @@
                     json.forEach(row => {
                         const name = String(row['Name'] || '').trim();
                         if (!name) return; // Skip if no name
-                        
+
                         const slug = String(row['Slug'] || name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')).trim();
                         const brand = String(row['Brand'] || 'Final Touch').trim();
                         const category = String(row['Category'] || 'Decorative Paints').trim();
@@ -1697,13 +1739,13 @@
 
                         // 2. Save stock quantity
                         customQuantities[slug] = stockQty;
-                        
+
                         // 3. Save to customProducts (if it is a custom product, or if we want to override standard catalog dynamically)
                         const isStandardProductInCatalog = window.ProductCatalog.products.some(p => p.slug === slug && !customProducts.some(cp => cp.slug === slug));
 
                         // Find index in customProducts
                         const customIdx = customProducts.findIndex(p => p.slug === slug);
-                        
+
                         if (customIdx !== -1) {
                             customProducts[customIdx] = productObj;
                             updatedCount++;

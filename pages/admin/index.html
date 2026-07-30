@@ -337,28 +337,50 @@
             border-radius: var(--radius-xl);
             backdrop-filter: blur(20px);
         }
+
         #edit-product-modal .modal-header {
             border-bottom: 1px solid var(--border-subtle);
             padding: 1.5rem 2rem;
         }
+
         #edit-product-modal .modal-title {
             color: #a78bfa;
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
             font-weight: 700;
         }
-        #edit-product-modal .modal-body { padding: 2rem; }
+
+        #edit-product-modal .modal-body {
+            padding: 2rem;
+        }
+
         #edit-product-modal .modal-footer {
             border-top: 1px solid var(--border-subtle);
             padding: 1.25rem 2rem;
         }
-        #edit-product-modal .form-label { font-weight: 600; color: var(--text-secondary); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .core-badge { font-size:11px; padding: 2px 8px; border-radius: 20px; background: rgba(99,102,241,0.15); color:#a78bfa; border:1px solid rgba(99,102,241,0.3); }
+
+        #edit-product-modal .form-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .core-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a78bfa;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
 
         /* Tabs and Forms styling */
         .nav-tabs {
             border-bottom: 2px solid var(--border-default) !important;
         }
+
         .nav-tabs .nav-link {
             border: 1px solid transparent;
             border-bottom: none;
@@ -366,6 +388,7 @@
             transition: all 0.3s ease;
             margin-right: 4px;
         }
+
         .nav-tabs .nav-link.active {
             background: var(--primary, #6366f1) !important;
             border-color: var(--primary, #6366f1) !important;
@@ -373,16 +396,21 @@
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
         }
+
         .nav-tabs .nav-link:hover:not(.active) {
             border-color: var(--border-hover);
             color: var(--text-primary);
         }
-        .form-control, .form-select {
+
+        .form-control,
+        .form-select {
             background-color: rgba(255, 255, 255, 0.02) !important;
             border-color: var(--border-default) !important;
             color: var(--text-primary) !important;
         }
-        .form-control:focus, .form-select:focus {
+
+        .form-control:focus,
+        .form-select:focus {
             background-color: rgba(255, 255, 255, 0.05) !important;
             border-color: var(--primary, #6366f1) !important;
             box-shadow: 0 0 10px rgba(99, 102, 241, 0.3) !important;
@@ -397,35 +425,61 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.18) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(167,139,250,0.12) 0%, transparent 55%),
-                        var(--bg-primary, #0a0f1e);
+            background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(167, 139, 250, 0.12) 0%, transparent 55%),
+                var(--bg-primary, #0a0f1e);
             backdrop-filter: blur(4px);
         }
 
         #login-overlay .login-card {
             background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(99,102,241,0.3);
+            border: 1px solid rgba(99, 102, 241, 0.3);
             border-radius: 24px;
             padding: 3rem 2.5rem;
             width: 100%;
             max-width: 420px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,102,241,0.1), inset 0 1px 0 rgba(255,255,255,0.04);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.04);
             animation: loginFadeIn 0.5s ease forwards;
         }
 
         @keyframes loginFadeIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0)    scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            15%       { transform: translateX(-8px); }
-            30%       { transform: translateX(8px); }
-            45%       { transform: translateX(-6px); }
-            60%       { transform: translateX(6px); }
-            75%       { transform: translateX(-3px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            15% {
+                transform: translateX(-8px);
+            }
+
+            30% {
+                transform: translateX(8px);
+            }
+
+            45% {
+                transform: translateX(-6px);
+            }
+
+            60% {
+                transform: translateX(6px);
+            }
+
+            75% {
+                transform: translateX(-3px);
+            }
         }
 
         .login-card.shake {
@@ -443,7 +497,7 @@
             font-size: 1.8rem;
             color: #fff;
             margin: 0 auto 1.5rem;
-            box-shadow: 0 8px 24px rgba(99,102,241,0.4);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
         }
 
         .login-card h2 {
@@ -480,8 +534,8 @@
 
         .login-input-group input {
             width: 100%;
-            background: rgba(255,255,255,0.03) !important;
-            border: 1px solid rgba(99,102,241,0.25) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(99, 102, 241, 0.25) !important;
             border-radius: 12px !important;
             color: #e2e8f0 !important;
             padding: 0.85rem 1rem 0.85rem 2.75rem !important;
@@ -492,11 +546,13 @@
 
         .login-input-group input:focus {
             border-color: #6366f1 !important;
-            box-shadow: 0 0 0 3px rgba(99,102,241,0.2) !important;
-            background: rgba(99,102,241,0.05) !important;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+            background: rgba(99, 102, 241, 0.05) !important;
         }
 
-        .login-input-group input::placeholder { color: #475569; }
+        .login-input-group input::placeholder {
+            color: #475569;
+        }
 
         #login-toggle-pw {
             position: absolute;
@@ -512,7 +568,10 @@
             z-index: 2;
             transition: color 0.2s;
         }
-        #login-toggle-pw:hover { color: #a78bfa; }
+
+        #login-toggle-pw:hover {
+            color: #a78bfa;
+        }
 
         #login-btn {
             width: 100%;
@@ -525,21 +584,30 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(99,102,241,0.35);
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
             margin-top: 0.5rem;
             position: relative;
             overflow: hidden;
         }
+
         #login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(99,102,241,0.5);
+            box-shadow: 0 8px 28px rgba(99, 102, 241, 0.5);
         }
-        #login-btn:active { transform: translateY(0); }
-        #login-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+        #login-btn:active {
+            transform: translateY(0);
+        }
+
+        #login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         #login-error {
-            background: rgba(239,68,68,0.1);
-            border: 1px solid rgba(239,68,68,0.3);
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             border-radius: 10px;
             color: #f87171;
             padding: 0.65rem 1rem;
@@ -557,11 +625,13 @@
             color: #334155;
             font-size: 0.8rem;
         }
-        .login-divider::before, .login-divider::after {
+
+        .login-divider::before,
+        .login-divider::after {
             content: '';
             flex: 1;
             height: 1px;
-            background: rgba(99,102,241,0.15);
+            background: rgba(99, 102, 241, 0.15);
         }
 
         .login-hint {
@@ -572,9 +642,15 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
-        .spin { display: inline-block; animation: spin 0.8s linear infinite; }
+
+        .spin {
+            display: inline-block;
+            animation: spin 0.8s linear infinite;
+        }
 
         @media (max-width: 768px) {
             .admin-header {
@@ -604,7 +680,8 @@
             <h2>Admin Access</h2>
             <p class="login-subtitle">Delux Paint Online — Secure Dashboard</p>
 
-            <div id="login-error"><i class="bi bi-exclamation-circle me-2"></i><span id="login-error-msg">Invalid credentials.</span></div>
+            <div id="login-error"><i class="bi bi-exclamation-circle me-2"></i><span id="login-error-msg">Invalid
+                    credentials.</span></div>
 
             <form id="login-form" autocomplete="on">
                 <div class="login-input-group">
@@ -613,7 +690,8 @@
                 </div>
                 <div class="login-input-group">
                     <i class="bi bi-lock input-icon"></i>
-                    <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required>
+                    <input type="password" id="login-password" placeholder="Password" autocomplete="current-password"
+                        required>
                     <button type="button" id="login-toggle-pw" tabindex="-1" title="Show/hide password">
                         <i class="bi bi-eye" id="toggle-pw-icon"></i>
                     </button>
@@ -623,7 +701,9 @@
                 </button>
             </form>
 
-            <p class="login-hint"><i class="bi bi-key me-1"></i>Default credentials: <code>admin</code> / <code>delux@2024</code></p>
+            <p class="login-hint"><i class="bi bi-key me-1"></i>Default credentials: <code>admin</code> /
+                <code>delux@2024</code>
+            </p>
         </div>
     </div>
 
@@ -633,7 +713,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <i class="bi bi-telephone-fill"></i> CONTACT US:
-                    <a href="tel:+923353236767">+92 335 323 6767</a>
+                    <a href="tel:+923122515982">+92 312 251 5982</a>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="../../pages/admin/index.html" class="me-3"><i class="bi bi-shield-lock"></i> Admin</a>
@@ -700,7 +780,10 @@
                     <div>
                         <h1><i class="bi bi-database-fill-gear me-2"></i>Orders Dashboard</h1>
                         <p class="mb-0" style="color: var(--text-muted);">Manage, export &amp; restore your order
-                            database via Excel</p>
+                            database via Firebase &amp; Excel
+                            <span id="firebase-status-badge" class="small fw-semibold ms-3 text-warning">🟡
+                                Connecting…</span>
+                        </p>
                     </div>
                     <div class="d-flex flex-wrap gap-2">
                         <button class="action-btn success" id="btn-export" title="Export orders to Excel">
@@ -712,7 +795,8 @@
                         <button class="action-btn danger" id="btn-clear" title="Clear all orders">
                             <i class="bi bi-trash3"></i> Clear All
                         </button>
-                        <button class="action-btn" id="btn-logout" title="Sign out of admin panel" style="border-color: rgba(239,68,68,0.4); color:#f87171;">
+                        <button class="action-btn" id="btn-logout" title="Sign out of admin panel"
+                            style="border-color: rgba(239,68,68,0.4); color:#f87171;">
                             <i class="bi bi-box-arrow-right"></i> Logout
                         </button>
                     </div>
@@ -722,13 +806,21 @@
             <!-- Tab Navigation -->
             <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-pane" type="button" role="tab" aria-controls="orders-pane" aria-selected="true">
+                    <button class="nav-link active" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-pane"
+                        type="button" role="tab" aria-controls="orders-pane" aria-selected="true">
                         <i class="bi bi-cart3 me-2"></i>Orders Dashboard
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="products-tab" data-bs-toggle="tab" data-bs-target="#products-pane" type="button" role="tab" aria-controls="products-pane" aria-selected="false">
+                    <button class="nav-link" id="products-tab" data-bs-toggle="tab" data-bs-target="#products-pane"
+                        type="button" role="tab" aria-controls="products-pane" aria-selected="false">
                         <i class="bi bi-box-seam-fill me-2"></i>Products Management
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-pane"
+                        type="button" role="tab" aria-controls="settings-pane" aria-selected="false">
+                        <i class="bi bi-sliders me-2"></i>Settings
                     </button>
                 </li>
             </ul>
@@ -770,7 +862,8 @@
                         <input type="file" accept=".xlsx,.xls,.csv" id="file-input">
                         <i class="bi bi-cloud-arrow-up d-block"></i>
                         <h5 style="color: var(--text-primary);">Import / Restore Database from Excel</h5>
-                        <p style="color: var(--text-muted);">Drag &amp; drop your <code>.xlsx</code> file here, or click to
+                        <p style="color: var(--text-muted);">Drag &amp; drop your <code>.xlsx</code> file here, or click
+                            to
                             browse</p>
                     </div>
 
@@ -795,7 +888,8 @@
                         <div class="empty-state" id="empty-state" style="display:none;">
                             <i class="bi bi-inbox d-block"></i>
                             <h5>No orders yet</h5>
-                            <p>Orders placed via the checkout will appear here automatically.<br>You can also import data from an
+                            <p>Orders placed via the checkout will appear here automatically.<br>You can also import
+                                data from an
                                 Excel file above.</p>
                         </div>
                     </div>
@@ -806,14 +900,22 @@
                     <!-- Products Header -->
                     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
                         <div>
-                            <h3 style="color:#a78bfa; font-family:'Playfair Display', serif; margin-bottom: 2px;"><i class="bi bi-box-seam me-2"></i>Products Catalog</h3>
+                            <h3 style="color:#a78bfa; font-family:'Playfair Display', serif; margin-bottom: 2px;"><i
+                                    class="bi bi-box-seam me-2"></i>Products Catalog</h3>
                             <p class="text-muted small mb-0">Add, edit pricing, or delete products in the database</p>
                         </div>
                         <div class="d-flex flex-wrap gap-2">
-                            <button class="action-btn danger" id="btn-delete-selected-products" style="display:none;" title="Delete selected products">
-                                <i class="bi bi-trash3-fill me-1"></i> Delete Selected (<span id="selected-products-count">0</span>)
+                            <button class="action-btn success" id="btn-export-products"
+                                title="Export all products to Excel sheet">
+                                <i class="bi bi-file-earmark-excel me-1"></i> Export to Excel
                             </button>
-                            <button class="action-btn success" data-bs-toggle="collapse" data-bs-target="#addProductCollapse">
+                            <button class="action-btn danger" id="btn-delete-selected-products" style="display:none;"
+                                title="Delete selected products">
+                                <i class="bi bi-trash3-fill me-1"></i> Delete Selected (<span
+                                    id="selected-products-count">0</span>)
+                            </button>
+                            <button class="action-btn success" data-bs-toggle="collapse"
+                                data-bs-target="#addProductCollapse">
                                 <i class="bi bi-plus-lg me-1"></i> Add New Product
                             </button>
                         </div>
@@ -821,21 +923,27 @@
 
                     <!-- Add Product Form Collapse -->
                     <div class="collapse mb-4" id="addProductCollapse">
-                        <div class="card card-body border-secondary shadow-lg" style="background: rgba(17, 24, 39, 0.95); border-radius: var(--radius-lg);">
-                            <h4 class="mb-3" style="color: #a78bfa;"><i class="bi bi-plus-circle me-2"></i>Add New Paint Product</h4>
+                        <div class="card card-body border-secondary shadow-lg"
+                            style="background: rgba(17, 24, 39, 0.95); border-radius: var(--radius-lg);">
+                            <h4 class="mb-3" style="color: #a78bfa;"><i class="bi bi-plus-circle me-2"></i>Add New Paint
+                                Product</h4>
                             <form id="add-product-form">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label" style="font-weight:600;">Product Name *</label>
-                                        <input type="text" class="form-control" id="prod-name" placeholder="e.g. Ultra Weather Proof Emulsion" required>
+                                        <input type="text" class="form-control" id="prod-name"
+                                            placeholder="e.g. Ultra Weather Proof Emulsion" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label" style="font-weight:600;">Slug (URL identifier) *</label>
-                                        <input type="text" class="form-control" id="prod-slug" placeholder="e.g. ultra-weather-proof-emulsion" required>
+                                        <label class="form-label" style="font-weight:600;">Slug (URL identifier)
+                                            *</label>
+                                        <input type="text" class="form-control" id="prod-slug"
+                                            placeholder="e.g. ultra-weather-proof-emulsion" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" style="font-weight:600;">Brand *</label>
-                                        <input type="text" class="form-control" id="prod-brand" placeholder="e.g. Delux Paints" required>
+                                        <input type="text" class="form-control" id="prod-brand"
+                                            placeholder="e.g. Delux Paints" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" style="font-weight:600;">Category *</label>
@@ -851,35 +959,51 @@
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label" style="font-weight:600;">Image URL</label>
-                                        <input type="url" class="form-control" id="prod-image" placeholder="e.g. https://images.unsplash.com/... or relative assets path">
+                                        <input type="url" class="form-control" id="prod-image"
+                                            placeholder="e.g. https://images.unsplash.com/... or relative assets path">
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label" style="font-weight:600;">Description *</label>
-                                        <textarea class="form-control" id="prod-desc" rows="3" placeholder="Explain paint properties, interior/exterior use, washable properties, etc." required></textarea>
+                                        <textarea class="form-control" id="prod-desc" rows="3"
+                                            placeholder="Explain paint properties, interior/exterior use, washable properties, etc."
+                                            required></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <label class="form-label" style="font-weight:600;">Features (comma separated)</label>
-                                        <input type="text" class="form-control" id="prod-features" placeholder="e.g. Washable, High Sheen, Anti-Fungal, Quick Dry">
+                                        <label class="form-label" style="font-weight:600;">Features (comma
+                                            separated)</label>
+                                        <input type="text" class="form-control" id="prod-features"
+                                            placeholder="e.g. Washable, High Sheen, Anti-Fungal, Quick Dry">
                                     </div>
-                                    
-                                    <h5 class="mt-4 text-warning" style="font-size: 1.1rem;"><i class="bi bi-tags-fill me-2"></i>Pricing Details (PKR)</h5>
-                                    <p class="text-muted small mt-0 mb-3"><i class="bi bi-info-circle me-1"></i>Set to 0 to display "Contact for Price"</p>
-                                    <div class="col-md-4">
+
+                                    <h5 class="mt-4 text-warning" style="font-size: 1.1rem;"><i
+                                            class="bi bi-tags-fill me-2"></i>Pricing Details (PKR)</h5>
+                                    <p class="text-muted small mt-0 mb-3"><i class="bi bi-info-circle me-1"></i>Set to 0
+                                        to display "Contact for Price"</p>
+                                    <div class="col-md-3">
                                         <label class="form-label" style="font-weight:600;">Gallon Price</label>
                                         <input type="number" class="form-control" id="price-gallon" value="0" min="0">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label class="form-label" style="font-weight:600;">Quarter Price</label>
                                         <input type="number" class="form-control" id="price-quarter" value="0" min="0">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label class="form-label" style="font-weight:600;">Drum Price</label>
                                         <input type="number" class="form-control" id="price-drum" value="0" min="0">
                                     </div>
-                                    
+                                    <div class="col-md-3">
+                                        <label class="form-label text-warning" style="font-weight:600;"><i
+                                                class="bi bi-percent me-1"></i>Discount (%)</label>
+                                        <input type="number" class="form-control border-warning" id="prod-discount"
+                                            value="0" min="0" max="100" placeholder="0">
+                                    </div>
+
                                     <div class="col-12 mt-4 text-end">
-                                        <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="collapse" data-bs-target="#addProductCollapse">Cancel</button>
-                                        <button type="submit" class="btn btn-primary"><i class="bi bi-save me-2"></i>Save Product</button>
+                                        <button type="button" class="btn btn-outline-light me-2"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#addProductCollapse">Cancel</button>
+                                        <button type="submit" class="btn btn-primary"><i
+                                                class="bi bi-save me-2"></i>Save Product</button>
                                     </div>
                                 </div>
                             </form>
@@ -892,7 +1016,8 @@
                             <thead>
                                 <tr>
                                     <th style="width:40px" class="text-center">
-                                        <input type="checkbox" id="select-all-products" class="form-check-input" title="Select All Products" style="cursor:pointer;">
+                                        <input type="checkbox" id="select-all-products" class="form-check-input"
+                                            title="Select All Products" style="cursor:pointer;">
                                     </th>
                                     <th style="width:60px">Image</th>
                                     <th>Name</th>
@@ -911,6 +1036,112 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Settings Tab Pane -->
+            <div class="tab-pane fade" id="settings-pane" role="tabpanel" aria-labelledby="settings-tab">
+
+                <!-- Discount Settings Card -->
+                <div class="card shadow-lg mb-4"
+                    style="background: var(--bg-glass); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl);">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div
+                                style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#a78bfa);display:flex;align-items:center;justify-content:center;">
+                                <i class="bi bi-percent" style="font-size:1.4rem;color:#fff;"></i>
+                            </div>
+                            <div>
+                                <h4 class="mb-0" style="color:#a78bfa;font-family:'Playfair Display',serif;">Discount
+                                    Settings</h4>
+                                <p class="mb-0 small" style="color:var(--text-muted);">Set a global percentage discount
+                                    applied at checkout</p>
+                            </div>
+                            <div class="ms-auto d-flex align-items-center gap-2">
+                                <span class="small" style="color:var(--text-muted);">Discount Active</span>
+                                <div class="form-check form-switch mb-0">
+                                    <input class="form-check-input" type="checkbox" id="discount-active-toggle"
+                                        role="switch" style="width:3rem;height:1.5rem;cursor:pointer;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold"
+                                    style="color:var(--text-secondary);font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;">
+                                    Discount Percentage (%)
+                                </label>
+                                <div class="d-flex align-items-center gap-3">
+                                    <input type="range" class="form-range flex-grow-1" id="discount-slider" min="0"
+                                        max="50" step="1" value="0" style="accent-color:#6366f1;">
+                                    <div style="min-width:72px;">
+                                        <div class="input-group input-group-sm">
+                                            <input type="number" class="form-control text-center fw-bold"
+                                                id="discount-percent" min="0" max="100" value="0"
+                                                style="background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.3);color:#a78bfa;font-size:1.1rem;">
+                                            <span class="input-group-text"
+                                                style="background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.3);color:#a78bfa;">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="range" id="discount-slider-label" class="d-none">
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="p-3 rounded-3"
+                                    style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);">
+                                    <div class="small mb-2"
+                                        style="color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">
+                                        Preview</div>
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span style="color:var(--text-secondary);">Original Price:</span>
+                                        <span style="color:var(--text-primary);">PKR 10,000</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span style="color:#10b981;">Discount (<span id="preview-pct">0</span>%):</span>
+                                        <span style="color:#10b981;">- PKR <span id="preview-savings">0</span></span>
+                                    </div>
+                                    <hr style="border-color:rgba(99,102,241,.2);margin:.5rem 0;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <strong style="color:var(--text-primary);">Customer Pays:</strong>
+                                        <strong style="color:#a78bfa;font-size:1.1rem;">PKR <span
+                                                id="preview-final">10,000</span></strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="discount-status-msg" class="mt-3 small" style="display:none;"></div>
+
+                        <div class="mt-4 d-flex gap-2">
+                            <button id="btn-save-discount" class="btn btn-primary px-4">
+                                <i class="bi bi-cloud-upload me-2"></i>Save to Firebase
+                            </button>
+                            <button id="btn-reset-discount" class="btn btn-outline-secondary px-4">
+                                <i class="bi bi-arrow-counterclockwise me-2"></i>Reset to 0%
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Firestore Security Rules Info -->
+                <div class="card shadow-sm"
+                    style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-radius:var(--radius-lg);">
+                    <div class="card-body p-4">
+                        <h5 class="mb-2" style="color:#f59e0b;"><i class="bi bi-shield-exclamation me-2"></i>Firestore
+                            Security Rules Reminder</h5>
+                        <p class="mb-2 small" style="color:var(--text-secondary);">
+                            Make sure your Firestore rules allow read/write on the <code>settings</code> collection so
+                            discounts can be saved and read by the checkout page.
+                        </p>
+                        <pre
+                            style="background:rgba(0,0,0,.3);border-radius:8px;padding:12px;font-size:11px;color:#86efac;overflow:auto;"><code>match /settings/{docId} {
+  allow read: if true;
+  allow write: if true; // restrict to admin auth in production
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </main>
 
@@ -938,13 +1169,16 @@
     </footer>
 
     <!-- ═══ Edit Product Modal ═══ -->
-    <div class="modal fade" id="edit-product-modal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit-product-modal" tabindex="-1" aria-labelledby="editProductModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editProductModalLabel"><i class="bi bi-pencil-square me-2"></i>Edit Product</h5>
+                    <h5 class="modal-title" id="editProductModalLabel"><i class="bi bi-pencil-square me-2"></i>Edit
+                        Product</h5>
                     <div class="ms-3" id="edit-core-badge"></div>
-                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="edit-product-form">
@@ -952,15 +1186,18 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">Product Name *</label>
-                                <input type="text" class="form-control" id="edit-prod-name" required placeholder="Product name">
+                                <input type="text" class="form-control" id="edit-prod-name" required
+                                    placeholder="Product name">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Slug (read-only)</label>
-                                <input type="text" class="form-control" id="edit-prod-slug" readonly style="opacity:0.6;cursor:not-allowed;">
+                                <input type="text" class="form-control" id="edit-prod-slug" readonly
+                                    style="opacity:0.6;cursor:not-allowed;">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Brand *</label>
-                                <input type="text" class="form-control" id="edit-prod-brand" required placeholder="Brand name">
+                                <input type="text" class="form-control" id="edit-prod-brand" required
+                                    placeholder="Brand name">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Category *</label>
@@ -987,37 +1224,52 @@
                                 <label class="form-label">Image URL</label>
                                 <input type="url" class="form-control" id="edit-prod-image" placeholder="https://...">
                                 <div class="mt-2" id="edit-img-preview-wrap" style="display:none;">
-                                    <img id="edit-img-preview" src="" alt="Preview" style="height:80px;object-fit:contain;border-radius:8px;border:1px solid var(--border-subtle);padding:4px;background:rgba(255,255,255,.03);">
+                                    <img id="edit-img-preview" src="" alt="Preview"
+                                        style="height:80px;object-fit:contain;border-radius:8px;border:1px solid var(--border-subtle);padding:4px;background:rgba(255,255,255,.03);">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Description *</label>
-                                <textarea class="form-control" id="edit-prod-desc" rows="3" required placeholder="Paint properties, use cases..."></textarea>
+                                <textarea class="form-control" id="edit-prod-desc" rows="3" required
+                                    placeholder="Paint properties, use cases..."></textarea>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Features (comma separated)</label>
-                                <input type="text" class="form-control" id="edit-prod-features" placeholder="e.g. Washable, High Sheen, Anti-Fungal">
+                                <input type="text" class="form-control" id="edit-prod-features"
+                                    placeholder="e.g. Washable, High Sheen, Anti-Fungal">
                             </div>
-                            <div class="col-12"><hr style="border-color:var(--border-subtle);margin:0.5rem 0 0;"></div>
-                            <div class="col-12"><h6 style="color:#f59e0b;"><i class="bi bi-tags-fill me-2"></i>Pricing (PKR) — set 0 for "Contact for Price"</h6></div>
-                            <div class="col-md-4">
+                            <div class="col-12">
+                                <hr style="border-color:var(--border-subtle);margin:0.5rem 0 0;">
+                            </div>
+                            <div class="col-12">
+                                <h6 style="color:#f59e0b;"><i class="bi bi-tags-fill me-2"></i>Pricing (PKR) — set 0 for
+                                    "Contact for Price"</h6>
+                            </div>
+                            <div class="col-md-3">
                                 <label class="form-label">Gallon Price</label>
                                 <input type="number" class="form-control" id="edit-price-gallon" value="0" min="0">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label class="form-label">Quarter Price</label>
                                 <input type="number" class="form-control" id="edit-price-quarter" value="0" min="0">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label class="form-label">Drum Price</label>
                                 <input type="number" class="form-control" id="edit-price-drum" value="0" min="0">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label text-warning"><i class="bi bi-percent me-1"></i>Discount
+                                    (%)</label>
+                                <input type="number" class="form-control border-warning" id="edit-prod-discount"
+                                    value="0" min="0" max="100">
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="edit-product-save-btn"><i class="bi bi-save me-2"></i>Save Changes</button>
+                    <button type="button" class="btn btn-primary" id="edit-product-save-btn"><i
+                            class="bi bi-save me-2"></i>Save Changes</button>
                 </div>
             </div>
         </div>
@@ -1037,16 +1289,34 @@
     <script src="../../assets/js/products-data.js"></script>
     <!-- Animations (theme toggle) -->
     <script src="../../assets/js/animations.js"></script>
+    <!-- Firebase Service -->
+    <script src="../../assets/js/firebase-service.js"></script>
 
     <script>
         // ============================================================
-        //  API Configuration & Helpers
+        //  Firebase-first Admin Panel
+        //  Falls back to localStorage when Firebase is unavailable.
         // ============================================================
         const isLocalFile = window.location.protocol === 'file:';
-        const isDifferentLocalPort = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000';
-        const API_HOST = (isLocalFile || isDifferentLocalPort) ? 'http://localhost:3000' : '';
+        // Legacy Express host kept for graceful fallback reference
+        const API_HOST = isLocalFile ? 'http://localhost:3000' : '';
 
         window.currentOrders = [];
+
+        // ── Firebase Status Badge (injected into admin header) ─────
+        window.addEventListener('firebaseStatus', function (e) {
+            const badge = document.getElementById('firebase-status-badge');
+            if (!badge) return;
+            const s = e.detail.status;
+            const map = {
+                connected: { text: '🟢 Firebase Live', cls: 'text-success' },
+                disconnected: { text: '🔴 Firebase Offline', cls: 'text-danger' },
+                loading: { text: '🟡 Connecting…', cls: 'text-warning' }
+            };
+            const cfg = map[s] || { text: '⚪ ' + s, cls: '' };
+            badge.textContent = cfg.text;
+            badge.className = 'small fw-semibold ms-3 ' + cfg.cls;
+        });
 
         // ── Auth Token Management ────────────────────────────────────
         const STORAGE_KEY = 'delux_admin_token';
@@ -1117,7 +1387,7 @@
         }
 
         // Login form submit
-        document.getElementById('login-form').addEventListener('submit', async function(e) {
+        document.getElementById('login-form').addEventListener('submit', async function (e) {
             e.preventDefault();
             const btn = document.getElementById('login-btn');
             btn.disabled = true;
@@ -1179,7 +1449,7 @@
         });
 
         // Toggle password visibility
-        document.getElementById('login-toggle-pw').addEventListener('click', function() {
+        document.getElementById('login-toggle-pw').addEventListener('click', function () {
             const pwInput = document.getElementById('login-password');
             const icon = document.getElementById('toggle-pw-icon');
             if (pwInput.type === 'password') {
@@ -1219,33 +1489,51 @@
         }
 
         // ============================================================
-        //  Orders Functions
+        //  Orders Functions — Firebase-first
         // ============================================================
         async function fetchOrders() {
-            try {
-                const res = await authFetch(`${API_HOST}/api/orders`);
-                if (!res.ok) throw new Error('API server returned error status');
-                const orders = await res.json();
-                window.currentOrders = orders;
-                localStorage.setItem('orders', JSON.stringify(orders)); // Keep offline backup
-            } catch (err) {
-                console.warn('Could not load orders from database API, falling back to local storage:', err.message);
-                window.currentOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+            // 1️⃣  Try Firebase first
+            if (window.FirebaseService && window.FirebaseService.isConnected()) {
+                const fbOrders = await window.FirebaseService.fetchOrders();
+                if (fbOrders !== null) {
+                    window.currentOrders = fbOrders;
+                    localStorage.setItem('orders', JSON.stringify(fbOrders));
+                    return;
+                }
             }
+
+            // 2️⃣  Firebase initialising — wait up to 4 s then retry
+            if (window.FirebaseService && !window.FirebaseService.isConnected()) {
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    const fbOrders = await window.FirebaseService.fetchOrders();
+                    if (fbOrders !== null) {
+                        window.currentOrders = fbOrders;
+                        localStorage.setItem('orders', JSON.stringify(fbOrders));
+                        return;
+                    }
+                } catch (_) { }
+            }
+
+            // 3️⃣  Fall back to localStorage
+            console.warn('[Admin] Firebase unavailable — loading orders from localStorage.');
+            window.currentOrders = JSON.parse(localStorage.getItem('orders') || '[]');
         }
 
         async function saveOrder(order) {
-            try {
-                const res = await authFetch(`${API_HOST}/api/orders`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(order)
-                });
-                return res.ok;
-            } catch (err) {
-                console.error('Could not save order on server:', err);
-                return false;
+            // Save to localStorage immediately
+            let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const idx = orders.findIndex(o => o.id === order.id);
+            if (idx !== -1) orders[idx] = order; else orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Persist to Firebase
+            if (window.FirebaseService) {
+                const saved = await window.FirebaseService.saveOrder(order);
+                if (!saved) console.warn('[Admin] Firebase saveOrder failed — kept in localStorage.');
+                return saved;
             }
+            return true;
         }
 
         async function renderOrders() {
@@ -1337,19 +1625,19 @@
                 btn.addEventListener('click', async function () {
                     const orderId = this.dataset.id;
                     if (!confirm(`Delete order ${orderId}?`)) return;
-                    
-                    try {
-                        const res = await authFetch(`${API_HOST}/api/orders/${orderId}`, { method: 'DELETE' });
-                        if (!res.ok) throw new Error('API server error');
-                        showToast('Order deleted');
-                    } catch (err) {
-                        console.warn('Could not delete order on API server, deleting locally:', err.message);
-                        // Local deletion backup
-                        let orders = JSON.parse(localStorage.getItem('orders') || '[]');
-                        orders = orders.filter(o => o.id !== orderId);
-                        localStorage.setItem('orders', JSON.stringify(orders));
-                        showToast('Order deleted locally');
+
+                    // Delete from Firebase
+                    let deleted = false;
+                    if (window.FirebaseService) {
+                        deleted = await window.FirebaseService.deleteOrder(orderId);
                     }
+
+                    // Always delete from localStorage
+                    let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+                    orders = orders.filter(o => o.id !== orderId);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+
+                    showToast(deleted ? 'Order deleted from Firebase' : 'Order deleted locally');
                     renderOrders();
                 });
             });
@@ -1411,17 +1699,19 @@
                 const priceQuarter = window.ProductPricing.getProductPrice(product.slug, 'quarter');
                 const priceDrum = window.ProductPricing.getProductPrice(product.slug, 'drum');
                 const isCore = CORE_SLUGS.has(product.slug);
+                const discountPct = Number(product.discountPercent) || 0;
 
                 const displayPricing = [];
                 if (priceGallon > 0) displayPricing.push(`Gallon: <strong class="text-accent">PKR ${formatCurrency(priceGallon)}</strong>`);
                 if (priceQuarter > 0) displayPricing.push(`Quarter: <strong class="text-accent">PKR ${formatCurrency(priceQuarter)}</strong>`);
                 if (priceDrum > 0) displayPricing.push(`Drum: <strong class="text-accent">PKR ${formatCurrency(priceDrum)}</strong>`);
-                
-                const pricingHtml = displayPricing.length > 0 
-                    ? displayPricing.join('<br>') 
+
+                const pricingHtml = displayPricing.length > 0
+                    ? displayPricing.join('<br>')
                     : '<span class="text-muted">Contact for Price</span>';
 
                 const coreBadge = isCore ? `<span class="core-badge me-1" title="Core product">Core</span>` : '';
+                const discountBadge = discountPct > 0 ? `<span class="badge bg-danger ms-1">${discountPct}% OFF</span>` : '';
 
                 return `
                 <tr>
@@ -1434,7 +1724,7 @@
                             onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQibsRwO1naOYLYziKEVQO5zjCLQ8HCBYerRs6J9cC9we9zRYWOtoReieQ&s=10'">
                     </td>
                     <td>
-                        <strong style="color:var(--text-primary)">${product.name}</strong>
+                        <strong style="color:var(--text-primary)">${product.name}</strong> ${discountBadge}
                         <div>${coreBadge}<code style="font-size:10px;color:var(--text-muted);">${product.slug}</code></div>
                     </td>
                     <td>${product.brand || '—'}</td>
@@ -1481,7 +1771,7 @@
             if (selectAllChk) {
                 selectAllChk.checked = false;
                 selectAllChk.indeterminate = false;
-                selectAllChk.onchange = function() {
+                selectAllChk.onchange = function () {
                     const chks = tbody.querySelectorAll('.product-select-chk');
                     chks.forEach(c => c.checked = selectAllChk.checked);
                     updateBulkDeleteState();
@@ -1496,7 +1786,7 @@
 
             // ── Bind EDIT buttons ──
             tbody.querySelectorAll('.edit-product-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const slug = this.dataset.slug;
                     openEditModal(slug);
                 });
@@ -1512,12 +1802,9 @@
                         : `Delete product "${slug}" from the catalog?`;
                     if (!confirm(warning)) return;
 
-                    try {
-                        const res = await authFetch(`${API_HOST}/api/products/${slug}`, { method: 'DELETE' });
-                        if (!res.ok) throw new Error('API server returned error');
-                        showToast('Product deleted from server catalog');
-                    } catch (err) {
-                        console.warn('Offline mode: deleting product locally:', err.message);
+                    // ── Delete from Firebase ──────────────────────────────
+                    if (window.FirebaseService) {
+                        await window.FirebaseService.deleteProduct(slug);
                     }
 
                     // Remove from live catalog
@@ -1555,9 +1842,10 @@
             const removedSlugs = JSON.parse(localStorage.getItem('deletedProductSlugs') || '[]');
 
             for (const slug of slugsToDelete) {
-                try {
-                    await authFetch(`${API_HOST}/api/products/${slug}`, { method: 'DELETE' });
-                } catch (err) { /* silent offline fallback */ }
+                // ── Delete from Firebase ──────────────────────────────────
+                if (window.FirebaseService) {
+                    await window.FirebaseService.deleteProduct(slug);
+                }
 
                 window.ProductCatalog.products = window.ProductCatalog.products.filter(p => p.slug !== slug);
                 if (!removedSlugs.includes(slug)) removedSlugs.push(slug);
@@ -1573,9 +1861,93 @@
         });
 
         // ============================================================
+        //  Export Products Catalog to Excel (.xlsx / .csv)
+        // ============================================================
+        function exportProductsToExcel() {
+            const products = (window.ProductCatalog && window.ProductCatalog.products) || [];
+            if (!products.length) {
+                showToast('No products available to export!');
+                return;
+            }
+
+            const excelData = products.map(p => {
+                const slug = p.slug || p.id;
+                const pricing = (window.ProductPricing && window.ProductPricing.pricing[slug]) || {};
+
+                const gallonPrice = window.ProductPricing ? window.ProductPricing.getProductBasePrice(slug, 'gallon') : (pricing.gallon || 0);
+                const quarterPrice = window.ProductPricing ? window.ProductPricing.getProductBasePrice(slug, 'quarter') : (pricing.quarter || 0);
+                const drumPrice = window.ProductPricing ? window.ProductPricing.getProductBasePrice(slug, 'drum') : (pricing.drum || 0);
+                const discountPct = Number(p.discountPercent) || (pricing.discountPercent ? Number(pricing.discountPercent) : 0);
+
+                return {
+                    'Product Name': p.name || '',
+                    'Slug': slug || '',
+                    'Brand': p.brand || '',
+                    'Category': p.category || '',
+                    'Gallon Price (PKR)': gallonPrice || '',
+                    'Quarter Price (PKR)': quarterPrice || '',
+                    'Drum Price (PKR)': drumPrice || '',
+                    'Discount (%)': discountPct || 0,
+                    'Description': p.description || '',
+                    'Features': Array.isArray(p.features) ? p.features.join(', ') : (p.features || ''),
+                    'Image URL': p.image || ''
+                };
+            });
+
+            const fileName = `delux_products_catalog_${new Date().toISOString().slice(0, 10)}.xlsx`;
+
+            if (typeof XLSX !== 'undefined') {
+                const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+                // Auto-adjust column widths
+                const colWidths = Object.keys(excelData[0]).map(key => {
+                    const maxLen = Math.max(
+                        key.length,
+                        ...excelData.map(row => String(row[key] || '').length)
+                    );
+                    return { wch: Math.min(Math.max(maxLen + 3, 12), 60) };
+                });
+                worksheet['!cols'] = colWidths;
+
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, 'Products');
+                XLSX.writeFile(workbook, fileName);
+                showToast(`✅ Exported ${products.length} products to ${fileName}!`);
+            } else {
+                // CSV Fallback
+                exportProductsToCSV(excelData);
+            }
+        }
+
+        function exportProductsToCSV(data) {
+            if (!data || !data.length) return;
+            const headers = Object.keys(data[0]);
+            let csvContent = "data:text/csv;charset=utf-8,\uFEFF" + headers.join(",") + "\n";
+
+            data.forEach(row => {
+                const rowValues = headers.map(h => `"${String(row[h] || '').replace(/"/g, '""')}"`);
+                csvContent += rowValues.join(",") + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `delux_products_catalog_${new Date().toISOString().slice(0, 10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast(`✅ Exported ${data.length} products to CSV!`);
+        }
+
+        const btnExportProducts = document.getElementById('btn-export-products');
+        if (btnExportProducts) {
+            btnExportProducts.addEventListener('click', exportProductsToExcel);
+        }
+
+        // ============================================================
         //  Add Product Form Handling
         // ============================================================
-        document.getElementById('prod-name').addEventListener('input', function() {
+        document.getElementById('prod-name').addEventListener('input', function () {
             const name = this.value;
             const slugInput = document.getElementById('prod-slug');
             // Generate friendly URL slug
@@ -1584,7 +1956,7 @@
                 .replace(/(^-|-$)/g, '');
         });
 
-        document.getElementById('add-product-form').addEventListener('submit', async function(e) {
+        document.getElementById('add-product-form').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const name = document.getElementById('prod-name').value.trim();
@@ -1598,6 +1970,7 @@
             const pGallon = parseFloat(document.getElementById('price-gallon').value) || 0;
             const pQuarter = parseFloat(document.getElementById('price-quarter').value) || 0;
             const pDrum = parseFloat(document.getElementById('price-drum').value) || 0;
+            const discountPercent = parseFloat(document.getElementById('prod-discount').value) || 0;
 
             const newProduct = {
                 slug,
@@ -1607,6 +1980,7 @@
                 image,
                 description,
                 features,
+                discountPercent,
                 specs: {
                     base: 'Water-based',
                     finish: 'Premium Matte',
@@ -1618,32 +1992,17 @@
                 gallon: pGallon,
                 quarter: pQuarter,
                 drum: pDrum,
+                discountPercent,
                 basePrice: pGallon || pQuarter || pDrum || 0
             };
 
-            // Post product to database
-            let productSaved = false;
-            try {
-                const res = await authFetch(`${API_HOST}/api/products`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(newProduct)
-                });
-                productSaved = res.ok;
-            } catch (err) {
-                console.warn('API error saving product, saving locally:', err.message);
-            }
-
-            // Post pricing to database
-            if (pGallon > 0 || pQuarter > 0 || pDrum > 0) {
-                try {
-                    await authFetch(`${API_HOST}/api/pricing`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ slug, pricingDetails: newPricing })
-                    });
-                } catch (err) {
-                    console.warn('API error saving pricing details:', err.message);
+            // ── Save to Firebase ───────────────────────────────────────
+            if (window.FirebaseService) {
+                const saved = await window.FirebaseService.saveProduct(newProduct, newPricing);
+                if (saved) {
+                    console.log('[Admin] Product saved to Firebase:', slug);
+                } else {
+                    console.warn('[Admin] Firebase saveProduct failed — product kept locally.');
                 }
             }
 
@@ -1672,7 +2031,7 @@
             bsCollapse.hide();
 
             showToast('New product added successfully!');
-            
+
             // Dispatch global event so page updates
             window.dispatchEvent(new CustomEvent('productsLoaded'));
             window.dispatchEvent(new CustomEvent('pricingLoaded'));
@@ -1776,16 +2135,25 @@
                         notes: row['Order Notes'] || ''
                     }));
 
+                    // Deduplicate against existing orders
+                    const existingIds = new Set((window.currentOrders || []).map(o => o.id));
+                    const newOrders = imported.filter(o => !existingIds.has(o.id));
+
                     let newCount = 0;
-                    for (const order of imported) {
-                        const existingIdx = window.currentOrders.findIndex(o => o.id === order.id);
-                        if (existingIdx === -1) {
+                    // Import to Firebase in batch if available
+                    if (window.FirebaseService && newOrders.length > 0) {
+                        newCount = await window.FirebaseService.importOrders(newOrders);
+                        // Also update localStorage
+                        const allOrders = [...(window.currentOrders || []), ...newOrders];
+                        localStorage.setItem('orders', JSON.stringify(allOrders));
+                    } else {
+                        for (const order of newOrders) {
                             await saveOrder(order);
                             newCount++;
                         }
                     }
 
-                    showToast(`Imported ${newCount} new order(s)`);
+                    showToast(`Imported ${newCount} new order(s) to Firebase`);
                     renderOrders();
                 } catch (err) {
                     console.error(err);
@@ -1819,17 +2187,22 @@
         //  Clear All Orders
         // ============================================================
         document.getElementById('btn-clear').addEventListener('click', async function () {
-            if (!confirm('Are you sure you want to delete ALL orders? This cannot be undone.')) return;
-            
-            try {
-                const res = await authFetch(`${API_HOST}/api/orders/clear`, { method: 'POST' });
-                if (!res.ok) throw new Error('API server returned error');
-                showToast('All orders cleared');
-            } catch (err) {
-                console.warn('API error clearing orders, doing locally:', err.message);
-                localStorage.setItem('orders', '[]');
+            if (!confirm('Are you sure you want to delete ALL orders from Firebase AND local storage? This cannot be undone.')) return;
+
+            // Delete all from Firebase
+            const orders = window.currentOrders || [];
+            if (window.FirebaseService && orders.length > 0) {
+                let cleared = 0;
+                for (const order of orders) {
+                    const ok = await window.FirebaseService.deleteOrder(order.id);
+                    if (ok) cleared++;
+                }
+                showToast(`Cleared ${cleared} order(s) from Firebase`);
+            } else {
                 showToast('Orders cleared locally');
             }
+
+            localStorage.setItem('orders', '[]');
             renderOrders();
         });
 
@@ -1915,9 +2288,10 @@
             document.getElementById('edit-price-gallon').value = (pricingObj && pricingObj.gallon) || 0;
             document.getElementById('edit-price-quarter').value = (pricingObj && pricingObj.quarter) || 0;
             document.getElementById('edit-price-drum').value = (pricingObj && pricingObj.drum) || 0;
+            document.getElementById('edit-prod-discount').value = product.discountPercent || (pricingObj && pricingObj.discountPercent) || 0;
 
             // Show/hide core badge
-            const coreSet = new Set(['413-plastic-emulsion','aqueous-matt-finish','all-rounder-matt-enamel','gloss-enamel','gloss-finish','gloss-finish-enamel','matt-enamel','matt-finish-enamel','plastic-emulsion','synthetic-enamel','silk-emulsion','super-emulsion','nu-emulsion','nu-enamel','perfect-emulsion','semi-plastic-emulsion','premium-exterior-emulsion','premium-matt-enamel','premium-synthetic-enamel-plus','royal-matt-emulsion','silk-sheen-emulsion','soft-sheen-emulsion','luxury-silk-sheen-emulsion','overall-super-semi-plastic-emulsion','dulux-prime-on','dulux-aqua-primer','dulux-wall-smoothening-putty-20-kg','dulux-weathershield-wall-putty-20-kg','cold-galvanizing-paint-silver','industrial-synthetic-enamel','berger','weather-defender','weather-hardshield','weather-proof','weather-protector','weather-resistant','weather-sheath','weather-shield','weather-shield-powerflex','weatherbond','crystal-weather-sheat','buxly-weather-fighter','all-weather-shelter','master-thermoshield','water-base-matt-finish','hydrous-matt-finish','spd-smooth-emulsion','special-matt-enamel','stain-guard-water-based-matt-emulsion','stainless-water-based-matt','subrang-aqueous-matt','subrang-matt-enamel','subrang-synthetic-enamel','super-gloss-enamel','q-lac-enamel','satin-glo-matt-enamel','brilliance-matt-enamel','platone-high-gloss','plastic-bound-distemper','paintex-putty','undercoat-white','wood-care','dolphin-spray-paint','tiger-spray-paint-400-ml','a-99-roller-9','accon-textured-roller','acorn-roller-9','all-rounder-roller-9','nichiyo-roller-9','tiger-roller-brush-9','tiger-texture-roller-9','black-cat-paint-brush','universal-diamond-series-paint-brush','universal-professional-series-paint-brush','aerosil-200','calcined-kaolin-dg-80','tioxide-tr81','tioxide-tr92']);
+            const coreSet = new Set(['413-plastic-emulsion', 'aqueous-matt-finish', 'all-rounder-matt-enamel', 'gloss-enamel', 'gloss-finish', 'gloss-finish-enamel', 'matt-enamel', 'matt-finish-enamel', 'plastic-emulsion', 'synthetic-enamel', 'silk-emulsion', 'super-emulsion', 'nu-emulsion', 'nu-enamel', 'perfect-emulsion', 'semi-plastic-emulsion', 'premium-exterior-emulsion', 'premium-matt-enamel', 'premium-synthetic-enamel-plus', 'royal-matt-emulsion', 'silk-sheen-emulsion', 'soft-sheen-emulsion', 'luxury-silk-sheen-emulsion', 'overall-super-semi-plastic-emulsion', 'dulux-prime-on', 'dulux-aqua-primer', 'dulux-wall-smoothening-putty-20-kg', 'dulux-weathershield-wall-putty-20-kg', 'cold-galvanizing-paint-silver', 'industrial-synthetic-enamel', 'berger', 'weather-defender', 'weather-hardshield', 'weather-proof', 'weather-protector', 'weather-resistant', 'weather-sheath', 'weather-shield', 'weather-shield-powerflex', 'weatherbond', 'crystal-weather-sheat', 'buxly-weather-fighter', 'all-weather-shelter', 'master-thermoshield', 'water-base-matt-finish', 'hydrous-matt-finish', 'spd-smooth-emulsion', 'special-matt-enamel', 'stain-guard-water-based-matt-emulsion', 'stainless-water-based-matt', 'subrang-aqueous-matt', 'subrang-matt-enamel', 'subrang-synthetic-enamel', 'super-gloss-enamel', 'q-lac-enamel', 'satin-glo-matt-enamel', 'brilliance-matt-enamel', 'platone-high-gloss', 'plastic-bound-distemper', 'paintex-putty', 'undercoat-white', 'wood-care', 'dolphin-spray-paint', 'tiger-spray-paint-400-ml', 'a-99-roller-9', 'accon-textured-roller', 'acorn-roller-9', 'all-rounder-roller-9', 'nichiyo-roller-9', 'tiger-roller-brush-9', 'tiger-texture-roller-9', 'black-cat-paint-brush', 'universal-diamond-series-paint-brush', 'universal-professional-series-paint-brush', 'aerosil-200', 'calcined-kaolin-dg-80', 'tioxide-tr81', 'tioxide-tr92']);
             const badgeEl = document.getElementById('edit-core-badge');
             badgeEl.innerHTML = coreSet.has(slug) ? '<span class="core-badge"><i class="bi bi-shield-fill me-1"></i>Core Product</span>' : '';
 
@@ -1927,26 +2301,27 @@
         }
 
         // Live image preview in modal
-        document.getElementById('edit-prod-image').addEventListener('input', function() {
+        document.getElementById('edit-prod-image').addEventListener('input', function () {
             const val = this.value.trim();
             const wrap = document.getElementById('edit-img-preview-wrap');
-            const img  = document.getElementById('edit-img-preview');
+            const img = document.getElementById('edit-img-preview');
             if (val) { img.src = val; wrap.style.display = ''; }
             else { wrap.style.display = 'none'; }
         });
 
         // Save edits
-        document.getElementById('edit-product-save-btn').addEventListener('click', async function() {
+        document.getElementById('edit-product-save-btn').addEventListener('click', async function () {
             const slugOrig = document.getElementById('edit-prod-slug-orig').value;
-            const name     = document.getElementById('edit-prod-name').value.trim();
-            const brand    = document.getElementById('edit-prod-brand').value.trim();
+            const name = document.getElementById('edit-prod-name').value.trim();
+            const brand = document.getElementById('edit-prod-brand').value.trim();
             const category = document.getElementById('edit-prod-category').value;
-            const image    = document.getElementById('edit-prod-image').value.trim() || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQibsRwO1naOYLYziKEVQO5zjCLQ8HCBYerRs6J9cC9we9zRYWOtoReieQ&s=10';
+            const image = document.getElementById('edit-prod-image').value.trim() || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQibsRwO1naOYLYziKEVQO5zjCLQ8HCBYerRs6J9cC9we9zRYWOtoReieQ&s=10';
             const description = document.getElementById('edit-prod-desc').value.trim();
             const features = document.getElementById('edit-prod-features').value.split(',').map(f => f.trim()).filter(Boolean);
-            const pGallon  = parseFloat(document.getElementById('edit-price-gallon').value) || 0;
+            const pGallon = parseFloat(document.getElementById('edit-price-gallon').value) || 0;
             const pQuarter = parseFloat(document.getElementById('edit-price-quarter').value) || 0;
-            const pDrum    = parseFloat(document.getElementById('edit-price-drum').value) || 0;
+            const pDrum = parseFloat(document.getElementById('edit-price-drum').value) || 0;
+            const discountPercent = parseFloat(document.getElementById('edit-prod-discount').value) || 0;
 
             if (!name || !brand || !description) {
                 showToast('Please fill in all required fields');
@@ -1958,35 +2333,32 @@
             if (prodIdx !== -1) {
                 window.ProductCatalog.products[prodIdx] = {
                     ...window.ProductCatalog.products[prodIdx],
-                    name, brand, category, image, description, features
+                    name, brand, category, image, description, features, discountPercent
                 };
             }
 
             // Update pricing
             if (window.ProductPricing) {
                 window.ProductPricing.pricing[slugOrig] = {
-                    gallon: pGallon, quarter: pQuarter, drum: pDrum,
+                    gallon: pGallon, quarter: pQuarter, drum: pDrum, discountPercent,
                     basePrice: pGallon || pQuarter || pDrum || 0
                 };
                 localStorage.setItem('customPricing', JSON.stringify(window.ProductPricing.pricing));
             }
 
-            // Persist all products
+            // Persist all products locally
             localStorage.setItem('customProducts', JSON.stringify(window.ProductCatalog.products));
 
-            // Try to push to server
-            try {
-                await authFetch(`${API_HOST}/api/products/${slugOrig}`, {
-                    method: 'PUT',
-                    body: JSON.stringify({ name, brand, category, image, description, features })
-                });
-                if (pGallon > 0 || pQuarter > 0 || pDrum > 0) {
-                    await authFetch(`${API_HOST}/api/pricing`, {
-                        method: 'POST',
-                        body: JSON.stringify({ slug: slugOrig, pricingDetails: { gallon: pGallon, quarter: pQuarter, drum: pDrum, basePrice: pGallon || pQuarter || pDrum || 0 } })
+            // ── Push to Firebase ─────────────────────────────────────────
+            if (window.FirebaseService) {
+                const updatedProduct = window.ProductCatalog.products.find(p => p.slug === slugOrig);
+                if (updatedProduct) {
+                    await window.FirebaseService.saveProduct(updatedProduct, {
+                        gallon: pGallon, quarter: pQuarter, drum: pDrum, discountPercent,
+                        basePrice: pGallon || pQuarter || pDrum || 0
                     });
                 }
-            } catch(e) { /* offline — local save is enough */ }
+            }
 
             // Close modal
             bootstrap.Modal.getInstance(document.getElementById('edit-product-modal')).hide();
@@ -1996,6 +2368,103 @@
             showToast(`"${name}" updated successfully!`);
             renderProducts();
         });
+
+        // ============================================================
+        //  Global Discount Settings Logic
+        // ============================================================
+        async function loadDiscountSettings() {
+            if (!window.FirebaseService) return;
+            const disc = await window.FirebaseService.getDiscount();
+            const percent = disc.percent || 0;
+            const active = Boolean(disc.active);
+
+            const pctInput = document.getElementById('discount-percent');
+            const sliderInput = document.getElementById('discount-slider');
+            const toggleInput = document.getElementById('discount-active-toggle');
+
+            if (pctInput) pctInput.value = percent;
+            if (sliderInput) sliderInput.value = percent;
+            if (toggleInput) toggleInput.checked = active;
+
+            updateDiscountPreview(percent);
+        }
+
+        function updateDiscountPreview(pct) {
+            const p = Math.max(0, Math.min(100, Number(pct) || 0));
+            const previewPct = document.getElementById('preview-pct');
+            const previewSavings = document.getElementById('preview-savings');
+            const previewFinal = document.getElementById('preview-final');
+
+            if (previewPct) previewPct.textContent = p;
+            const original = 10000;
+            const savings = Math.round(original * (p / 100));
+            const finalPrice = original - savings;
+            if (previewSavings) previewSavings.textContent = savings.toLocaleString();
+            if (previewFinal) previewFinal.textContent = finalPrice.toLocaleString();
+        }
+
+        const discSlider = document.getElementById('discount-slider');
+        if (discSlider) {
+            discSlider.addEventListener('input', function () {
+                const pctInput = document.getElementById('discount-percent');
+                if (pctInput) pctInput.value = this.value;
+                updateDiscountPreview(this.value);
+            });
+        }
+
+        const discPctInput = document.getElementById('discount-percent');
+        if (discPctInput) {
+            discPctInput.addEventListener('input', function () {
+                const sliderInput = document.getElementById('discount-slider');
+                if (sliderInput) sliderInput.value = this.value;
+                updateDiscountPreview(this.value);
+            });
+        }
+
+        const btnSaveDisc = document.getElementById('btn-save-discount');
+        if (btnSaveDisc) {
+            btnSaveDisc.addEventListener('click', async function () {
+                const pctInput = document.getElementById('discount-percent');
+                const toggleInput = document.getElementById('discount-active-toggle');
+                const pct = parseFloat(pctInput ? pctInput.value : 0) || 0;
+                const active = toggleInput ? toggleInput.checked : false;
+
+                if (window.FirebaseService) {
+                    const ok = await window.FirebaseService.setDiscount(pct, active);
+                    if (ok) {
+                        showToast(`Global discount saved: ${pct}% (${active ? 'Active' : 'Inactive'})`);
+                    } else {
+                        showToast('Failed to save discount to Firebase');
+                    }
+                }
+            });
+        }
+
+        const btnResetDisc = document.getElementById('btn-reset-discount');
+        if (btnResetDisc) {
+            btnResetDisc.addEventListener('click', async function () {
+                const pctInput = document.getElementById('discount-percent');
+                const sliderInput = document.getElementById('discount-slider');
+                const toggleInput = document.getElementById('discount-active-toggle');
+
+                if (pctInput) pctInput.value = 0;
+                if (sliderInput) sliderInput.value = 0;
+                if (toggleInput) toggleInput.checked = false;
+                updateDiscountPreview(0);
+
+                if (window.FirebaseService) {
+                    await window.FirebaseService.setDiscount(0, false);
+                    showToast('Discount reset to 0%');
+                }
+            });
+        }
+
+        const settingsTabBtn = document.getElementById('settings-tab');
+        if (settingsTabBtn) {
+            settingsTabBtn.addEventListener('shown.bs.tab', function () {
+                loadDiscountSettings();
+            });
+        }
 
         // ============================================================
         //  Tab Switching Hooks
@@ -2017,9 +2486,8 @@
         // ============================================================
         document.getElementById('btn-logout').addEventListener('click', async function () {
             if (!confirm('Are you sure you want to sign out?')) return;
-            try {
-                await authFetch(`${API_HOST}/api/auth/logout`, { method: 'POST' });
-            } catch(e) { /* ignore network errors on logout */ }
+            // Stop Firebase real-time listeners
+            if (window.FirebaseService) window.FirebaseService.stopListeners();
             clearToken();
             // Show login screen again with fade-in
             loginError.style.display = 'none';
@@ -2038,6 +2506,75 @@
         // ============================================================
         //  Init — gated behind login
         // ============================================================
+
+        // After successful login, seed Firestore with static catalog if empty
+        async function seedFirestoreIfNeeded() {
+            if (!window.FirebaseService) return;
+            // Wait for ProductCatalog & ProductPricing to be ready
+            let attempts = 0;
+            while ((!window.ProductCatalog || !window.ProductPricing) && attempts < 20) {
+                await new Promise(r => setTimeout(r, 200));
+                attempts++;
+            }
+            const result = await window.FirebaseService.seedProductsIfEmpty();
+            if (result.productsSeeded > 0) {
+                showToast(`✅ Seeded ${result.productsSeeded} products into Firebase!`);
+            }
+        }
+
+        // Override initAdminPage to also seed Firebase after login
+        const _origInitAdminPage = window.initAdminPage;
+        async function initAdminPage() {
+            const valid = await verifyExistingToken();
+            if (valid) {
+                overlay.style.display = 'none';
+                renderOrders();
+                renderProducts();
+                // Seed in background
+                seedFirestoreIfNeeded();
+                // Start real-time listener for orders
+                if (window.FirebaseService) {
+                    window.FirebaseService.listenOrders(function (orders) {
+                        window.currentOrders = orders;
+                        // Only auto-refresh if orders tab is active
+                        const ordersPane = document.getElementById('orders-pane');
+                        if (ordersPane && ordersPane.classList.contains('active')) {
+                            // Re-render stats + table
+                            const event = new CustomEvent('ordersUpdated', { detail: { orders } });
+                            window.dispatchEvent(event);
+                        }
+                    });
+                }
+                return;
+            }
+            clearToken();
+            overlay.style.display = 'flex';
+        }
+
+        // Listen to real-time order updates and refresh table
+        window.addEventListener('ordersUpdated', function (e) {
+            const orders = e.detail.orders;
+            const tbody = document.getElementById('orders-body');
+            const emptyState = document.getElementById('empty-state');
+            if (!tbody) return;
+
+            // Update stats
+            document.getElementById('stat-orders').textContent = orders.length;
+            const totalRevenue = orders.reduce((s, o) => s + (Number(o.total) || 0), 0);
+            document.getElementById('stat-revenue').textContent = formatCurrency(totalRevenue);
+            const totalItems = orders.reduce((s, o) => s + ((o.items || []).reduce((is, i) => is + (i.quantity || 1), 0)), 0);
+            document.getElementById('stat-items').textContent = totalItems;
+            const uniqueEmails = new Set(orders.map(o => (o.customer && o.customer.email) || '').filter(Boolean));
+            document.getElementById('stat-customers').textContent = uniqueEmails.size || orders.length;
+
+            if (orders.length === 0) {
+                tbody.innerHTML = '';
+                if (emptyState) emptyState.style.display = '';
+            } else {
+                if (emptyState) emptyState.style.display = 'none';
+            }
+        });
+
         initAdminPage();
     </script>
 </body>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,11 +38,11 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <i class="bi bi-telephone-fill"></i> CONTACT US:
-                    <a href="tel:+923353236767">+92 335 323 6767</a>
+                    <a href="tel:+923122515982">+92 312 251 5982</a>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="../../pages/admin/index.html" class="me-3"><i class="bi bi-shield-lock"></i> Admin</a>
-                    
+
                     <a href="../../pages/cart/index.html"><i class="bi bi-cart"></i> Cart</a>
                 </div>
             </div>
@@ -63,7 +63,8 @@
                     <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../pages/about-us/index.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../pages/shop/index.html">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../pages/contact-us/index.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../pages/contact-us/index.html">Contact Us</a>
+                    </li>
                     <li class="nav-item cart-wishlist-icons ms-3">
                         <a href="../../pages/wishlist/index.html" class="position-relative">
                             <i class="bi bi-heart"></i>
@@ -199,16 +200,19 @@
                                     <h4><i class="bi bi-credit-card me-2"></i>Payment Method</h4>
 
                                     <div class="payment-methods" id="paymentMethods">
-                                        <div class="payment-method active" data-method="cash-on-delivery" style="cursor: default;">
+                                        <div class="payment-method active" data-method="cash-on-delivery"
+                                            style="cursor: default;">
                                             <i class="bi bi-cash"></i>
                                             <div>Cash on Delivery (COD)</div>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="paymentMethod" name="paymentMethod" value="cash-on-delivery">
+                                    <input type="hidden" id="paymentMethod" name="paymentMethod"
+                                        value="cash-on-delivery">
 
                                     <div class="alert alert-info mt-3">
                                         <i class="bi bi-info-circle me-2"></i>
-                                        <span id="paymentInfo">You can pay cash when the order is delivered to your location.</span>
+                                        <span id="paymentInfo">You can pay cash when the order is delivered to your
+                                            location.</span>
                                     </div>
                                 </div>
 
@@ -252,12 +256,16 @@
                                 <span>Subtotal:</span>
                                 <strong id="subtotal">PKR 0</strong>
                             </div>
+                            <div class="order-item text-success" id="discount-row" style="display:none;">
+                                <span>Discount (<span id="discount-pct-label">0</span>%):</span>
+                                <strong id="discount-amount" style="color:#10b981;">- PKR 0</strong>
+                            </div>
                             <div class="order-item">
                                 <span>Shipping:</span>
                                 <strong>Calculated</strong>
                             </div>
                             <div class="order-item">
-                                <span>Tax:</span>
+                                <span>Tax (17% GST):</span>
                                 <strong id="tax">PKR 0</strong>
                             </div>
                             <div class="order-total">
@@ -360,6 +368,8 @@
     <script src="../../assets/js/cart-utils.js"></script>
     <!-- Animations -->
     <script src="../../assets/js/animations.js"></script>
+    <!-- Firebase Service -->
+    <script src="../../assets/js/firebase-service.js"></script>
 
     <!-- Checkout JS with EmailJS -->
     <script>
@@ -383,7 +393,7 @@
         // ============================================
         // Load Order Summary
         // ============================================
-        function loadOrderSummary() {
+        async function loadOrderSummary() {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const summaryContainer = document.getElementById('summary-items');
 
@@ -400,17 +410,25 @@
                 const productUnit = item.unit || 'gallon';
                 const productPrice = window.ProductPricing ?
                     window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
+                const basePrice = window.ProductPricing ?
+                    window.ProductPricing.getProductBasePrice(item.slug || item.id, productUnit) : productPrice;
+                const discountPct = window.ProductPricing ?
+                    window.ProductPricing.getProductDiscountPercent(item.slug || item.id) : 0;
+
                 const itemTotal = productPrice * item.quantity;
                 subtotal += itemTotal;
+
+                const discountTag = discountPct > 0 ? `<span class="badge bg-danger ms-1" style="font-size:10px;">-${discountPct}%</span>` : '';
+                const origPriceDisplay = discountPct > 0 ? `<del class="small text-muted me-1" style="font-size:11px;">PKR ${(basePrice * item.quantity).toLocaleString('en-US')}</del>` : '';
 
                 itemsHTML += `
                     <div class="order-item">
                         <div>
-                            <div><strong style="color: var(--text-primary);">${item.name || 'Product'}</strong></div>
+                            <div><strong style="color: var(--text-primary);">${item.name || 'Product'}</strong> ${discountTag}</div>
                             <div class="small" style="color: var(--text-muted);">Unit: <span class="text-uppercase">${productUnit}</span> | Qty: ${item.quantity}</div>
                         </div>
                         <div class="text-end">
-                            <div><strong style="color: var(--text-primary);">PKR ${itemTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
+                            <div>${origPriceDisplay}<strong style="color: var(--text-primary);">PKR ${itemTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
                         </div>
                     </div>
                 `;
@@ -418,9 +436,33 @@
 
             summaryContainer.innerHTML = itemsHTML || '<p style="color: var(--text-muted);">No items</p>';
 
+            // Check if active global discount exists in Firebase
+            let globalDiscountPct = 0;
+            if (window.FirebaseService) {
+                const disc = await window.FirebaseService.getDiscount();
+                if (disc && disc.active && disc.percent > 0) {
+                    globalDiscountPct = disc.percent;
+                }
+            }
+
+            const discountAmount = subtotal * (globalDiscountPct / 100);
+            const afterDiscountSubtotal = subtotal - discountAmount;
+
             // Calculate tax (17% GST for Pakistan)
-            const tax = subtotal * 0.17;
-            const total = subtotal + tax;
+            const tax = afterDiscountSubtotal * 0.17;
+            const total = afterDiscountSubtotal + tax;
+
+            // Update discount row UI
+            const discountRow = document.getElementById('discount-row');
+            if (discountRow) {
+                if (globalDiscountPct > 0) {
+                    discountRow.style.display = 'flex';
+                    document.getElementById('discount-pct-label').textContent = globalDiscountPct;
+                    document.getElementById('discount-amount').textContent = '- PKR ' + discountAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                } else {
+                    discountRow.style.display = 'none';
+                }
+            }
 
             // Update summary
             document.getElementById('subtotal').textContent = 'PKR ' + subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -558,27 +600,25 @@
                 total: parseFloat(document.getElementById('total').textContent.replace(/[^0-9.-]+/g, ''))
             };
 
-            // Save order to localStorage (local backup)
+            // Save order to localStorage (local backup — always runs first)
             let orders = JSON.parse(localStorage.getItem('orders') || '[]');
             orders.push(order);
             localStorage.setItem('orders', JSON.stringify(orders));
 
-            // Save order to database server (shared database)
-            const isLocalFile = window.location.protocol === 'file:';
-            const apiHost = isLocalFile ? 'http://localhost:3000' : '';
-            
-            fetch(`${apiHost}/api/orders`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(order)
-            })
-            .then(res => {
-                if (!res.ok) throw new Error('Database write error');
-                console.log('Order successfully synced with shared database server.');
-            })
-            .catch(err => {
-                console.warn('Could not sync order with shared database server:', err.message);
-            });
+            // ── Save order to Firebase Firestore ──────────────────────
+            if (window.FirebaseService) {
+                window.FirebaseService.saveOrder(order)
+                    .then(saved => {
+                        if (saved) {
+                            console.log('[Checkout] Order saved to Firebase Firestore ✅', order.id);
+                        } else {
+                            console.warn('[Checkout] Firebase unavailable — order kept in localStorage only.');
+                        }
+                    })
+                    .catch(err => console.error('[Checkout] Firebase save error:', err));
+            } else {
+                console.warn('[Checkout] FirebaseService not loaded — order saved to localStorage only.');
+            }
 
             // Clear cart
             localStorage.setItem('cart', '[]');
