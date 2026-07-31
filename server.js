@@ -267,6 +267,13 @@ app.post('/api/orders', (req, res) => {
         db.orders.push(newOrder);
     }
 
+    console.log(`\n====================================================`);
+    console.log(`📩 NEW ORDER RECEIVED FOR ADMIN (shahzadfahad64@gmail.com)`);
+    console.log(`Order ID: ${newOrder.id}`);
+    console.log(`Customer: ${newOrder.customer?.firstName} ${newOrder.customer?.lastName} (${newOrder.customer?.email}, ${newOrder.customer?.phone})`);
+    console.log(`Total: PKR ${newOrder.total}`);
+    console.log(`====================================================\n`);
+
     if (writeDb(db)) {
         res.json({ success: true, order: newOrder });
     } else {

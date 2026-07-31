@@ -2,9 +2,9 @@
 // Global Cart Utility Functions — Enhanced
 // Toast notifications + new product link format
 // ============================================
-(function() {
+(function () {
     'use strict';
-    
+
     // In-memory cart variable (backed by browser state variable)
     let _cartArray = JSON.parse(localStorage.getItem('cart') || '[]');
 
@@ -35,7 +35,7 @@
         const cart = customCart || _cartArray;
         const cartTotal = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
         const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-        
+
         // Update all cart count badges
         document.querySelectorAll('#cart-count, .badge-custom').forEach(badge => {
             const link = badge.closest('a');
@@ -43,21 +43,21 @@
                 badge.textContent = cartTotal;
             }
         });
-        
+
         // Update wishlist count badges
         document.querySelectorAll('#wishlist-count').forEach(badge => {
             badge.textContent = wishlist.length;
         });
-        
+
         // Dispatch event for other scripts
-        window.dispatchEvent(new CustomEvent('cartUpdated', { 
-            detail: { 
+        window.dispatchEvent(new CustomEvent('cartUpdated', {
+            detail: {
                 count: cartTotal,
-                items: cart 
-            } 
+                items: cart
+            }
         }));
     }
-    
+
     // Add to cart function using in-memory cart variables
     function addToCart(productSlug, productName, productLink, productImage, unit = 'gallon') {
         let cart = getCart();
@@ -101,7 +101,7 @@
 
         return true;
     }
-    
+
     // Update all listing prices on the page dynamically
     // Update all listing prices on the page dynamically
     function updateListingPrices() {
@@ -233,20 +233,20 @@
         syncDynamicCategoryProducts();
         updateListingPrices();
     }
-    
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-    
+
     // Listen for database server data loading updates
-    window.addEventListener('productsLoaded', function() {
+    window.addEventListener('productsLoaded', function () {
         syncDynamicCategoryProducts();
         updateListingPrices();
     });
 
-    window.addEventListener('pricingLoaded', function() {
+    window.addEventListener('pricingLoaded', function () {
         updateListingPrices();
     });
 
@@ -333,17 +333,17 @@
                     `<strong style="color:var(--accent, #00f2fe);">PKR ${baseP.toLocaleString()}</strong>`;
 
                 return `
-                    <label class="unit-option-card d-flex align-items-center justify-content-between p-2 px-3 border rounded ${isSelected ? 'border-primary bg-primary-subtle' : ''}" style="cursor:pointer; transition: all 0.2s; background: rgba(255,255,255,0.02);">
+                    <label class="unit-option-card d-flex align-items-center justify-content-between p-2 px-3 border rounded ${isSelected ? 'border-primary bg-primary-subtle' : ''}" style="cursor:pointer; transition: all 0.2s; background: rgba(255,255,255,0.02); color: #000000;">
                         <div class="d-flex align-items-center gap-2">
                             <input type="radio" name="modal-unit" value="${u}" ${isSelected ? 'checked' : ''} style="cursor:pointer;">
-                            <span class="fw-semibold" style="font-size:0.95rem;">${uCap}</span>
+                            <span class="fw-semibold" style="font-size:0.95rem; color: #000000;">${uCap}</span>
                         </div>
                         <div>${priceText}</div>
                     </label>`;
             }).join('');
 
             optionsContainer.querySelectorAll('input[name="modal-unit"]').forEach(radio => {
-                radio.addEventListener('change', function() {
+                radio.addEventListener('change', function () {
                     selectedUnit = this.value;
                     renderUnitOptions();
                     updateModalTotal();
@@ -364,7 +364,7 @@
         document.getElementById('unit-modal-qty').oninput = updateModalTotal;
 
         const confirmBtn = document.getElementById('unit-modal-confirm-btn');
-        confirmBtn.onclick = function() {
+        confirmBtn.onclick = function () {
             const qty = Math.max(1, parseInt(document.getElementById('unit-modal-qty').value) || 1);
             for (let i = 0; i < qty; i++) {
                 addToCart(productSlug, productName, productLink, productImage, selectedUnit);
@@ -390,26 +390,26 @@
         updateListingPrices: updateListingPrices,
         openUnitSelectorModal: openUnitSelectorModal
     };
-    
+
     // Auto-initialize add to cart buttons
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (e.target.closest('.add-to-cart-btn')) {
             const btn = e.target.closest('.add-to-cart-btn');
             const productSlug = btn.getAttribute('data-product') || btn.getAttribute('data-product-slug');
             const productLink = btn.getAttribute('data-product-link') || 'product.html?slug=' + productSlug;
-            
+
             if (!productSlug) return;
 
             // Don't intercept if inside detail page #btn-add-cart
             if (btn.id === 'btn-add-cart') return;
-            
+
             // Get product details from the card
             const card = btn.closest('.product-card, .card');
-            const productName = card?.querySelector('.card-title a')?.textContent?.trim() || 
-                              card?.querySelector('.card-title')?.textContent?.trim() || 
-                              'Product';
+            const productName = card?.querySelector('.card-title a')?.textContent?.trim() ||
+                card?.querySelector('.card-title')?.textContent?.trim() ||
+                'Product';
             const productImage = card?.querySelector('img')?.src || '';
-            
+
             // Open Unit Selector Modal for user to pick Gallon / Quarter / Drum
             openUnitSelectorModal(productSlug, productName, productLink, productImage);
         }

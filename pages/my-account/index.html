@@ -1395,12 +1395,13 @@
             const tbody = document.getElementById('inv-items');
             tbody.innerHTML = order.items.map(item => {
                 const productUnit = item.unit || 'gallon';
-                const unitPrice = window.ProductPricing ? window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
+                const calcP = window.ProductPricing ? window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
+                const unitPrice = calcP > 0 ? calcP : (item.unitPrice || item.price || 0);
                 const totalItemPrice = unitPrice * item.quantity;
                 return `
                     <tr>
                         <td><strong>${item.name}</strong></td>
-                        <td class="text-center text-uppercase">${productUnit}</td>
+                        <td class="text-center text-uppercase fw-bold text-primary">${productUnit}</td>
                         <td class="text-end">PKR ${unitPrice.toLocaleString()}</td>
                         <td class="text-center">${item.quantity}</td>
                         <td class="text-end">PKR ${totalItemPrice.toLocaleString()}</td>
@@ -1409,7 +1410,11 @@
             }).join('');
 
             // Tax and Total calculations
-            const subtotal = order.subtotal || order.items.reduce((sum, item) => sum + (window.ProductPricing.getProductPrice(item.slug || item.id, item.unit || 'gallon') * item.quantity), 0);
+            const subtotal = order.subtotal || order.items.reduce((sum, item) => {
+                const calcP = window.ProductPricing ? window.ProductPricing.getProductPrice(item.slug || item.id, item.unit || 'gallon') : 0;
+                const p = calcP > 0 ? calcP : (item.unitPrice || item.price || 0);
+                return sum + (p * item.quantity);
+            }, 0);
             const tax = order.tax || (subtotal * 0.17);
             const total = order.total || (subtotal + tax);
 

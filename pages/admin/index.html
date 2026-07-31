@@ -1484,7 +1484,8 @@
             return items.map(i => {
                 const qty = i.quantity || 1;
                 const name = i.name || i.id || 'Product';
-                return `${qty}× ${name}`;
+                const unit = (i.unit || 'gallon').toUpperCase();
+                return `${qty}× ${name} (${unit})`;
             }).join(', ');
         }
 

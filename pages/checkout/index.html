@@ -298,6 +298,44 @@
                         records.</p>
                 </div>
 
+                <!-- Order Received Summary Breakdown -->
+                <div id="order-received-details" class="card mb-4 text-start"
+                    style="background: var(--bg-card, #121826) !important; color: var(--text-primary, #ffffff) !important; border: 1px solid var(--border-subtle, rgba(255,255,255,0.1)); padding: 20px; border-radius: 12px;">
+                    <h5 style="color: var(--text-primary, #ffffff);" class="mb-3"><i
+                            class="bi bi-receipt me-2 text-primary"></i>Order Items Received</h5>
+                    <div class="table-responsive mb-3">
+                        <table class="table table-dark table-borderless table-sm mb-0"
+                            style="--bs-table-bg: transparent; background: transparent; color: var(--text-primary, #ffffff); font-size: 0.9rem;">
+                            <thead>
+                                <tr
+                                    style="border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,0.1)); color: var(--text-muted, #94a3b8);">
+                                    <th
+                                        style="background: transparent !important; color: var(--text-muted, #94a3b8) !important; padding: 8px 4px;">
+                                        Item Name</th>
+                                    <th class="text-center"
+                                        style="background: transparent !important; color: var(--text-muted, #94a3b8) !important; padding: 8px 4px;">
+                                        Packaging Unit</th>
+                                    <th class="text-center"
+                                        style="background: transparent !important; color: var(--text-muted, #94a3b8) !important; padding: 8px 4px;">
+                                        Qty</th>
+                                    <th class="text-end"
+                                        style="background: transparent !important; color: var(--text-muted, #94a3b8) !important; padding: 8px 4px;">
+                                        Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="order-received-items-body" style="background: transparent;">
+                                <!-- Dynamic order received items -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-between pt-2"
+                        style="border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.1));">
+                        <span class="fw-bold" style="color: var(--text-primary, #ffffff);">Total Amount:</span>
+                        <strong id="order-received-total"
+                            style="color: var(--accent, #00f2fe); font-size: 1.15rem;"></strong>
+                    </div>
+                </div>
+
                 <div class="alert alert-warning">
                     <h5 style="font-family: 'Inter', sans-serif;">Next Steps:</h5>
                     <ol class="text-start" style="max-width: 500px; margin: 15px auto 0; color: var(--text-secondary);">
@@ -309,6 +347,7 @@
                 </div>
 
                 <div class="mt-4">
+
                     <a href="../../index.html" class="btn btn-primary btn-lg me-2">
                         <i class="bi bi-house me-2"></i>Back to Home
                     </a>
@@ -344,8 +383,8 @@
                 <div class="col-md-4 mb-4">
                     <h5>Contact Info</h5>
                     <ul class="list-unstyled" style="font-size: 14px;">
-                        <li class="mb-2"><i class="bi bi-telephone me-2" style="color:var(--primary-light)"></i> +92 335
-                            323 6767</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2" style="color:var(--primary-light)"></i> +92 312
+                            251 5982</li>
                         <li class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--primary-light)"></i>
                             orders@karachipaints.pk</li>
                         <li><i class="bi bi-geo-alt me-2" style="color:var(--primary-light)"></i> Karachi, Pakistan</li>
@@ -370,6 +409,8 @@
     <script src="../../assets/js/animations.js"></script>
     <!-- Firebase Service -->
     <script src="../../assets/js/firebase-service.js"></script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <!-- Checkout JS with EmailJS -->
     <script>
@@ -381,9 +422,9 @@
         // 2. Create an email service (e.g., Gmail, Outlook)
         // 3. Create an email template
         // 4. Replace the values below
-        const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';      // Replace with your EmailJS public key
-        const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';      // Replace with your EmailJS service ID
-        const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';    // Replace with your EmailJS template ID
+        const EMAILJS_PUBLIC_KEY = 'Oy1lYGLMa9JfOxh0W';      // Replace with your EmailJS public key
+        const EMAILJS_SERVICE_ID = 'service_xwj0xia';      // Replace with your EmailJS service ID
+        const EMAILJS_TEMPLATE_ID = 'template_i0tvix6';    // Replace with your EmailJS template ID
 
         // Initialize EmailJS
         if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
@@ -408,10 +449,14 @@
 
             cart.forEach(item => {
                 const productUnit = item.unit || 'gallon';
-                const productPrice = window.ProductPricing ?
+                const calcPrice = window.ProductPricing ?
                     window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
-                const basePrice = window.ProductPricing ?
-                    window.ProductPricing.getProductBasePrice(item.slug || item.id, productUnit) : productPrice;
+                const productPrice = calcPrice > 0 ? calcPrice : (item.unitPrice || item.price || item.basePrice || 0);
+
+                const calcBase = window.ProductPricing ?
+                    window.ProductPricing.getProductBasePrice(item.slug || item.id, productUnit) : 0;
+                const basePrice = calcBase > 0 ? calcBase : (item.basePrice || productPrice);
+
                 const discountPct = window.ProductPricing ?
                     window.ProductPricing.getProductDiscountPercent(item.slug || item.id) : 0;
 
@@ -419,13 +464,13 @@
                 subtotal += itemTotal;
 
                 const discountTag = discountPct > 0 ? `<span class="badge bg-danger ms-1" style="font-size:10px;">-${discountPct}%</span>` : '';
-                const origPriceDisplay = discountPct > 0 ? `<del class="small text-muted me-1" style="font-size:11px;">PKR ${(basePrice * item.quantity).toLocaleString('en-US')}</del>` : '';
+                const origPriceDisplay = (discountPct > 0 && basePrice > productPrice) ? `<del class="small text-muted me-1" style="font-size:11px;">PKR ${(basePrice * item.quantity).toLocaleString('en-US')}</del>` : '';
 
                 itemsHTML += `
                     <div class="order-item">
                         <div>
                             <div><strong style="color: var(--text-primary);">${item.name || 'Product'}</strong> ${discountTag}</div>
-                            <div class="small" style="color: var(--text-muted);">Unit: <span class="text-uppercase">${productUnit}</span> | Qty: ${item.quantity}</div>
+                            <div class="small" style="color: var(--text-muted);">Packaging Unit: <span class="text-uppercase fw-bold text-primary">${productUnit}</span> | Qty: ${item.quantity}</div>
                         </div>
                         <div class="text-end">
                             <div>${origPriceDisplay}<strong style="color: var(--text-primary);">PKR ${itemTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
@@ -493,62 +538,413 @@
         // Send Order Email via EmailJS
         // ============================================
         function sendOrderEmail(order) {
-            // Build items list for email
+            // Build text items list for fallback/standard templates
             const itemsList = order.items.map(item => {
-                const productUnit = item.unit || 'gallon';
-                const price = window.ProductPricing ?
-                    window.ProductPricing.getProductPrice(item.slug || item.id, productUnit) : 0;
-                return `${item.name} (${productUnit.toUpperCase()}) x${item.quantity} — PKR ${(price * item.quantity).toLocaleString()}`;
+                const productUnit = (item.unit || 'gallon').toUpperCase();
+                const calcP = window.ProductPricing ?
+                    window.ProductPricing.getProductPrice(item.slug || item.id, item.unit || 'gallon') : 0;
+                const price = calcP > 0 ? calcP : (item.unitPrice || item.price || 0);
+                return `${item.name} [Packaging Unit: ${productUnit}] x${item.quantity} — PKR ${(price * item.quantity).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
             }).join('\n');
+
+            const origin = (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : '';
+            const logoUrl = origin && !origin.startsWith('file:') ? `${origin}/assets/images/web-logo-new.png` : 'https://cdn-icons-png.flaticon.com/512/2972/2972403.png';
+
+            // Build orders array for EmailJS Mustache {{#orders}} loops
+            const ordersArray = (order.items || []).map(item => {
+                const productUnit = (item.unit || 'gallon').toUpperCase();
+                const calcP = window.ProductPricing ?
+                    window.ProductPricing.getProductPrice(item.slug || item.id, item.unit || 'gallon') : 0;
+                const priceVal = calcP > 0 ? calcP : (item.unitPrice || item.price || 0);
+                const rowPrice = priceVal * (item.quantity || 1);
+
+                // Build item image URL
+                let itemImg = item.image || item.imageUrl || item.image_url || item.img || '';
+                if (itemImg && !itemImg.startsWith('http') && origin && !origin.startsWith('file:')) {
+                    itemImg = itemImg.startsWith('/') ? `${origin}${itemImg}` : `${origin}/${itemImg}`;
+                }
+                if (!itemImg || itemImg.startsWith('file:')) {
+                    itemImg = 'https://cdn-icons-png.flaticon.com/512/2972/2972403.png';
+                }
+
+                return {
+                    name: `${item.name || 'Product'} (${productUnit})`,
+                    units: item.quantity || 1,
+                    quantity: item.quantity || 1,
+                    price: rowPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+                    // Item image variables for EmailJS templates
+                    image: itemImg,
+                    image_url: itemImg,
+                    item_image: itemImg,
+                    img: itemImg,
+                    url: itemImg,
+                    product_image: itemImg
+                };
+            });
+
+            const shippingVal = (order.deliveryFee || 0) === 0 ? '0.00' : Number(order.deliveryFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const taxVal = (order.tax || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const totalVal = (order.total || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const subtotalVal = (order.subtotal || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            const adminEmail = 'shahzadfahad64@gmail.com';
+            const customerEmail = order.customer?.email || adminEmail;
+
+            const fullAddress = [
+                order.address?.street,
+                order.address?.apartment,
+                order.address?.city,
+                order.address?.province,
+                order.address?.postalCode,
+                order.address?.country
+            ].filter(Boolean).join(', ') || 'N/A';
+
+            const streetVal = order.address?.street || 'N/A';
+            const apartmentVal = order.address?.apartment || '';
+            const cityVal = order.address?.city || 'N/A';
+            const provinceVal = order.address?.province || 'N/A';
+            const postalCodeVal = order.address?.postalCode || 'N/A';
+            const countryVal = order.address?.country || 'Pakistan';
 
             const templateParams = {
                 order_id: order.id,
-                customer_name: order.customer.firstName + ' ' + order.customer.lastName,
-                customer_email: order.customer.email,
-                customer_phone: order.customer.phone,
-                shipping_address: `${order.address.street}, ${order.address.apartment || ''}, ${order.address.city}, ${order.address.province} ${order.address.postalCode}, ${order.address.country}`,
-                payment_method: order.paymentMethod.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                customer_name: (order.customer?.firstName || '') + ' ' + (order.customer?.lastName || ''),
+                customer_email: customerEmail,
+                customer_phone: order.customer?.phone || 'N/A',
+                payment_method: (order.paymentMethod || 'Cash on Delivery').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                
+                // All common address variable aliases
+                address: fullAddress,
+                shipping_address: fullAddress,
+                delivery_address: fullAddress,
+                customer_address: fullAddress,
+                street: streetVal,
+                apartment: apartmentVal,
+                city: cityVal,
+                province: provinceVal,
+                postal_code: postalCodeVal,
+                postalCode: postalCodeVal,
+                country: countryVal,
+
+                // Nested object & dot-notation address support ({{address.street}}, {{address.city}}, {{address.country}})
+                "address.full": fullAddress,
+                "address.street": streetVal,
+                "address.apartment": apartmentVal,
+                "address.city": cityVal,
+                "address.province": provinceVal,
+                "address.postal_code": postalCodeVal,
+                "address.postalCode": postalCodeVal,
+                "address.country": countryVal,
+                
+                // Logo image variables for EmailJS header template logo
+                logo: logoUrl,
+                logo_url: logoUrl,
+                company_logo: logoUrl,
+                logo_src: logoUrl,
+                site_logo: logoUrl,
+                brand_logo: logoUrl,
+
+                // EmailJS Mustache loop: {{#orders}} {{name}} QTY: {{units}} ${{price}} {{/orders}}
+                orders: ordersArray,
+
+                // EmailJS nested cost object: {{cost.shipping}}, {{cost.tax}}, {{cost.total}}
+                cost: {
+                    shipping: shippingVal,
+                    tax: taxVal,
+                    total: totalVal,
+                    subtotal: subtotalVal
+                },
+                "cost.shipping": shippingVal,
+                "cost.tax": taxVal,
+                "cost.total": totalVal,
+                "cost.subtotal": subtotalVal,
+
+                // Standard string fallbacks
                 order_items: itemsList,
-                subtotal: 'PKR ' + order.subtotal.toLocaleString(),
-                tax: 'PKR ' + order.tax.toLocaleString(),
-                total: 'PKR ' + order.total.toLocaleString(),
+                shipping: shippingVal,
+                subtotal: 'PKR ' + subtotalVal,
+                tax: 'PKR ' + taxVal,
+                total: 'PKR ' + totalVal,
                 order_notes: order.notes || 'None',
-                to_email: order.customer.email
+
+                // Supply all standard EmailJS recipient address variables for 100% template compatibility
+                to_email: adminEmail,
+                email: adminEmail,
+                user_email: adminEmail,
+                recipient: adminEmail,
+                to: adminEmail,
+                send_to: adminEmail,
+                admin_email: adminEmail,
+                reply_to: customerEmail
             };
 
             // Only send if EmailJS is configured
             if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-                // Send to store owner
+                // Send notification email to admin (shahzadfahad64@gmail.com)
                 emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
                     .then(function (response) {
-                        console.log('Order email sent successfully!', response);
+                        console.log('Order notification email sent to admin (shahzadfahad64@gmail.com)!', response);
                         if (window.KPAnimations) {
-                            window.KPAnimations.showToast('Confirmation email sent!', 'bi-envelope-check');
+                            window.KPAnimations.showToast('Order email sent to admin!', 'bi-envelope-check');
                         }
                     })
                     .catch(function (error) {
-                        console.error('Email sending failed:', error);
-                        // Still show success — order is saved locally
-                        if (window.KPAnimations) {
-                            window.KPAnimations.showToast('Order saved! Email will be sent shortly.', 'bi-info-circle');
-                        }
+                        console.error('Admin email notification failed:', error);
                     });
+
+                // Also send order confirmation copy to customer
+                if (customerEmail && customerEmail !== adminEmail) {
+                    const customerParams = {
+                        ...templateParams,
+                        to_email: customerEmail,
+                        email: customerEmail,
+                        user_email: customerEmail,
+                        recipient: customerEmail,
+                        to: customerEmail,
+                        send_to: customerEmail
+                    };
+                    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, customerParams)
+                        .catch(err => console.error('Customer email sending error:', err));
+                }
             } else {
-                // EmailJS not configured — log and show message
-                console.log('=== ORDER CONFIRMATION ===');
+                // Log order details
+                console.log('=== ADMIN ORDER NOTIFICATION ===');
+                console.log('Admin Email:', 'shahzadfahad64@gmail.com');
                 console.log('Order ID:', order.id);
                 console.log('Customer:', templateParams.customer_name);
                 console.log('Email:', templateParams.customer_email);
                 console.log('Phone:', templateParams.customer_phone);
                 console.log('Address:', templateParams.shipping_address);
                 console.log('Payment:', templateParams.payment_method);
-                console.log('Items:', templateParams.order_items);
+                console.log('Items:\n' + templateParams.order_items);
                 console.log('Total:', templateParams.total);
-                console.log('==========================');
-                console.log('⚠️ EmailJS not configured. Replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, and YOUR_TEMPLATE_ID in checkout page.');
+                console.log('================================');
 
                 if (window.KPAnimations) {
-                    window.KPAnimations.showToast('Order placed! Configure EmailJS for email notifications.', 'bi-info-circle');
+                    window.KPAnimations.showToast('Order placed! Configure EmailJS to receive emails at shahzadfahad64@gmail.com.', 'bi-info-circle');
+                }
+            }
+        }
+
+        // ============================================
+        // Reusable WhatsApp Order Notification Functions
+        // ============================================
+
+        /**
+         * Builds dynamic WhatsApp order confirmation message from an order object.
+         * @param {Object} order - Order object containing customer, address, items, and total
+         * @returns {string} Formatted WhatsApp message
+         */
+        function buildWhatsAppMessage(order) {
+            if (!order) return '';
+
+            const customerName = `${order.customer?.firstName || ''} ${order.customer?.lastName || ''}`.trim() || 'Customer';
+            const customerPhone = order.customer?.phone || 'N/A';
+
+            const itemsText = (order.items || []).map(i => {
+                const qty = i.quantity || 1;
+                const name = i.name || 'Product';
+                return `${qty} × ${name}`;
+            }).join('\n') || 'No items';
+
+            const subtotalText = typeof order.subtotal === 'number'
+                ? `PKR ${order.subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                : (order.subtotal || 'PKR 0.00');
+
+            const deliveryText = order.deliveryFee
+                ? `PKR ${Number(order.deliveryFee).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                : 'Free Delivery';
+
+            const totalText = typeof order.total === 'number'
+                ? `PKR ${order.total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                : (order.total || 'PKR 0.00');
+
+            const addressParts = [
+                order.address?.street,
+                order.address?.apartment,
+                order.address?.city,
+                order.address?.province,
+                order.address?.postalCode,
+                order.address?.country
+            ].filter(Boolean);
+            const addressText = addressParts.length > 0 ? addressParts.join(', ') : 'N/A';
+
+            const paymentMethodText = (order.paymentMethod || 'Cash on Delivery')
+                .replace(/-/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase());
+
+            return `🛒 New Order Received
+
+Order ID: ${order.id || 'N/A'}
+
+Customer: ${customerName}
+Phone: ${customerPhone}
+
+Items:
+${itemsText}
+
+Subtotal: ${subtotalText}
+Delivery: ${deliveryText}
+Total: ${totalText}
+
+Address:
+${addressText}
+
+Payment Method:
+${paymentMethodText}
+
+Please confirm this order.`;
+        }
+
+        /**
+         * Sends order notification programmatically via Baileys WhatsApp Express Bot API.
+         * Falls back gracefully to WhatsApp Web link if bot server is offline.
+         * @param {Object} order - Order object containing details
+         */
+        async function sendWhatsAppNotification(order) {
+            try {
+                if (!order) {
+                    console.warn('[WhatsApp Bot] No order object provided.');
+                    return;
+                }
+
+                const message = buildWhatsAppMessage(order);
+                const phone = "923352432245";
+                const waWebUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+                // Update direct manual button link on success page as fallback
+                const waBtn = document.getElementById('whatsapp-direct-btn');
+                if (waBtn) {
+                    waBtn.href = waWebUrl;
+                }
+
+                console.log('[WhatsApp Bot] Sending order notification to Baileys Express Bot for order:', order.id);
+
+                const botApiEndpoint = window.WHATSAPP_BOT_ENDPOINT || 'http://localhost:3001/send';
+
+                const response = await fetch(botApiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        phone: phone,
+                        message: message
+                    })
+                }).catch(fetchErr => {
+                    console.warn('[WhatsApp Bot] Bot server offline at localhost:3001. Switching to WhatsApp Web fallback...', fetchErr);
+                    return null;
+                });
+
+                if (response && response.ok) {
+                    const data = await response.json();
+                    if (data && data.success) {
+                        console.log('[WhatsApp Bot] Order notification sent via Baileys Bot successfully ✅', data);
+                        if (window.KPAnimations) {
+                            window.KPAnimations.showToast('Order sent via WhatsApp Bot!', 'bi-whatsapp');
+                        }
+                        return;
+                    }
+                }
+
+                // Automatic fallback if bot service is offline or returned error
+                console.log('[WhatsApp Bot] Opening WhatsApp Web fallback for order:', order.id);
+                window.open(waWebUrl, '_blank');
+                if (window.KPAnimations) {
+                    window.KPAnimations.showToast('Opening WhatsApp to confirm order...', 'bi-whatsapp');
+                }
+
+            } catch (error) {
+                console.error('[WhatsApp Bot] Error sending WhatsApp notification:', error);
+            }
+        }
+
+        /**
+         * Core order processing function — saves order, sends email/WhatsApp, and updates UI.
+         * @param {Object} order - Order object
+         */
+        function placeOrder(order) {
+            try {
+                // Save order to localStorage (local backup)
+                let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+                orders.push(order);
+                localStorage.setItem('orders', JSON.stringify(orders));
+
+                // Save order to Firebase Firestore
+                if (window.FirebaseService) {
+                    window.FirebaseService.saveOrder(order)
+                        .then(saved => {
+                            if (saved) {
+                                console.log('[Checkout] Order saved to Firebase Firestore ✅', order.id);
+                            } else {
+                                console.warn('[Checkout] Firebase unavailable — order kept in localStorage only.');
+                            }
+                        })
+                        .catch(err => console.error('[Checkout] Firebase save error:', err));
+                } else {
+                    console.warn('[Checkout] FirebaseService not loaded — order saved to localStorage only.');
+                }
+
+                // Clear cart
+                localStorage.setItem('cart', '[]');
+
+                // Send order email
+                sendOrderEmail(order);
+
+                // Show success screen with delay for effect
+                setTimeout(() => {
+                    document.getElementById('checkout-form-container').style.display = 'none';
+                    document.getElementById('success-container').classList.add('show');
+                    document.getElementById('orderRef').textContent = order.id;
+
+                    // Render Order Received Breakdown
+                    const itemsBody = document.getElementById('order-received-items-body');
+                    if (itemsBody && order.items) {
+                        itemsBody.innerHTML = order.items.map(i => {
+                            const unit = (i.unit || 'gallon').toUpperCase();
+                            const calcP = window.ProductPricing ? window.ProductPricing.getProductPrice(i.slug || i.id, i.unit || 'gallon') : 0;
+                            const p = calcP > 0 ? calcP : (i.unitPrice || i.price || 0);
+                            const rowTotal = p * (i.quantity || 1);
+                            return `
+                                <tr style="background: transparent !important; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                                    <td style="background: transparent !important; color: var(--text-primary, #ffffff) !important; padding: 10px 4px;"><strong>${i.name || 'Product'}</strong></td>
+                                    <td class="text-center" style="background: transparent !important; padding: 10px 4px;"><span class="badge bg-primary text-white text-uppercase" style="font-size:0.75rem; padding: 4px 8px;">${unit}</span></td>
+                                    <td class="text-center" style="background: transparent !important; color: var(--text-primary, #ffffff) !important; padding: 10px 4px;">${i.quantity || 1}</td>
+                                    <td class="text-end fw-semibold" style="background: transparent !important; color: var(--accent, #00f2fe) !important; padding: 10px 4px;">PKR ${rowTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                                </tr>
+                            `;
+                        }).join('');
+                    }
+                    const receivedTotal = document.getElementById('order-received-total');
+                    if (receivedTotal) {
+                        receivedTotal.textContent = 'PKR ' + (order.total || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    }
+
+                    // Update progress steps
+                    document.getElementById('step-info').classList.add('completed');
+                    document.getElementById('step-payment').classList.add('completed');
+                    document.getElementById('step-confirm').classList.add('active');
+
+                    // Update cart count
+                    if (window.CartUtils) {
+                        window.CartUtils.updateCartCount();
+                    }
+
+                    // Launch confetti!
+                    if (window.KPAnimations) {
+                        window.KPAnimations.launchConfetti();
+                    }
+
+                    console.log('Order placed successfully:', order);
+
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 1200);
+
+            } catch (error) {
+                console.error('[Checkout] Error executing placeOrder:', error);
+                if (window.KPAnimations) {
+                    window.KPAnimations.showToast('An error occurred during order submission.', 'bi-exclamation-triangle');
                 }
             }
         }
@@ -597,61 +993,12 @@
                 notes: formData.get('notes'),
                 subtotal: parseFloat(document.getElementById('subtotal').textContent.replace(/[^0-9.-]+/g, '')),
                 tax: parseFloat(document.getElementById('tax').textContent.replace(/[^0-9.-]+/g, '')),
+                deliveryFee: 0,
                 total: parseFloat(document.getElementById('total').textContent.replace(/[^0-9.-]+/g, ''))
             };
 
-            // Save order to localStorage (local backup — always runs first)
-            let orders = JSON.parse(localStorage.getItem('orders') || '[]');
-            orders.push(order);
-            localStorage.setItem('orders', JSON.stringify(orders));
-
-            // ── Save order to Firebase Firestore ──────────────────────
-            if (window.FirebaseService) {
-                window.FirebaseService.saveOrder(order)
-                    .then(saved => {
-                        if (saved) {
-                            console.log('[Checkout] Order saved to Firebase Firestore ✅', order.id);
-                        } else {
-                            console.warn('[Checkout] Firebase unavailable — order kept in localStorage only.');
-                        }
-                    })
-                    .catch(err => console.error('[Checkout] Firebase save error:', err));
-            } else {
-                console.warn('[Checkout] FirebaseService not loaded — order saved to localStorage only.');
-            }
-
-            // Clear cart
-            localStorage.setItem('cart', '[]');
-
-            // Send order email
-            sendOrderEmail(order);
-
-            // Show success with delay for effect
-            setTimeout(() => {
-                document.getElementById('checkout-form-container').style.display = 'none';
-                document.getElementById('success-container').classList.add('show');
-                document.getElementById('orderRef').textContent = order.id;
-
-                // Update progress steps
-                document.getElementById('step-info').classList.add('completed');
-                document.getElementById('step-payment').classList.add('completed');
-                document.getElementById('step-confirm').classList.add('active');
-
-                // Update cart count
-                if (window.CartUtils) {
-                    window.CartUtils.updateCartCount();
-                }
-
-                // Launch confetti!
-                if (window.KPAnimations) {
-                    window.KPAnimations.launchConfetti();
-                }
-
-                console.log('Order placed:', order);
-
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 1200);
+            // Process order with placeOrder()
+            placeOrder(order);
         });
 
         // ============================================
@@ -667,6 +1014,10 @@
             const wishlistCountEl = document.getElementById('wishlist-count');
             if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
         });
+
+        // Re-calculate pricing when catalog or pricing loads asynchronously from Firebase
+        window.addEventListener('pricingLoaded', loadOrderSummary);
+        window.addEventListener('productsLoaded', loadOrderSummary);
     </script>
 </body>
 
