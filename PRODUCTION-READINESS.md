@@ -278,7 +278,7 @@ localStorage.setItem('wishlist', JSON.stringify([
 ## Contact Information
 
 For more information about production deployment, contact:
-- Email: contact@karachipaints.pk
+- Email: ffkhans36@gmail.com
 - Phone: +92 312 251 5982
 - Website: https://karachipaints.pk
 

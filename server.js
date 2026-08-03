@@ -268,7 +268,7 @@ app.post('/api/orders', (req, res) => {
     }
 
     console.log(`\n====================================================`);
-    console.log(`📩 NEW ORDER RECEIVED FOR ADMIN (shahzadfahad64@gmail.com)`);
+    console.log(`📩 NEW ORDER RECEIVED FOR ADMIN (ffkhans36@gmail.com)`);
     console.log(`Order ID: ${newOrder.id}`);
     console.log(`Customer: ${newOrder.customer?.firstName} ${newOrder.customer?.lastName} (${newOrder.customer?.email}, ${newOrder.customer?.phone})`);
     console.log(`Total: PKR ${newOrder.total}`);
